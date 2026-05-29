@@ -1,0 +1,152 @@
+/* ============================================================
+   Fire on the Bayou — globals.css
+   IMPORT ORDER IS CRITICAL: @import (fonts) MUST come before the
+   @tailwind directives or Turbopack throws a CSS parse error.
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Shared ecosystem custom properties */
+  --color-black: #090909;
+  --color-charcoal: #111111;
+  --color-gold: #d4af77;
+  --color-cream: #f5edd8;
+  --color-mist: #a89880;
+
+  /* Fire on the Bayou */
+  --color-ink: #060605;
+  --color-ember: #e2452a;
+  --color-flame: #ff7a3c;
+  --color-bayou: #0b1512;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth; /* fallback; Lenis takes over when JS loads */
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    @apply bg-ink text-cream font-sans antialiased;
+    /* prevent horizontal scroll from parallax/overflow elements */
+    overflow-x: hidden;
+  }
+
+  /* Lenis smooth-scroll wiring */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  ::selection {
+    background: var(--color-ember);
+    color: var(--color-cream);
+  }
+
+  /* Thin, on-brand scrollbar */
+  ::-webkit-scrollbar {
+    width: 9px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-ink);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #2a2a2a;
+    border-radius: 9px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-gold);
+  }
+}
+
+@layer utilities {
+  /* Gold gradient text — shared ecosystem effect */
+  .text-gold-gradient {
+    background: linear-gradient(135deg, #e8c97a 0%, #d4af77 45%, #b8935a 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Fire gradient text — the hot version, for big hero display type */
+  .text-fire-gradient {
+    background: linear-gradient(135deg, #ffa463 0%, #ff7a3c 35%, #e2452a 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Film grain — fixed full-viewport texture overlay (used in <GrainOverlay/>) */
+  .grain {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 180px 180px;
+  }
+
+  /* Cinematic vignette — darkens edges for that lens feel */
+  .vignette::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(
+      ellipse at center,
+      transparent 45%,
+      rgba(0, 0, 0, 0.55) 100%
+    );
+  }
+
+  /* Subtle ember bloom glow used behind hot accents */
+  .ember-bloom {
+    box-shadow: 0 0 80px -20px rgba(226, 69, 42, 0.55);
+  }
+
+  /* Hairline rule in brand border color */
+  .rule {
+    @apply h-px w-full bg-border;
+  }
+
+  /* Eyebrow label — mono, tracked, uppercase. Production-house meta style. */
+  .eyebrow {
+    @apply font-mono text-[11px] uppercase tracking-widest text-flame;
+  }
+
+  /* Reusable cinematic content frame */
+  .frame {
+    @apply mx-auto w-full max-w-frame px-6 md:px-10 lg:px-16;
+  }
+
+  .card-lift {
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .card-lift:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 30px 60px -25px rgba(0, 0, 0, 0.8);
+  }
+}
+
+/* Respect reduced-motion: kill heavy animation for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
