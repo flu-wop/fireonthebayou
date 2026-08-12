@@ -14,9 +14,9 @@ export const metadata: Metadata = {
 
 // Small set of stat-style facts. Edit freely.
 const stats = [
-  { value: "NOLA", label: "Born & based" },
+  { value: "20+", label: "Years in New Orleans" },
+  { value: "Gold", label: "Addy Award winner" },
   { value: "1", label: "Studio under one roof" },
-  { value: "∞", label: "Stories worth telling" },
 ];
 
 export default function AboutPage() {
@@ -46,6 +46,11 @@ export default function AboutPage() {
               and patience. That tension runs through everything we make — work
               that&rsquo;s bold enough to stop a scroll and crafted enough to
               hold up on a festival screen.
+            </p>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <p className="mt-6 font-mono text-[11px] uppercase tracking-widest text-mist">
+              Trusted by Home Depot &middot; Red Bull &middot; Reily Foods &middot; Rouses &middot; NOPD
             </p>
           </Reveal>
         </div>
