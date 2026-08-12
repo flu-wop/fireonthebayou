@@ -109,6 +109,28 @@ export const projects: Project[] = [
     video: "/video/work-crystal-hot-sauce.mp4",
     span: "regular",
   },
+  {
+    slug: "sazerac-house",
+    title: "Sazerac House Anthem",
+    client: "Sazerac House",
+    category: "Brand Film",
+    year: "2023",
+    blurb: "An anthem film for New Orleans' home of the Sazerac cocktail.",
+    poster: "/images/work-sazerac-house.jpg",
+    video: "/video/work-sazerac-house.mp4",
+    span: "wide",
+  },
+  {
+    slug: "russell-athletic",
+    title: "Russell Athletic",
+    client: "Russell Athletic, feat. Mark Ingram",
+    category: "Brand Film",
+    year: "2023",
+    blurb: "A brand film built around NFL running back and New Orleans native Mark Ingram.",
+    poster: "/images/work-russell-athletic.jpg",
+    video: "/video/work-russell-athletic.mp4",
+    span: "regular",
+  },
 ];
 
 /** Featured subset for the home page teaser. */
