@@ -36,15 +36,6 @@ export default function ContactPage() {
               </a>
             </div>
             <div>
-              <p className="eyebrow mb-3">Phone</p>
-              <a
-                href={`tel:${site.phone.replace(/[^+\d]/g, "")}`}
-                className="text-lg text-cream transition-colors hover:text-flame"
-              >
-                {site.phone}
-              </a>
-            </div>
-            <div>
               <p className="eyebrow mb-3">Studio</p>
               <p className="text-lg text-cream">{site.location}</p>
             </div>

@@ -55,8 +55,6 @@ export default function Footer() {
               {site.location}
               <br />
               {site.email}
-              <br />
-              {site.phone}
             </p>
           </div>
 
@@ -109,6 +107,14 @@ export default function Footer() {
               className="text-sm text-mist transition-colors hover:text-flame"
             >
               {site.studio.name} ↗
+            </a>
+            <a
+              href="https://midcitysound.com/merch"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 text-sm text-mist transition-colors hover:text-flame"
+            >
+              Shop Merch ↗
             </a>
           </div>
         </div>

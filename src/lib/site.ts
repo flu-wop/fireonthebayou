@@ -11,7 +11,6 @@ export const site = {
   url: "https://fireonthebayou.com",
   location: "New Orleans, Louisiana",
   email: "hello@fireonthebayou.com",
-  phone: "+1 (630) 344-2811",
   socials: {
     instagram: "https://instagram.com/fireonthebayou",
     vimeo: "https://vimeo.com/fireonthebayou",
