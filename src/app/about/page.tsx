@@ -19,6 +19,17 @@ const stats = [
   { value: "1", label: "Studio under one roof" },
 ];
 
+// Core crew, presented like closing credits — no photos needed, just the roles
+// and the receipts. Keep this list short; it's a signature, not a directory.
+const crew = [
+  { name: "Jason Villemarette", role: "Founder / Director", note: "20+ years, Gold Addy winner" },
+  { name: "Kathy Hirsch", role: "Executive Producer", note: "25 years, ex-Peter Mayer Advertising" },
+  { name: "David Reece", role: "Director of Photography", note: "Coca-Cola, ESPN, NFL" },
+  { name: "Michael Sanchez", role: "Post-Production Supervisor", note: "Edit, animation, sound design" },
+  { name: "Louis Koerner", role: "Director / DP", note: "Commercial & digital campaigns" },
+  { name: "Simon Blake", role: "Creative / Design", note: "Permanent collection, MoMA" },
+];
+
 export default function AboutPage() {
   return (
     <>
@@ -82,6 +93,26 @@ export default function AboutPage() {
                 <p className="mt-3 font-mono text-[11px] uppercase tracking-widest text-mist">
                   {s.label}
                 </p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* Crew — presented like closing credits, no photos, just the receipts */}
+      <section className="frame py-28">
+        <Reveal>
+          <p className="eyebrow mb-12 text-center">The Crew</p>
+        </Reveal>
+        <div className="mx-auto grid max-w-3xl grid-cols-1 gap-x-12 gap-y-8 sm:grid-cols-2">
+          {crew.map((c, i) => (
+            <Reveal key={c.name} delay={(i % 2) * 0.08}>
+              <div className="border-b border-border pb-4">
+                <p className="font-display text-xl text-cream">{c.name}</p>
+                <p className="mt-1 font-mono text-[11px] uppercase tracking-widest text-flame">
+                  {c.role}
+                </p>
+                <p className="mt-1.5 text-sm text-mist">{c.note}</p>
               </div>
             </Reveal>
           ))}
