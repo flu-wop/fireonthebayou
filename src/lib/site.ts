@@ -10,7 +10,10 @@ export const site = {
     "Fire on the Bayou is a New Orleans video production house crafting cinematic brand films, music videos, and documentary work. Home of Mid City Sound.",
   url: "https://fireonthebayou.com",
   location: "New Orleans, Louisiana",
-  email: "hello@fireonthebayou.com",
+  address: "530 Dr. Norman C Francis Pkwy, New Orleans, LA 70119",
+  phone: "(504) 400-2555",
+  phoneHref: "+15044002555",
+  email: "firenola@gmail.com",
   socials: {
     instagram: "https://instagram.com/fireonthebayou",
     vimeo: "https://vimeo.com/fireonthebayou",

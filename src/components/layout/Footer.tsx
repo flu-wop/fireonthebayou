@@ -52,9 +52,15 @@ export default function Footer() {
               Studio
             </p>
             <p className="text-sm leading-relaxed text-mist">
-              {site.location}
+              {site.address}
               <br />
-              {site.email}
+              <a href={`tel:${site.phoneHref}`} className="transition-colors hover:text-flame">
+                {site.phone}
+              </a>
+              <br />
+              <a href={`mailto:${site.email}`} className="transition-colors hover:text-flame">
+                {site.email}
+              </a>
             </p>
           </div>
 

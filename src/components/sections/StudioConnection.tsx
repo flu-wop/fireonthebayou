@@ -52,6 +52,14 @@ export default function StudioConnection() {
               it looks.
             </p>
           </Reveal>
+          <Reveal delay={0.2}>
+            <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 font-mono text-[11px] uppercase tracking-widest text-ash">
+              <li>5 edit &amp; animation bays</li>
+              <li>Sound stage</li>
+              <li>Grip truck</li>
+              <li>Sound design room</li>
+            </ul>
+          </Reveal>
           <Reveal delay={0.24}>
             <div className="mt-9">
               <Button href="/about" variant="outline">

@@ -36,8 +36,17 @@ export default function ContactPage() {
               </a>
             </div>
             <div>
+              <p className="eyebrow mb-3">Phone</p>
+              <a
+                href={`tel:${site.phoneHref}`}
+                className="text-lg text-cream transition-colors hover:text-flame"
+              >
+                {site.phone}
+              </a>
+            </div>
+            <div>
               <p className="eyebrow mb-3">Studio</p>
-              <p className="text-lg text-cream">{site.location}</p>
+              <p className="text-lg text-cream">{site.address}</p>
             </div>
             <div>
               <p className="eyebrow mb-3">Follow</p>

@@ -15,14 +15,14 @@ export const metadata: Metadata = {
 // Small set of stat-style facts. Edit freely.
 const stats = [
   { value: "20+", label: "Years in New Orleans" },
-  { value: "Gold", label: "Addy Award winner" },
-  { value: "1", label: "Studio under one roof" },
+  { value: "Telly & Addy", label: "National award wins" },
+  { value: "5", label: "Edit & animation bays" },
 ];
 
 // Core crew, presented like closing credits — no photos needed, just the roles
 // and the receipts. Keep this list short; it's a signature, not a directory.
 const crew = [
-  { name: "Jason Villemarette", role: "Founder / Director", note: "20+ years, Gold Addy winner" },
+  { name: "Jason Villemarette", role: "Founder / Director", note: "Innovator of the Year, City Business Magazine (2008)" },
   { name: "Kathy Hirsch", role: "Executive Producer", note: "25 years, ex-Peter Mayer Advertising" },
   { name: "David Reece", role: "Director of Photography", note: "Coca-Cola, ESPN, NFL" },
   { name: "Michael Sanchez", role: "Post-Production Supervisor", note: "Edit, animation, sound design" },
