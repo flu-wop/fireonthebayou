@@ -4,6 +4,7 @@ import StudioConnection from "@/components/sections/StudioConnection";
 import Statement from "@/components/sections/Statement";
 import Reveal from "@/components/effects/Reveal";
 import Parallax from "@/components/effects/Parallax";
+import CountUp from "@/components/effects/CountUp";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -88,7 +89,7 @@ export default function AboutPage() {
             <Reveal key={s.label} delay={i * 0.1}>
               <div className="px-4 py-14 text-center">
                 <p className="text-fire-gradient font-display text-6xl font-light md:text-7xl">
-                  {s.value}
+                  <CountUp value={s.value} />
                 </p>
                 <p className="mt-3 font-mono text-[11px] uppercase tracking-widest text-mist">
                   {s.label}
