@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import "@flu-wop/design-system/core.css";
+import "@flu-wop/design-system/compat.css";
 import "./globals.css";
 import { site } from "@/lib/site";
 import SmoothScroll from "@/components/effects/SmoothScroll";
@@ -38,7 +40,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
+    <html data-theme="studio" lang="en" className="dark">
       <body className="bg-ink text-cream antialiased">
         <SmoothScroll>
           <GrainOverlay />
