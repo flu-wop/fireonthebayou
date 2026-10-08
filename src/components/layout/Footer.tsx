@@ -3,13 +3,10 @@
 /**
  * Footer
  * ------
- * A big, cinematic sign-off: oversized "Let's make something" line, contact
- * details, nav echo, socials, and a faint ember glow bleeding up from the base.
+ * Contact details, nav echo, socials, and a faint ember glow from the base.
  */
 import Link from "next/link";
-import { consult, formatPrice, navLinks, site, socialLabels } from "@/lib/site";
-import Reveal from "@/components/effects/Reveal";
-import Button from "@/components/ui/Button";
+import { navLinks, site, socialLabels } from "@/lib/site";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -26,30 +23,9 @@ export default function Footer() {
         }}
       />
 
-      <div className="frame relative py-24 md:py-32">
-        <Reveal>
-          <p className="eyebrow mb-6">Start a project</p>
-        </Reveal>
-        <Reveal delay={0.08}>
-          <h2 className="max-w-4xl font-display text-[clamp(2.5rem,7vw,6.5rem)] font-light leading-[0.95] tracking-tight text-cream">
-            Let&rsquo;s make something{" "}
-            <span className="text-fire-gradient italic">unforgettable.</span>
-          </h2>
-        </Reveal>
-
-        <Reveal delay={0.16}>
-          <div className="mt-10 flex flex-wrap items-center gap-4">
-            <Button href="/contact" variant="ember">
-              Get in touch
-            </Button>
-            <Button href="/consult" variant="outline">
-              Book a consult &middot; {formatPrice(consult.priceCents)}
-            </Button>
-          </div>
-        </Reveal>
-
+      <div className="frame relative py-16 md:py-20">
         {/* Lower band */}
-        <div className="mt-20 grid grid-cols-2 gap-10 border-t border-border pt-12 md:grid-cols-4">
+        <div className="grid grid-cols-2 gap-10 md:grid-cols-4">
           <div>
             <p className="mb-4 font-mono text-[13px] tracking-wide text-ash">
               Studio
@@ -105,7 +81,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div className="flex flex-col justify-between">
+          <div className="flex flex-col items-start gap-2">
             <p className="mb-4 font-mono text-[13px] tracking-wide text-ash">
               Sister studio
             </p>
@@ -121,7 +97,7 @@ export default function Footer() {
               href={site.merch.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-3 text-sm text-mist transition-colors hover:text-flame"
+              className="text-sm text-mist transition-colors hover:text-flame"
             >
               Shop Merch ↗
             </a>
