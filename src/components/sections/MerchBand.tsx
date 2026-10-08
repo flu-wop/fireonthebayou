@@ -20,8 +20,7 @@ export default function MerchBand() {
             Wear the <span className="text-fire-gradient italic">fire.</span>
           </p>
           <p className="mt-4 max-w-md text-sm leading-relaxed text-mist">
-            Fire on the Bayou and {site.studio.name} gear, made to order and shipped from the
-            studio store.
+            Fire on the Bayou gear, made to order and shipped to you.
           </p>
         </Reveal>
         <span className="inline-flex items-center gap-3 self-start rounded-full border border-border px-7 py-3.5 font-mono text-[13px] tracking-wide text-cream transition-all duration-500 ease-cinematic group-hover:border-flame group-hover:text-flame md:self-auto">
