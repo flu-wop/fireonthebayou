@@ -5,6 +5,7 @@ import Reveal from "@/components/effects/Reveal";
 import Button from "@/components/ui/Button";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/services" },
   title: "Services",
   description:
     "Brand films, music videos, corporate video, commercials, sound & score, and post — handled end to end by Fire on the Bayou.",

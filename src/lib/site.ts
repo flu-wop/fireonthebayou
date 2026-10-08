@@ -8,16 +8,22 @@ export const site = {
   tagline: "A New Orleans video production house since 2006.",
   description:
     "Fire on the Bayou is an award-winning New Orleans video production house making TV commercials, brand films, and corporate video since 2006. Home of Mid City Sound.",
-  url: "https://fireonthebayou.com",
+  url: (process.env.NEXT_PUBLIC_SITE_URL || "https://fireonthebayou.com").replace(/\/$/, ""),
+  /**
+   * Search engines are kept out until launch, so this preview never competes
+   * with the live WordPress site. At launch set SITE_INDEXABLE=true in Vercel.
+   */
+  indexable: process.env.SITE_INDEXABLE === "true",
   location: "New Orleans, Louisiana",
   address: "530 S Norman C Francis Pkwy, New Orleans, LA 70119",
   phone: "(504) 400-2555",
   phoneHref: "+15044002555",
   email: "firenola@gmail.com",
   socials: {
-    instagram: "https://instagram.com/fireonthebayou",
-    vimeo: "https://vimeo.com/fireonthebayou",
-    youtube: "https://youtube.com/@fireonthebayou",
+    // Same accounts fireonthebayou.com links to (checked Oct 2026).
+    instagram: "https://www.instagram.com/fire_on_the_bayou_/",
+    youtube: "https://www.youtube.com/@firenola",
+    facebook: "https://www.facebook.com/fireonthebayounola/",
   },
   // Sister brand — connection highlighted on the About page
   studio: {

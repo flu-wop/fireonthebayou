@@ -28,7 +28,7 @@ export default async function ConsultPage({
 
       <section className="frame grid gap-16 pb-32 md:grid-cols-12">
         {/* The offer */}
-        <aside className="md:col-span-4">
+        <div className="md:col-span-4">
           <Reveal>
             <div className="rounded-sm border border-border bg-card/40 p-8">
               <p className="font-mono text-[13px] tracking-wide text-ash">{consult.name}</p>
@@ -57,7 +57,7 @@ export default async function ConsultPage({
               in person at the studio or by video call.
             </p>
           </Reveal>
-        </aside>
+        </div>
 
         {/* Intake + checkout */}
         <div className="md:col-span-7 md:col-start-6">

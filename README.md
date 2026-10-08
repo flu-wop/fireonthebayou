@@ -15,19 +15,24 @@ npm run dev          # http://localhost:3000
 npm run build        # production build (what Vercel runs)
 ```
 
-## Deploy (your usual flow)
+Repo: `flu-wop/fireonthebayou` → Vercel auto-deploys `main` to fireonthebayou.vercel.app.
 
-```bash
-git init
-git add .
-git commit -m "Fire on the Bayou — initial build"
-git branch -M main
-git remote add origin https://github.com/flu-wop/fire-on-the-bayou.git
-git push -u origin main
-```
+## Launch checklist (moving fireonthebayou.com off WordPress)
 
-Then import the repo in Vercel — it auto-deploys on every push. The site runs with no env
-vars; until Stripe is set, "Book a consult" falls back to the contact page.
+1. Add the domain in Vercel and point DNS at it.
+2. Set `NEXT_PUBLIC_SITE_URL=https://fireonthebayou.com` and **`SITE_INDEXABLE=true`** — until then
+   every page is `noindex` and robots.txt blocks crawlers, so the preview never competes with the
+   live WordPress site.
+3. Add 301 redirects from the old WordPress URLs (e.g. `/meet-the-crew/`, `/capabilities/...`,
+   `/client/...`) to the new pages in `next.config.ts` so search rankings carry over.
+4. Wire Stripe + Resend (below) and run a 4242 test purchase.
+
+## Content
+
+- Projects, films, credits: `src/lib/projects.ts` (`homeReel` sets the home page order)
+- Brand facts, socials, studio, founder photo, consult offer: `src/lib/site.ts`
+- Hero reel: `HERO_REEL` in `src/components/sections/Hero.tsx` (YouTube id, or a self-hosted `mp4`)
+- Jason's portrait: add `/public/images/jason-villemarette.jpg`, set `site.founder.photo`
 
 ### Paid Creative Consult (Stripe)
 
@@ -60,26 +65,6 @@ the webhook verifies the signature and emails the booking. Test with card `4242 
 | Film grain + vignette | `effects/GrainOverlay.tsx`, `.grain`/`.vignette` in globals | shot-on-film texture |
 
 To dial parallax up/down, change the `speed` prop on `<Parallax>` or the `lerp` in `SmoothScroll`.
-
----
-
-## Drop in your real media
-
-Placeholders are in `/public/images` so nothing looks broken. Replace these filenames:
-
-**Hero reel** (the big one):
-- `/public/video/hero-reel.mp4`  (and optionally `.webm`) — muted, ~10–20s loop
-- `/public/images/hero-poster.jpg` — still frame fallback
-
-**Project tiles** — each plays its `.mp4` on hover, falls back to the `.jpg`:
-- `work-bayou-after-dark`, `work-second-line`, `work-below-sea-level`,
-  `work-ember-room`, `work-high-water`, `work-the-makers`
-  → drop matching `.jpg` in `/public/images` and `.mp4` in `/public/video`
-
-**Other:** `studio-mid-city-sound.jpg`, `about-crew.jpg`, `og-image.jpg`
-
-Edit project list, services, and process copy in `src/lib/*.ts` — no component edits needed.
-Brand-level facts (email, phone, socials, studio blurb) live in `src/lib/site.ts`.
 
 ---
 

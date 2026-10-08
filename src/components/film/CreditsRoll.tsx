@@ -13,7 +13,7 @@ import type { Credit } from "@/lib/projects";
 
 export default function CreditsRoll({ credits }: { credits: Credit[] }) {
   const ref = useRef<HTMLElement>(null);
-  const listRef = useRef<HTMLDListElement>(null);
+  const listRef = useRef<HTMLDivElement>(null);
   const [dims, setDims] = useState({ list: 0, view: 800 });
   useEffect(() => {
     const measure = () =>
@@ -59,7 +59,8 @@ export default function CreditsRoll({ credits }: { credits: Credit[] }) {
             "linear-gradient(to bottom, transparent 0%, black 22%, black 78%, transparent 100%)",
         }}
       >
-        <motion.dl ref={listRef} style={{ y }} className="absolute top-0 w-full max-w-3xl px-6">
+        <motion.div ref={listRef} style={{ y }} className="absolute top-0 w-full max-w-3xl px-6">
+          <dl>
           {credits.map((c, i) => (
             <div
               key={`${c.role}-${i}`}
@@ -73,6 +74,7 @@ export default function CreditsRoll({ credits }: { credits: Credit[] }) {
               </dd>
             </div>
           ))}
+          </dl>
 
           {/* Closing card */}
           <div className="pb-[40vh] pt-[20vh] text-center">
@@ -83,7 +85,7 @@ export default function CreditsRoll({ credits }: { credits: Credit[] }) {
               Made in New Orleans
             </p>
           </div>
-        </motion.dl>
+        </motion.div>
       </div>
     </section>
   );

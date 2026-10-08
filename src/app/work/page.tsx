@@ -4,6 +4,7 @@ import WorkGrid from "@/components/sections/WorkGrid";
 import Marquee from "@/components/sections/Marquee";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/work" },
   title: "Work",
   description:
     "Selected commercials, brand films, and corporate work from Fire on the Bayou.",

@@ -279,9 +279,6 @@ export const projects: Project[] = [
   },
 ];
 
-/** Featured subset for the home page teaser. */
-export const featuredProjects = projects.slice(0, 4);
-
 /** The home page reel: one full-screen frame each, in this order. */
 export const homeReel = ["aucoin-hart", "red-bull", "rouses", "sazerac-house", "blue-plate", "home-depot"]
   .map((slug) => projects.find((p) => p.slug === slug)!)

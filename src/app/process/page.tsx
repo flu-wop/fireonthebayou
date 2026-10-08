@@ -4,6 +4,7 @@ import ProcessSteps from "@/components/sections/ProcessSteps";
 import Statement from "@/components/sections/Statement";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/process" },
   title: "Process",
   description:
     "How Fire on the Bayou works — discovery, treatment, production, sound & score, and finish.",

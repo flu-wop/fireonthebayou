@@ -7,12 +7,17 @@
  *
  * Featured films and their order: `homeReel` in src/lib/projects.ts.
  */
+import type { Metadata } from "next";
 import Hero from "@/components/sections/Hero";
 import ReelFrames from "@/components/sections/ReelFrames";
 import StudioConnection from "@/components/sections/StudioConnection";
 import ConsultCTA from "@/components/sections/ConsultCTA";
 import MerchBand from "@/components/sections/MerchBand";
 import { homeReel } from "@/lib/projects";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 export default function HomePage() {
   return (

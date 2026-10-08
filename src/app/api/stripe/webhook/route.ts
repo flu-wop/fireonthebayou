@@ -48,8 +48,10 @@ export async function POST(req: Request) {
           amount: formatPrice(s.amount_total ?? consult.priceCents),
         });
       } catch (e) {
-        // Never fail the webhook over an email — Stripe would keep retrying.
+        // Payment already succeeded. Return 500 so Stripe retries delivery
+        // (for up to 3 days); the Resend idempotency key stops duplicates.
         console.error("consult notification failed", e);
+        return NextResponse.json({ error: "notification failed" }, { status: 500 });
       }
     }
   }

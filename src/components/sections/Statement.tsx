@@ -43,7 +43,7 @@ function Word({
   progress: ReturnType<typeof useScroll>["scrollYProgress"];
   range: [number, number];
 }) {
-  const opacity = useTransform(progress, range, [0.18, 1]);
+  const opacity = useTransform(progress, range, [0.3, 1]);
   return (
     <motion.span style={{ opacity }} className="text-cream">
       {children}

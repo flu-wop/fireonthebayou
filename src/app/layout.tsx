@@ -39,6 +39,7 @@ export const metadata: Metadata = {
     images: ["/images/og-image.jpg"],
   },
   twitter: { card: "summary_large_image" },
+  robots: site.indexable ? { index: true, follow: true } : { index: false, follow: false },
 };
 
 export default function RootLayout({

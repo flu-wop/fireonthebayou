@@ -5,6 +5,7 @@ import Link from "next/link";
 import { consult, formatPrice, site } from "@/lib/site";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/contact" },
   title: "Contact",
   description: `Start a project with Fire on the Bayou. Based in ${site.location}.`,
 };
@@ -25,7 +26,7 @@ export default function ContactPage() {
         </div>
 
         {/* Direct details */}
-        <aside className="md:col-span-4 md:col-start-9">
+        <div className="md:col-span-4 md:col-start-9">
           <div className="space-y-10">
             <Link
               href="/consult"
@@ -80,7 +81,7 @@ export default function ContactPage() {
               </ul>
             </div>
           </div>
-        </aside>
+        </div>
       </section>
     </>
   );

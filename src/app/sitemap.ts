@@ -1,7 +1,9 @@
 import type { MetadataRoute } from "next";
 import { screenedProjects } from "@/lib/projects";
 
-const BASE_URL = "https://fireonthebayou.vercel.app";
+import { site } from "@/lib/site";
+
+const BASE_URL = site.url;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [

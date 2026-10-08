@@ -30,7 +30,7 @@ export default function StudioConnection() {
           />
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/mcs-logo.png"
+            src="/images/mcs-logo.webp"
             alt={`${site.studio.name} — New Orleans`}
             width={900}
             height={532}

@@ -116,9 +116,9 @@ export default function ProjectCard({
             <p className="mb-1 font-mono text-[13px] tracking-wide text-mist">
               {project.client}
             </p>
-            <h3 className="font-display text-3xl font-light leading-none text-cream md:text-4xl">
+            <h2 className="font-display text-3xl font-light leading-none text-cream md:text-4xl">
               {project.title}
-            </h3>
+            </h2>
             <p className="mt-2 max-w-sm text-sm text-mist opacity-0 transition-opacity duration-500 group-hover:opacity-100">
               {project.blurb}
             </p>

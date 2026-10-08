@@ -8,6 +8,7 @@ import CountUp from "@/components/effects/CountUp";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/about" },
   title: "Our Story",
   description:
     "Fire on the Bayou is a New Orleans production house, home of Mid City Sound. Our story, our crew, and why sound lives under our own roof.",

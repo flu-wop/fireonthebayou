@@ -76,7 +76,7 @@ export default function ConsultForm({ canceled = false }: { canceled?: boolean }
       </div>
 
       <div>
-        <label htmlFor="c-company" className="eyebrow mb-2 block text-ash">Company or brand <span className="text-ash/70">(optional)</span></label>
+        <label htmlFor="c-company" className="eyebrow mb-2 block text-ash">Company or brand <span className="text-ash">(optional)</span></label>
         <input id="c-company" className={inputCls} placeholder="Who's this for?" autoComplete="organization" value={company} onChange={(e) => setCompany(e.target.value)} />
       </div>
 
@@ -101,7 +101,7 @@ export default function ConsultForm({ canceled = false }: { canceled?: boolean }
       </fieldset>
 
       <div>
-        <label htmlFor="c-msg" className="eyebrow mb-2 block text-ash">The short version <span className="text-ash/70">(optional)</span></label>
+        <label htmlFor="c-msg" className="eyebrow mb-2 block text-ash">The short version <span className="text-ash">(optional)</span></label>
         <textarea
           id="c-msg"
           className={`${inputCls} min-h-[110px] resize-none`}
