@@ -23,13 +23,17 @@ Repo: `flu-wop/fireonthebayou` → Vercel auto-deploys `main` to fireonthebayou.
 2. Set `NEXT_PUBLIC_SITE_URL=https://fireonthebayou.com` and **`SITE_INDEXABLE=true`** — until then
    every page is `noindex` and robots.txt blocks crawlers, so the preview never competes with the
    live WordPress site.
-3. Add 301 redirects from the old WordPress URLs (e.g. `/meet-the-crew/`, `/capabilities/...`,
-   `/client/...`) to the new pages in `next.config.ts` so search rankings carry over.
+3. Redirects from all 110 old WordPress URLs are already in place (`src/lib/redirects.ts`) — they
+   take effect as soon as the domain points here.
 4. Wire Stripe + Resend (below) and run a 4242 test purchase.
 
 ## Content
 
-- Projects, films, credits: `src/lib/projects.ts` (`homeReel` sets the home page order)
+- Projects, films, credits: `src/lib/projects.ts` (`homeReel` = home page, `workOrder` = Work page order)
+- Filmography (the rest of the work, plays in place): `src/lib/archive.ts`
+- Clients + agency partners (Studio page): `src/lib/clients.ts`
+- FAQ (Process page): `src/lib/faq.ts`
+- Old WordPress URL redirects: `src/lib/redirects.ts` (already wired in `next.config.ts`)
 - Brand facts, socials, studio, founder photo, consult offer: `src/lib/site.ts`
 - Hero reel: `HERO_REEL` in `src/components/sections/Hero.tsx` (YouTube id, or a self-hosted `mp4`)
 - Jason's portrait: add `/public/images/jason-villemarette.jpg`, set `site.founder.photo`

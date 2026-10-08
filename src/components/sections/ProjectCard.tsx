@@ -16,18 +16,16 @@ import Link from "next/link";
 import { projectHref, type Project } from "@/lib/projects";
 import { cn } from "@/lib/utils";
 
-const spanClasses: Record<Project["span"], string> = {
-  wide: "md:col-span-7 aspect-[16/10]",
-  tall: "md:col-span-5 md:row-span-2 aspect-[4/5]",
-  regular: "md:col-span-5 aspect-[5/4]",
-};
+// Every film is a widescreen frame; the lead film spans the full row.
 
 export default function ProjectCard({
   project,
   index,
+  lead = false,
 }: {
   project: Project;
   index: number;
+  lead?: boolean;
 }) {
   const ref = useRef<HTMLAnchorElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -59,7 +57,7 @@ export default function ProjectCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-10%" }}
       transition={{ duration: 0.9, delay: (index % 2) * 0.08, ease: [0.22, 1, 0.36, 1] }}
-      className={cn("group relative", spanClasses[project.span])}
+      className={cn("group relative aspect-video", lead && "md:col-span-2 md:aspect-[21/9]")}
     >
       <Link
         ref={ref}

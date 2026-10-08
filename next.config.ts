@@ -1,9 +1,13 @@
 import type { NextConfig } from "next";
+import { legacyRedirects } from "./src/lib/redirects";
 
 const nextConfig: NextConfig = {
   transpilePackages: ["@flu-wop/design-system"],
   reactStrictMode: true,
   poweredByHeader: false,
+  async redirects() {
+    return legacyRedirects;
+  },
   async headers() {
     return [
       {

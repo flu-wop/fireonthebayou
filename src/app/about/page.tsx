@@ -7,6 +7,7 @@ import Reveal from "@/components/effects/Reveal";
 import Parallax from "@/components/effects/Parallax";
 import CountUp from "@/components/effects/CountUp";
 import { site } from "@/lib/site";
+import { agencies, clients } from "@/lib/clients";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/about" },
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
 // Small set of stat-style facts. Edit freely.
 const stats = [
   { value: "20+", label: "Years of production" },
-  { value: "Gold Addy", label: "Award-winning work" },
+  { value: "Telly & Addy", label: "National award wins" },
   { value: "5", label: "Edit & animation bays" },
 ];
 
@@ -132,6 +133,30 @@ export default function AboutPage() {
               </div>
             </Reveal>
           ))}
+        </div>
+      </section>
+
+      {/* Clients — the long list, set like a credits crawl */}
+      <section className="border-t border-border bg-bayou-deep py-24 md:py-32" aria-labelledby="clients-title">
+        <div className="frame">
+          <div className="mb-12 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+            <h2 id="clients-title" className="font-display text-[clamp(2.4rem,6vw,5rem)] leading-[0.9] text-cream">
+              Who we&rsquo;ve
+              <br />
+              made films for
+            </h2>
+            <p className="max-w-sm text-sm leading-relaxed text-mist">
+              Twenty years of New Orleans brands, institutions, and the occasional rock star.
+            </p>
+          </div>
+          <ul className="columns-2 gap-x-10 text-base leading-[2.1] text-cream sm:columns-3 lg:columns-4">
+            {clients.map((c) => (
+              <li key={c} className="break-inside-avoid">{c}</li>
+            ))}
+          </ul>
+          <p className="mt-14 border-t border-border pt-6 text-sm text-mist">
+            <span className="text-flame">Agency partners</span>&ensp;{agencies.join(" · ")}
+          </p>
         </div>
       </section>
 

@@ -18,6 +18,7 @@ const budgets = ["< $5k", "$5k–15k", "$15k–40k", "$40k+"];
 export default function ContactForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [budget, setBudget] = useState(budgets[1]);
   const [message, setMessage] = useState("");
 
@@ -25,7 +26,7 @@ export default function ContactForm() {
     // Simple mailto fallback — replace with a fetch('/api/contact') when ready.
     const subject = encodeURIComponent(`New project inquiry — ${name}`);
     const body = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\nBudget: ${budget}\n\n${message}`
+      `Name: ${name}\nEmail: ${email}\nPhone: ${phone || "—"}\nBudget: ${budget}\n\n${message}`
     );
     window.location.href = `mailto:${site.email}?subject=${subject}&body=${body}`;
   }
@@ -55,6 +56,19 @@ export default function ContactForm() {
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
+      </div>
+
+      <div>
+        <label htmlFor="cf-phone" className="eyebrow mb-2 block text-ash">Phone <span className="text-ash">(optional)</span></label>
+        <input
+          id="cf-phone"
+          className={inputCls}
+          type="tel"
+          autoComplete="tel"
+          placeholder="(504) 555-0100"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+        />
       </div>
 
       <div>

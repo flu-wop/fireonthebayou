@@ -9,44 +9,51 @@ export type Service = {
 export const services: Service[] = [
   {
     index: "01",
-    title: "Brand Films",
+    title: "TV & Web Commercials",
     blurb:
-      "Cinematic films that give a brand a heartbeat — story-led, scored, and built to run on TV, on the web, and in the feed.",
-    capabilities: ["Concept & treatment", "Direction", "Cinematography", "Original score"],
+      "Broadcast spots and the cutdowns that run everywhere else — cast, shot, cut, and delivered on time and on budget, for agencies and direct clients across the Gulf South.",
+    capabilities: ["Concept & script", "Casting", "Direction", "Drone & aerial", "Social cutdowns"],
   },
   {
     index: "02",
-    title: "Music Videos",
+    title: "Brand Films",
     blurb:
-      "From intimate single-takes to full-scale performance pieces, made with the rhythm of the room baked in.",
-    capabilities: ["Creative direction", "Performance capture", "Color grade", "On-set audio"],
+      "Story-led films that give a brand a heartbeat — the people, the place, and why it matters — built to run on TV, on the web, and in the feed.",
+    capabilities: ["Treatment", "Interviews", "Cinematography", "Original score"],
   },
   {
     index: "03",
     title: "Corporate & Nonprofit",
     blurb:
-      "Launch films, recruiting and welcome videos, and nonprofit stories — real people, told straight, for companies and institutions across Louisiana.",
-    capabilities: ["Interviews", "Field production", "Animation", "Edit & finish"],
+      "Launch films, recruiting and welcome videos, training, trade-show loops, and nonprofit stories — real people, told straight, for companies, schools, and agencies.",
+    capabilities: ["Interviews", "Field production", "Trade show", "Training"],
   },
   {
     index: "04",
-    title: "Commercial & Hospitality",
+    title: "Music & Events",
     blurb:
-      "Spots and campaign assets for restaurants, spirits, and venues that need to look as good as they taste.",
-    capabilities: ["Campaign assets", "Social cutdowns", "Food & motion", "Brand systems"],
+      "Performances, festivals, and big nights — from Red Bull's Street Kings brass bands to Jazz Fest and the Zurich Classic — captured as they happen.",
+    capabilities: ["Live performance", "Event coverage", "Highlight reels", "Multi-camera"],
   },
   {
     index: "05",
-    title: "Sound & Score",
+    title: "Animation & Motion Graphics",
     blurb:
-      "In-house at Mid City Sound: original score, mix, master, sound design, and ADR without leaving the building.",
-    capabilities: ["Original score", "Mix & master", "Sound design", "Voiceover / ADR"],
+      "Animated spots, explainers, titles, and graphics packages — Jason started out as an editor and animator, and it's still built in-house.",
+    capabilities: ["2D animation", "Motion graphics", "Titles & lower thirds", "Logo animation"],
   },
   {
     index: "06",
+    title: "Sound & Voiceover",
+    blurb:
+      "An isolation booth for voiceover and ADR, a console for sound design, and Neumann microphones — plus a nationwide roster of voice talent who can record remotely. Score and mix next door at Mid City Sound.",
+    capabilities: ["Voiceover / ADR", "Sound design", "Foley", "Mix & master"],
+  },
+  {
+    index: "07",
     title: "Post & Finishing",
     blurb:
-      "Edit, color, and delivery handled with a colorist's eye — every frame graded to feel like film.",
-    capabilities: ["Editorial", "Color grade", "Motion graphics", "Delivery / DCP"],
+      "Five edit and animation bays: editorial, color, graphics, and delivery in every format you need — and revisions whenever you need them.",
+    capabilities: ["Editorial", "Color grade", "Graphics", "Delivery"],
   },
 ];

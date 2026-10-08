@@ -105,18 +105,23 @@ export const projects: Project[] = [
     poster: "/images/work-red-bull.jpg",
     video: "/video/work-red-bull.mp4",
     span: "tall",
-    films: [{ label: "Brand Film", youtubeId: "fyPEqUnW64U" }],
-    logline: "A New Orleans brass band, chasing the Street Kings crown.",
+    films: [
+      { label: "New Creations", youtubeId: "fyPEqUnW64U" },
+      { label: "TBC", youtubeId: "GCGTQJ98YVE" },
+      { label: "New Breed", youtubeId: "hx84_T1rfBU" },
+      { label: "Pinettes", youtubeId: "Can0CEKW8lA" },
+    ],
+    logline: "Four New Orleans brass bands, chasing the Street Kings crown.",
     approach: {
       heading: "Give the band the platform.",
       body: [
-        "Every year Red Bull sponsors Street Kings, a New Orleans brass band competition. This film follows contenders New Creations — an interview with the band, cut against their live performances in the streets.",
+        "Every year Red Bull sponsors Street Kings, a New Orleans brass band competition. Each film follows one contender — New Creations, TBC, New Breed, and the Pinettes — interviews with the band cut against their live performances in the streets.",
         "Directed, shot, and edited entirely in-house.",
       ],
     },
     credits: [
       { role: "Client", name: "Red Bull" },
-      { role: "Featuring", name: "New Creations Brass Band" },
+      { role: "Featuring", name: "New Creations · TBC · New Breed · The Pinettes" },
       { role: "Production Company", name: "Fire on the Bayou" },
       { role: "Director", name: "Jason Villemarette" },
     ],
@@ -130,7 +135,12 @@ export const projects: Project[] = [
     poster: "/images/work-rouses.jpg",
     video: "/video/work-rouses.mp4",
     span: "regular",
-    films: [{ label: "Holiday Spot", youtubeId: "t61-eZrV708" }],
+    films: [
+      { label: "Feels Like Home", youtubeId: "t61-eZrV708" },
+      { label: "Crawfish", youtubeId: "vIC47tUyDUg" },
+      { label: "Chris Noel", youtubeId: "9M-B5L5sAWA" },
+      { label: "Golden Meadow", youtubeId: "RB8NmChEq2E" },
+    ],
     logline: "A Gulf Coast holiday that really does feel like home.",
     approach: {
       heading: "Concepted with Rouses, scored next door.",
@@ -205,7 +215,10 @@ export const projects: Project[] = [
     poster: "/images/work-blue-runner.jpg",
     video: "/video/work-blue-runner.mp4",
     span: "regular",
-    films: [{ label: "Commercial", youtubeId: "SoIBpqmuVjg" }],
+    films: [
+      { label: "Bigger Than Monday", youtubeId: "SoIBpqmuVjg" },
+      { label: "Nothing Beats Louisiana", youtubeId: "_GKzVp_MMDs" },
+    ],
     logline: "Red beans, shot like a Blue Note record sleeve.",
     approach: {
       heading: "A timeless look, on purpose.",
@@ -277,6 +290,167 @@ export const projects: Project[] = [
       { role: "Director", name: "Jason Villemarette" },
     ],
   },
+  // ---- Added from fireonthebayou.com and the @firenola YouTube channel ----
+  {
+    slug: "sdt-waste",
+    title: "SDT Waste & Debris",
+    client: "SDT Waste & Debris (Sidney Torres)",
+    category: "Commercial",
+    blurb: "Sidney Torres's New Orleans sanitation company, with Kid Rock, Lenny Kravitz, and the Saints.",
+    poster: "/images/work-sdt-waste.jpg",
+    video: "/video/work-sdt-waste.mp4",
+    span: "wide",
+    films: [
+      { label: "Saints", youtubeId: "jnPoIbi4Hak" },
+      { label: "Kid Rock", youtubeId: "udwgJPKQ0KQ" },
+      { label: "Lenny Kravitz", youtubeId: "4uVXsJjnnS8" },
+    ],
+    logline: "Trash pickup, sold with Kid Rock, Lenny Kravitz, and the Saints.",
+    credits: [
+      { role: "Client", name: "SDT Waste & Debris" },
+      { role: "Featuring", name: "Kid Rock · Lenny Kravitz" },
+      { role: "Production Company", name: "Fire on the Bayou" },
+    ],
+  },
+  {
+    slug: "copelands",
+    title: "There's Always Something Good",
+    client: "Copeland's of New Orleans",
+    category: "Commercial",
+    blurb: "The \"There's Always Something Good\" campaign for Copeland's of New Orleans.",
+    poster: "/images/work-copelands.jpg",
+    video: "/video/work-copelands.mp4",
+    span: "regular",
+    films: [
+      { label: "Campaign", youtubeId: "5laDHj5slDg" },
+      { label: "35 Years", youtubeId: "P2eVN0d9sgg" },
+      { label: "Seafood Menu", youtubeId: "i2yZMxNJfnc" },
+    ],
+    logline: "There's always something good at Copeland's.",
+    credits: [
+      { role: "Client", name: "Copeland's of New Orleans" },
+      { role: "Production Company", name: "Fire on the Bayou" },
+    ],
+  },
+  {
+    slug: "acme-oyster-house",
+    title: "Life's More Fun With Seafood",
+    client: "ACME Oyster House",
+    category: "Commercial",
+    blurb: "The French Quarter oyster bar, on air.",
+    poster: "/images/work-acme-oyster-house.jpg",
+    video: "/video/work-acme-oyster-house.mp4",
+    span: "regular",
+    films: [
+      { label: "Spot", youtubeId: "SPaFwNm-UGI" },
+      { label: "Life's More Fun", youtubeId: "puKoEk2PsMc" },
+      { label: ":30", youtubeId: "hJfejHVLXBQ" },
+    ],
+    logline: "Life's more fun with seafood.",
+    credits: [
+      { role: "Client", name: "ACME Oyster House" },
+      { role: "Production Company", name: "Fire on the Bayou" },
+      { role: "Director", name: "Kevin Althans" },
+    ],
+  },
+  {
+    slug: "audubon",
+    title: "Make Today an Audubon Day",
+    client: "Audubon Nature Institute",
+    category: "Commercial",
+    blurb: "Made with Peter Mayer Advertising — the animals in action, set to an upbeat jazz track.",
+    poster: "/images/work-audubon.jpg",
+    video: "/video/work-audubon.mp4",
+    span: "tall",
+    films: [
+      { label: "Audubon Day", youtubeId: "p0eibwIXb30" },
+      { label: "New Lion Exhibit", youtubeId: "8r9JendcIz4" },
+    ],
+    logline: "The zoo and the aquarium, set to a New Orleans jazz track.",
+    approach: {
+      heading: "Made with Peter Mayer.",
+      body: [
+        "Fire on the Bayou worked with Peter Mayer Advertising on this spot for the Audubon Nature Institute: a lively, upbeat jazz soundtrack paired with the animals in action, then a voiceover announcing the aquarium's new exhibit.",
+      ],
+    },
+    credits: [
+      { role: "Client", name: "Audubon Nature Institute" },
+      { role: "Agency", name: "Peter Mayer Advertising" },
+      { role: "Production Company", name: "Fire on the Bayou" },
+    ],
+  },
+  {
+    slug: "city-park",
+    title: "Get Outside Yourself",
+    client: "New Orleans City Park",
+    category: "Commercial",
+    blurb: "New Orleans City Park, made in-house.",
+    poster: "/images/work-city-park.jpg",
+    video: "/video/work-city-park.mp4",
+    span: "regular",
+    films: [
+      { label: "Get Outside Yourself", youtubeId: "n9sqhdTuWkI" },
+      { label: "Life Has a Log In", youtubeId: "qYQPEAd28qw" },
+      { label: "Birthday", youtubeId: "gh6Hl8KU6BU" },
+    ],
+    logline: "Get outside yourself.",
+    credits: [
+      { role: "Client", name: "New Orleans City Park" },
+      { role: "Production Company", name: "Fire on the Bayou" },
+      { role: "Director", name: "Jason Villemarette" },
+    ],
+  },
+  {
+    slug: "new-orleans-and-company",
+    title: "How Glad I Am",
+    client: "New Orleans & Company",
+    category: "Brand Film",
+    blurb: "Destination films for the city's tourism marketing organization.",
+    poster: "/images/work-new-orleans-and-company.jpg",
+    video: "/video/work-new-orleans-and-company.mp4",
+    span: "regular",
+    films: [
+      { label: "How Glad I Am", youtubeId: "Y3alXtOBULQ" },
+      { label: "Tourism Week", youtubeId: "xdp6HSCAVeM" },
+    ],
+    logline: "The city, selling itself.",
+    credits: [
+      { role: "Client", name: "New Orleans & Company" },
+      { role: "Production Company", name: "Fire on the Bayou" },
+    ],
+  },
+  {
+    slug: "smoothie-king",
+    title: "Smoothie King",
+    client: "Smoothie King",
+    category: "Brand Film",
+    blurb: "A brand film for the Louisiana-born smoothie chain.",
+    poster: "/images/work-smoothie-king.jpg",
+    video: "/video/work-smoothie-king.mp4",
+    span: "regular",
+    films: [{ label: "Brand Film", youtubeId: "c-APcUQVJw4" }],
+    credits: [
+      { role: "Client", name: "Smoothie King" },
+      { role: "Production Company", name: "Fire on the Bayou" },
+    ],
+  },
+  {
+    slug: "louisiana-economic-development",
+    title: "Louisiana Economic Development",
+    client: "Louisiana Economic Development",
+    category: "Brand Film",
+    blurb: "Made with Peter Mayer Advertising for the state agency that brings businesses and jobs to Louisiana.",
+    poster: "/images/work-louisiana-economic-development.jpg",
+    video: "/video/work-louisiana-economic-development.mp4",
+    span: "wide",
+    films: [{ label: "Film", youtubeId: "trxZOgfCrao" }],
+    logline: "Making the case for doing business in Louisiana.",
+    credits: [
+      { role: "Client", name: "Louisiana Economic Development" },
+      { role: "Agency", name: "Peter Mayer Advertising" },
+      { role: "Production Company", name: "Fire on the Bayou" },
+    ],
+  },
 ];
 
 /** The home page reel: one full-screen frame each, in this order. */
@@ -284,8 +458,20 @@ export const homeReel = ["aucoin-hart", "red-bull", "rouses", "sazerac-house", "
   .map((slug) => projects.find((p) => p.slug === slug)!)
   .filter(Boolean);
 
+/** Order on the Work page — headline clients first. Unlisted projects follow. */
+const workOrder = [
+  "aucoin-hart", "red-bull", "rouses", "sdt-waste", "home-depot", "copelands",
+  "sazerac-house", "acme-oyster-house", "audubon", "new-orleans-and-company",
+  "blue-runner", "blue-plate", "reily-foods", "crystal-hot-sauce", "city-park",
+  "smoothie-king", "russell-athletic", "louisiana-economic-development",
+];
+export const orderedProjects = [...projects].sort((a, b) => {
+  const ia = workOrder.indexOf(a.slug), ib = workOrder.indexOf(b.slug);
+  return (ia < 0 ? 999 : ia) - (ib < 0 ? 999 : ib);
+});
+
 /** Projects that have a screening-room page. */
-export const screenedProjects = projects.filter((p) => p.films?.length);
+export const screenedProjects = orderedProjects.filter((p) => p.films?.length);
 
 export function getProject(slug: string) {
   return screenedProjects.find((p) => p.slug === slug);

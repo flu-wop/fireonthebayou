@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/services" },
   title: "Services",
   description:
-    "Brand films, music videos, corporate video, commercials, sound & score, and post — handled end to end by Fire on the Bayou.",
+    "TV and web commercials, brand films, corporate and nonprofit video, events, animation, voiceover and sound, and post — handled end to end by Fire on the Bayou in New Orleans.",
 };
 
 export default function ServicesPage() {
@@ -21,7 +21,7 @@ export default function ServicesPage() {
       />
 
       <section className="frame pb-32">
-        <div className="grid gap-px overflow-hidden rounded-sm border border-border bg-border md:grid-cols-2">
+        <div className="grid gap-px overflow-hidden rounded-sm border border-border bg-border md:grid-cols-2 md:[&>*:last-child:nth-child(odd)]:col-span-2">
           {services.map((service, i) => (
             <Reveal key={service.index} delay={(i % 2) * 0.08}>
               <article className="card-lift flex h-full flex-col bg-charcoal p-9 md:p-12">
