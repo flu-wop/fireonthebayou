@@ -65,7 +65,7 @@ export default function ContactForm() {
               key={b}
               type="button"
               onClick={() => setBudget(b)}
-              className={`rounded-full border px-5 py-2.5 font-mono text-xs uppercase tracking-widest transition-all duration-300 ${
+              className={`rounded-full border px-5 py-2.5 font-mono text-xs tracking-wide transition-all duration-300 ${
                 budget === b
                   ? "border-flame bg-flame/10 text-flame"
                   : "border-border text-mist hover:border-mist"

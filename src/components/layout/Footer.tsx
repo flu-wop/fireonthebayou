@@ -22,7 +22,7 @@ export default function Footer() {
         className="pointer-events-none absolute inset-x-0 bottom-0 h-64"
         style={{
           background:
-            "radial-gradient(60% 120% at 50% 120%, rgba(226,69,42,0.18) 0%, transparent 70%)",
+            "radial-gradient(60% 120% at 50% 120%, rgba(196,15,66,0.18) 0%, transparent 70%)",
         }}
       />
 
@@ -51,7 +51,7 @@ export default function Footer() {
         {/* Lower band */}
         <div className="mt-20 grid grid-cols-2 gap-10 border-t border-border pt-12 md:grid-cols-4">
           <div>
-            <p className="mb-4 font-mono text-[11px] uppercase tracking-widest text-ash">
+            <p className="mb-4 font-mono text-[13px] tracking-wide text-ash">
               Studio
             </p>
             <p className="text-sm leading-relaxed text-mist">
@@ -68,7 +68,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <p className="mb-4 font-mono text-[11px] uppercase tracking-widest text-ash">
+            <p className="mb-4 font-mono text-[13px] tracking-wide text-ash">
               Explore
             </p>
             <ul className="space-y-2">
@@ -86,7 +86,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <p className="mb-4 font-mono text-[11px] uppercase tracking-widest text-ash">
+            <p className="mb-4 font-mono text-[13px] tracking-wide text-ash">
               Follow
             </p>
             <ul className="space-y-2">
@@ -106,7 +106,7 @@ export default function Footer() {
           </div>
 
           <div className="flex flex-col justify-between">
-            <p className="mb-4 font-mono text-[11px] uppercase tracking-widest text-ash">
+            <p className="mb-4 font-mono text-[13px] tracking-wide text-ash">
               Sister studio
             </p>
             <a
@@ -132,7 +132,7 @@ export default function Footer() {
           <p>
             &copy; {year} {site.name}. All rights reserved.
           </p>
-          <p className="font-mono uppercase tracking-widest">
+          <p className="font-mono tracking-wide">
             Crafted in {site.location}
           </p>
         </div>

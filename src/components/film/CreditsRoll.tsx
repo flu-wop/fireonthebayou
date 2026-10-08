@@ -65,7 +65,7 @@ export default function CreditsRoll({ credits }: { credits: Credit[] }) {
               key={`${c.role}-${i}`}
               className="grid grid-cols-2 items-baseline gap-6 py-4 md:gap-10"
             >
-              <dt className="text-right font-mono text-[11px] uppercase tracking-widest text-ash">
+              <dt className="text-right font-mono text-[13px] tracking-wide text-ash">
                 {c.role}
               </dt>
               <dd className="font-display text-2xl font-light text-cream md:text-3xl">
@@ -79,7 +79,7 @@ export default function CreditsRoll({ credits }: { credits: Credit[] }) {
             <p className="font-display text-5xl font-light italic text-cream md:text-6xl">
               Fire on the Bayou
             </p>
-            <p className="mt-4 font-mono text-[11px] uppercase tracking-widest text-flame">
+            <p className="mt-4 font-mono text-[13px] tracking-wide text-flame">
               Made in New Orleans
             </p>
           </div>

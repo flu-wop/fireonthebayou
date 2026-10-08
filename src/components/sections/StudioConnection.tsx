@@ -27,7 +27,7 @@ export default function StudioConnection() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-bayou/80 to-transparent" />
           </Parallax>
-          <span className="absolute bottom-6 left-6 font-mono text-[11px] uppercase tracking-widest text-flame">
+          <span className="absolute bottom-6 left-6 font-mono text-[13px] tracking-wide text-flame">
             {site.studio.name}
           </span>
         </div>
@@ -53,7 +53,7 @@ export default function StudioConnection() {
             </p>
           </Reveal>
           <Reveal delay={0.2}>
-            <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 font-mono text-[11px] uppercase tracking-widest text-ash">
+            <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 font-mono text-[13px] tracking-wide text-ash">
               <li>5 edit &amp; animation bays</li>
               <li>Sound stage</li>
               <li>Grip truck</li>

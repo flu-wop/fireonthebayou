@@ -84,7 +84,7 @@ export default function Navbar() {
                 <Link
                   href={link.href}
                   className={cn(
-                    "relative font-mono text-[12px] uppercase tracking-widest transition-colors duration-300",
+                    "relative font-mono text-[13px] tracking-wide transition-colors duration-300",
                     active ? "text-flame" : "text-mist hover:text-cream"
                   )}
                 >
@@ -103,10 +103,10 @@ export default function Navbar() {
             <Link
               href="/consult"
               className={cn(
-                "rounded-full border px-5 py-2 font-mono text-[11px] uppercase tracking-widest transition-colors duration-300",
+                "rounded-full border px-5 py-2 font-mono text-[13px] tracking-wide transition-colors duration-300",
                 pathname?.startsWith("/consult")
                   ? "border-flame text-flame"
-                  : "border-flame/60 text-cream hover:border-flame hover:bg-flame/10"
+                  : "border-flame/60 text-cream hover:border-flame hover:bg-[#D9174C]/10"
               )}
             >
               Book a consult
@@ -172,7 +172,7 @@ export default function Navbar() {
               <Link
                 href="/consult"
                 onClick={() => setOpen(false)}
-                className="rounded-full bg-ember px-6 py-3 font-mono text-[12px] uppercase tracking-widest text-cream"
+                className="rounded-full bg-ember px-6 py-3 font-mono text-[13px] tracking-wide text-cream"
               >
                 Book a consult
               </Link>
@@ -180,12 +180,12 @@ export default function Navbar() {
                 href={site.merch.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-full border border-border px-6 py-3 font-mono text-[12px] uppercase tracking-widest text-cream"
+                className="rounded-full border border-border px-6 py-3 font-mono text-[13px] tracking-wide text-cream"
               >
                 Merch ↗
               </a>
             </div>
-            <p className="mt-12 font-mono text-xs uppercase tracking-widest text-ash">
+            <p className="mt-12 font-mono text-xs tracking-wide text-ash">
               {site.location}
             </p>
           </motion.div>

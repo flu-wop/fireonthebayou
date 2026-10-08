@@ -21,7 +21,7 @@ export default function GrainOverlay() {
         className="pointer-events-none fixed inset-0 z-[55]"
         style={{
           background:
-            "radial-gradient(120% 120% at 50% 0%, transparent 55%, rgba(226,69,42,0.06) 100%)",
+            "radial-gradient(120% 120% at 50% 0%, transparent 55%, rgba(196,15,66,0.06) 100%)",
         }}
       />
     </>

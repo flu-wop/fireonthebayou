@@ -62,7 +62,7 @@ export default function AboutPage() {
             </p>
           </Reveal>
           <Reveal delay={0.2}>
-            <p className="mt-6 font-mono text-[11px] uppercase tracking-widest text-mist">
+            <p className="mt-6 font-mono text-[13px] tracking-wide text-mist">
               Trusted by Aucoin Hart &middot; The Home Depot &middot; Red Bull &middot; Reily Foods &middot; Rouses &middot; Audubon
             </p>
           </Reveal>
@@ -92,7 +92,7 @@ export default function AboutPage() {
                 <p className="text-fire-gradient font-display text-6xl font-light md:text-7xl">
                   <CountUp value={s.value} />
                 </p>
-                <p className="mt-3 font-mono text-[11px] uppercase tracking-widest text-mist">
+                <p className="mt-3 font-mono text-[13px] tracking-wide text-mist">
                   {s.label}
                 </p>
               </div>
@@ -111,7 +111,7 @@ export default function AboutPage() {
             <Reveal key={c.name} delay={(i % 2) * 0.08}>
               <div className="border-b border-border pb-4">
                 <p className="font-display text-xl text-cream">{c.name}</p>
-                <p className="mt-1 font-mono text-[11px] uppercase tracking-widest text-flame">
+                <p className="mt-1 font-mono text-[13px] tracking-wide text-flame">
                   {c.role}
                 </p>
                 <p className="mt-1.5 text-sm text-mist">{c.note}</p>

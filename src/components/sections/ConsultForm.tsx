@@ -90,7 +90,7 @@ export default function ConsultForm({ canceled = false }: { canceled?: boolean }
               onClick={() => setProjectType(t)}
               aria-pressed={projectType === t}
               className={cn(
-                "rounded-full border px-5 py-2.5 font-mono text-xs uppercase tracking-widest transition-all duration-300",
+                "rounded-full border px-5 py-2.5 font-mono text-xs tracking-wide transition-all duration-300",
                 projectType === t ? "border-flame bg-flame/10 text-flame" : "border-border text-mist hover:border-mist"
               )}
             >
@@ -127,7 +127,7 @@ export default function ConsultForm({ canceled = false }: { canceled?: boolean }
         <Button type="submit" variant="ember">
           {loading ? "Opening checkout…" : `Book & pay ${formatPrice(consult.priceCents)}`}
         </Button>
-        <p className="font-mono text-[10px] uppercase tracking-widest text-ash">Secure checkout by Stripe</p>
+        <p className="font-mono text-[13px] tracking-wide text-ash">Secure checkout by Stripe</p>
       </div>
     </form>
   );

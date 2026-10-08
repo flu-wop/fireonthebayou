@@ -150,7 +150,7 @@ export default function Hero() {
             onClick={toggleSound}
             disabled={!reelReady}
             aria-pressed={sound}
-            className="inline-flex items-center gap-3 font-mono text-[11px] uppercase tracking-widest text-mist transition-all duration-500 hover:text-flame disabled:pointer-events-none disabled:opacity-0"
+            className="inline-flex items-center gap-3 font-mono text-[13px] tracking-wide text-mist transition-all duration-500 hover:text-flame disabled:pointer-events-none disabled:opacity-0"
           >
             <SoundBars on={sound} />
             {sound ? "Cut sound" : "Roll sound"}
@@ -166,7 +166,7 @@ export default function Hero() {
         className="absolute bottom-8 left-1/2 z-10 hidden -translate-x-1/2 md:block"
       >
         <div className="flex flex-col items-center gap-3">
-          <span className="font-mono text-[10px] uppercase tracking-widest text-ash">
+          <span className="font-mono text-[13px] tracking-wide text-ash">
             Scroll
           </span>
           <span className="relative block h-12 w-px overflow-hidden bg-border">

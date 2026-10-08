@@ -104,14 +104,14 @@ export default async function ProjectPage({ params }: Params) {
             {p.approach.references && (
               <Reveal delay={0.2}>
                 <div className="mt-10 border-t border-border pt-6">
-                  <p className="mb-4 font-mono text-[11px] uppercase tracking-widest text-ash">
+                  <p className="mb-4 font-mono text-[13px] tracking-wide text-ash">
                     References
                   </p>
                   <ul className="flex flex-wrap gap-2">
                     {p.approach.references.map((r) => (
                       <li
                         key={r}
-                        className="rounded-full border border-border px-4 py-2 font-mono text-[11px] uppercase tracking-widest text-cream"
+                        className="rounded-full border border-border px-4 py-2 font-mono text-[13px] tracking-wide text-cream"
                       >
                         {r}
                       </li>
@@ -141,7 +141,7 @@ export default async function ProjectPage({ params }: Params) {
           <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-ink/60" />
           <div className="frame relative flex h-full flex-col justify-end pb-16">
             <p className="eyebrow mb-4">Next film</p>
-            <p className="font-mono text-[11px] uppercase tracking-widest text-mist">
+            <p className="font-mono text-[13px] tracking-wide text-mist">
               {next.client}
             </p>
             <p className="mt-2 font-display text-[clamp(2.8rem,8vw,7rem)] font-light leading-[0.9] tracking-tight text-cream">

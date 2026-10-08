@@ -31,9 +31,9 @@ export default async function ConsultPage({
         <aside className="md:col-span-4">
           <Reveal>
             <div className="rounded-sm border border-border bg-card/40 p-8">
-              <p className="font-mono text-[11px] uppercase tracking-widest text-ash">{consult.name}</p>
+              <p className="font-mono text-[13px] tracking-wide text-ash">{consult.name}</p>
               <p className="mt-4 font-display text-6xl font-light text-cream">{price}</p>
-              <p className="mt-2 font-mono text-[11px] uppercase tracking-widest text-flame">{consult.length}</p>
+              <p className="mt-2 font-mono text-[13px] tracking-wide text-flame">{consult.length}</p>
 
               <ul className="mt-8 space-y-4 border-t border-border pt-8">
                 {consult.includes.map((item) => (

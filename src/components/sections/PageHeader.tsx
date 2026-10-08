@@ -24,7 +24,7 @@ export default function PageHeader({
         className="pointer-events-none absolute -top-20 left-1/2 h-[420px] w-[820px] -translate-x-1/2 opacity-60"
         style={{
           background:
-            "radial-gradient(50% 50% at 50% 50%, rgba(226,69,42,0.16) 0%, transparent 70%)",
+            "radial-gradient(50% 50% at 50% 50%, rgba(196,15,66,0.16) 0%, transparent 70%)",
         }}
       />
       <div className="frame relative">

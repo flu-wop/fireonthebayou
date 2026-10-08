@@ -13,11 +13,11 @@ import type { ReactNode } from "react";
 type Variant = "ember" | "outline" | "ghost";
 
 const base =
-  "group inline-flex shrink-0 items-center gap-3 whitespace-nowrap rounded-full px-7 py-3.5 font-mono text-[12px] uppercase tracking-widest transition-all duration-500 ease-cinematic";
+  "group inline-flex shrink-0 items-center gap-3 whitespace-nowrap rounded-full px-7 py-3.5 font-mono text-[13px] tracking-wide transition-all duration-500 ease-cinematic";
 
 const variants: Record<Variant, string> = {
   ember:
-    "bg-ember text-cream hover:bg-flame ember-bloom hover:shadow-[0_0_60px_-10px_rgba(255,122,60,0.7)]",
+    "bg-ember text-cream hover:bg-[#D9174C] ember-bloom hover:shadow-[0_0_60px_-10px_rgba(236,90,128,0.45)]",
   outline:
     "border border-border text-cream hover:border-flame hover:text-flame",
   ghost: "text-mist hover:text-flame",
@@ -43,9 +43,6 @@ export default function Button({
   const content = (
     <span className="flex items-center gap-3">
       {children}
-      <span className="inline-block transition-transform duration-500 ease-cinematic group-hover:translate-x-1">
-        →
-      </span>
     </span>
   );
 

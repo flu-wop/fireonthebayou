@@ -286,7 +286,7 @@ export default function ScreeningRoom({
         <div className="frame flex h-full flex-col justify-between pb-10 pt-28 md:pb-14">
           <Link
             href="/work"
-            className="pointer-events-auto self-start font-mono text-[11px] uppercase tracking-widest text-mist transition-colors hover:text-flame"
+            className="pointer-events-auto self-start font-mono text-[13px] tracking-wide text-mist transition-colors hover:text-flame"
           >
             ← The reel
           </Link>
@@ -308,7 +308,7 @@ export default function ScreeningRoom({
                 {title}
               </h1>
               {award && (
-                <p className="mt-6 inline-flex items-center gap-3 font-mono text-[11px] uppercase tracking-widest text-cream">
+                <p className="mt-6 inline-flex items-center gap-3 font-mono text-[13px] tracking-wide text-cream">
                   <span className="h-px w-8 bg-flame" />
                   <span className="text-fire-gradient">{award}</span>
                 </p>
@@ -325,7 +325,7 @@ export default function ScreeningRoom({
                       onClick={() => switchFilm(i)}
                       aria-pressed={i === active}
                       className={cn(
-                        "rounded-full border px-4 py-2 font-mono text-[11px] uppercase tracking-widest transition-colors duration-300",
+                        "rounded-full border px-4 py-2 font-mono text-[13px] tracking-wide transition-colors duration-300",
                         i === active
                           ? "border-cream/80 text-cream"
                           : "border-white/15 text-mist hover:border-white/40"
@@ -342,7 +342,7 @@ export default function ScreeningRoom({
                   href={`https://www.youtube.com/watch?v=${film.youtubeId}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-3 rounded-full bg-ember px-7 py-4 font-mono text-[12px] uppercase tracking-widest text-cream transition-colors hover:bg-flame"
+                  className="inline-flex items-center gap-3 rounded-full bg-ember px-7 py-4 font-mono text-[13px] tracking-wide text-cream transition-colors hover:bg-[#D9174C]"
                 >
                   Watch on YouTube ↗
                 </a>
@@ -350,7 +350,7 @@ export default function ScreeningRoom({
                 <button
                   type="button"
                   onClick={cut}
-                  className="group inline-flex items-center gap-4 rounded-full border border-white/20 bg-black/40 px-7 py-4 font-mono text-[12px] uppercase tracking-widest text-cream backdrop-blur transition-colors hover:border-flame"
+                  className="group inline-flex items-center gap-4 rounded-full border border-white/20 bg-black/40 px-7 py-4 font-mono text-[13px] tracking-wide text-cream backdrop-blur transition-colors hover:border-flame"
                 >
                   <Meter on={!paused} />
                   Cut sound
@@ -361,7 +361,7 @@ export default function ScreeningRoom({
                   onClick={rollSound}
                   disabled={!ready}
                   aria-pressed={false}
-                  className="group inline-flex items-center gap-4 rounded-full bg-ember px-8 py-4 font-mono text-[12px] uppercase tracking-widest text-cream ember-bloom transition-all duration-500 ease-cinematic hover:bg-flame hover:shadow-[0_0_60px_-10px_rgba(255,122,60,0.7)] disabled:opacity-50"
+                  className="group inline-flex items-center gap-4 rounded-full bg-ember px-8 py-4 font-mono text-[13px] tracking-wide text-cream ember-bloom transition-all duration-500 ease-cinematic hover:bg-[#D9174C] hover:shadow-[0_0_60px_-10px_rgba(236,90,128,0.45)] disabled:opacity-50"
                 >
                   <span className="relative flex h-2.5 w-2.5">
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cream/60" />
@@ -371,7 +371,7 @@ export default function ScreeningRoom({
                 </button>
               )}
 
-              <p className="font-mono text-[10px] uppercase tracking-widest text-ash">
+              <p className="font-mono text-[13px] tracking-wide text-ash">
                 {rolling
                   ? paused
                     ? "Paused — tap the frame to resume"

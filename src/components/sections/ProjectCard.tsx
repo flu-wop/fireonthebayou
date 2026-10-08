@@ -102,18 +102,18 @@ export default function ProjectCard({
 
         <div className="absolute inset-0 flex flex-col justify-between p-6 md:p-7">
           <div className="flex items-center justify-between">
-            <span className="font-mono text-[11px] uppercase tracking-widest text-flame">
+            <span className="font-mono text-[13px] tracking-wide text-flame">
               {project.category}
             </span>
             {project.year && (
-              <span className="font-mono text-[11px] tracking-widest text-ash">
+              <span className="font-mono text-[13px] tracking-wide text-ash">
               {project.year}
             </span>
             )}
           </div>
 
           <div className="translate-y-2 transition-transform duration-500 ease-cinematic group-hover:translate-y-0">
-            <p className="mb-1 font-mono text-[11px] uppercase tracking-widest text-mist">
+            <p className="mb-1 font-mono text-[13px] tracking-wide text-mist">
               {project.client}
             </p>
             <h3 className="font-display text-3xl font-light leading-none text-cream md:text-4xl">

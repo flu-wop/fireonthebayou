@@ -24,7 +24,7 @@ export default function MerchBand() {
             studio store.
           </p>
         </Reveal>
-        <span className="inline-flex items-center gap-3 self-start rounded-full border border-border px-7 py-3.5 font-mono text-[12px] uppercase tracking-widest text-cream transition-all duration-500 ease-cinematic group-hover:border-flame group-hover:text-flame md:self-auto">
+        <span className="inline-flex items-center gap-3 self-start rounded-full border border-border px-7 py-3.5 font-mono text-[13px] tracking-wide text-cream transition-all duration-500 ease-cinematic group-hover:border-flame group-hover:text-flame md:self-auto">
           Shop merch
           <span className="transition-transform duration-500 ease-cinematic group-hover:-translate-y-0.5 group-hover:translate-x-0.5">↗</span>
         </span>

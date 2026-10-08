@@ -16,23 +16,30 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // --- Fire on the Bayou accent layer ---
-        ink: "#060605", // deepest cinematic black (used for full-bleed bg)
-        ember: "#E2452A", // ember red — primary heat accent
-        flame: "#FF7A3C", // orange flame — secondary heat / hover glow
-        "flame-light": "#FFA463",
-        bayou: "#0B1512", // murky cypress green-black — alternate section bg
-        "bayou-deep": "#070C0A",
-        ash: "#6B655C", // warm muted gray for secondary text
+        // --- Fire on the Bayou: "Blue Note" palette ---
+        // Midnight blue-black and silver, after Herman Leonard's smoke-and-
+        // shadow jazz photographs; the logo's crimson is the only warm color.
+        ink: "#0E131A", // midnight — page background
+        ember: "#C40F42", // logo crimson, deepened for fills (cream text 5:1)
+        flame: "#EC5A80", // crimson lifted for small accent text on midnight
+        "flame-light": "#F48AA6",
+        bayou: "#151C25", // raised panel
+        "bayou-deep": "#111821", // alternate section bg
+        ash: "#737D8A", // tertiary text
+        cream: "#ECE8E0", // silver-white body + headline text
+        mist: "#97A0AC", // smoke — secondary text
+        card: { DEFAULT: "#161D27", foreground: "#ECE8E0" },
+        border: "#26303C",
       },
       fontFamily: {
         // Loaded via @import in globals.css (ecosystem convention)
-        display: ['"Cormorant Garamond"', "serif"],
-        sans: ['"DM Sans"', "system-ui", "sans-serif"],
-        mono: ['"DM Mono"', "ui-monospace", "monospace"],
+        display: ['"Instrument Serif"', "Georgia", "serif"],
+        sans: ['"Inter Tight"', "system-ui", "sans-serif"],
+        // Small labels use the sans too — no monospace in this palette.
+        mono: ['"Inter Tight"', "system-ui", "sans-serif"],
       },
       letterSpacing: {
-        widest: "0.28em",
+        widest: "0.04em",
       },
       maxWidth: {
         frame: "1680px", // cinematic content frame

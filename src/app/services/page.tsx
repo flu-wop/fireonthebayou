@@ -25,7 +25,7 @@ export default function ServicesPage() {
             <Reveal key={service.index} delay={(i % 2) * 0.08}>
               <article className="card-lift flex h-full flex-col bg-charcoal p-9 md:p-12">
                 <div className="mb-6 flex items-center justify-between">
-                  <span className="font-mono text-xs tracking-widest text-flame">
+                  <span className="font-mono text-xs tracking-wide text-flame">
                     {service.index}
                   </span>
                   <span className="h-1.5 w-1.5 rounded-full bg-ember" />
@@ -40,7 +40,7 @@ export default function ServicesPage() {
                   {service.capabilities.map((cap) => (
                     <li
                       key={cap}
-                      className="rounded-full border border-border px-3.5 py-1.5 font-mono text-[11px] uppercase tracking-widest text-mist"
+                      className="rounded-full border border-border px-3.5 py-1.5 font-mono text-[13px] tracking-wide text-mist"
                     >
                       {cap}
                     </li>
