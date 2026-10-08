@@ -11,6 +11,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { useLenis } from "lenis/react";
 import { navLinks, site } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
@@ -27,15 +28,28 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Lock body scroll when the mobile menu is open.
+  // Lock scroll (native + Lenis) while the mobile menu is open.
+  const lenis = useLenis();
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
+    if (open) lenis?.stop();
+    else lenis?.start();
     return () => {
       document.body.style.overflow = "";
+      lenis?.start();
     };
+  }, [open, lenis]);
+
+  // Close on Escape.
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
   return (
+    <>
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-700 ease-cinematic",
@@ -57,7 +71,7 @@ export default function Navbar() {
             alt="Fire on the Bayou"
             width={297}
             height={107}
-            className="h-11 w-auto transition-opacity duration-300 group-hover:opacity-85 md:h-14"
+            className="h-9 w-auto transition-opacity duration-300 group-hover:opacity-85 md:h-12"
           />
         </Link>
 
@@ -102,7 +116,8 @@ export default function Navbar() {
 
         {/* Mobile hamburger */}
         <button
-          aria-label="Menu"
+          aria-label={open ? "Close menu" : "Menu"}
+          aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
           className="relative z-50 flex h-10 w-10 flex-col items-center justify-center gap-1.5 md:hidden"
         >
@@ -121,7 +136,10 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {/* Mobile overlay menu */}
+    </header>
+
+      {/* Mobile overlay menu — a sibling of <header>, not a child: the header's
+          backdrop-blur would otherwise trap this fixed overlay inside it. */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -129,7 +147,8 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
-            className="fixed inset-0 z-40 flex flex-col justify-center bg-ink/98 px-8 backdrop-blur-2xl md:hidden"
+            data-lenis-prevent
+            className="fixed inset-0 z-40 flex flex-col justify-center overflow-y-auto bg-ink px-8 pb-10 pt-24 md:hidden"
           >
             <ul className="space-y-6">
               {navLinks.map((link, i) => (
@@ -172,6 +191,6 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </>
   );
 }
