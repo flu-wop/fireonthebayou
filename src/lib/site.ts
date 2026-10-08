@@ -41,7 +41,7 @@ export const site = {
  */
 export const consult = {
   name: "Creative Consult",
-  priceCents: 25000,
+  priceCents: 100000,
   length: "60 minutes",
   /** Shown on the page; set to false if the fee won't be credited. */
   creditedTowardProduction: true,
