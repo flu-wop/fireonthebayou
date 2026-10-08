@@ -53,7 +53,7 @@ export const projects: Project[] = [
     ],
     award: "Gold Addy Award",
     logline:
-      "A New Orleans jeweler, told in the language of the French New Wave.",
+      "A New Orleans jeweler, told in the language of the *French* *New* *Wave.*",
     approach: {
       heading: "Truffaut and Godard, by way of New Orleans.",
       body: [
@@ -82,7 +82,7 @@ export const projects: Project[] = [
     video: "/video/work-home-depot.mp4",
     span: "regular",
     films: [{ label: "Brand Film", youtubeId: "71qT6GkaUiQ" }],
-    logline: "Every purchase helps rebuild a New Orleans home.",
+    logline: "Every purchase helps rebuild a *New* *Orleans* *home.*",
     approach: {
       heading: "A corporate brand, telling a neighborhood story.",
       body: [
@@ -111,7 +111,7 @@ export const projects: Project[] = [
       { label: "New Breed", youtubeId: "hx84_T1rfBU" },
       { label: "Pinettes", youtubeId: "Can0CEKW8lA" },
     ],
-    logline: "Four New Orleans brass bands, chasing the Street Kings crown.",
+    logline: "Four *New* *Orleans* brass bands, chasing the Street Kings crown.",
     approach: {
       heading: "Give the band the platform.",
       body: [
@@ -141,7 +141,7 @@ export const projects: Project[] = [
       { label: "Chris Noel", youtubeId: "9M-B5L5sAWA" },
       { label: "Golden Meadow", youtubeId: "RB8NmChEq2E" },
     ],
-    logline: "A Gulf Coast holiday that really does feel like home.",
+    logline: "A *Gulf* *Coast* holiday that really does feel like home.",
     approach: {
       heading: "Concepted with Rouses, scored next door.",
       body: [
@@ -168,7 +168,7 @@ export const projects: Project[] = [
     video: "/video/work-reily-foods.mp4",
     span: "regular",
     films: [{ label: "Commercial", youtubeId: "DDFAYsJeNEk" }],
-    logline: "The brands in every New Orleans kitchen, and the traditions behind them.",
+    logline: "The brands in every *New* *Orleans* *kitchen,* and the traditions behind them.",
     approach: {
       heading: "Nostalgia as the product.",
       body: [
@@ -192,7 +192,7 @@ export const projects: Project[] = [
     video: "/video/work-blue-plate.mp4",
     span: "tall",
     films: [{ label: "Commercial", youtubeId: "mi9d3ijqFxA" }],
-    logline: "A corner-store owner's story, told to sell a jar of mayonnaise.",
+    logline: "A corner-store owner's story, told to sell a jar of *mayonnaise.*",
     approach: {
       heading: "Sell the mayo by loving the city.",
       body: [
@@ -219,7 +219,7 @@ export const projects: Project[] = [
       { label: "Bigger Than Monday", youtubeId: "SoIBpqmuVjg" },
       { label: "Nothing Beats Louisiana", youtubeId: "_GKzVp_MMDs" },
     ],
-    logline: "Red beans, shot like a Blue Note record sleeve.",
+    logline: "Red beans, shot like a *Blue* *Note* record sleeve.",
     approach: {
       heading: "A timeless look, on purpose.",
       body: [
@@ -245,7 +245,7 @@ export const projects: Project[] = [
     video: "/video/work-crystal-hot-sauce.mp4",
     span: "regular",
     films: [{ label: "Commercial", youtubeId: "vuS5CARLiak" }],
-    logline: "A New Orleans pantry staple, shot with the care of a national brand.",
+    logline: "A *New* *Orleans* *pantry* *staple,* shot with the care of a national brand.",
     credits: [
       { role: "Client", name: "Crystal Hot Sauce" },
       { role: "Agency", name: "Brand Society" },
@@ -263,7 +263,7 @@ export const projects: Project[] = [
     video: "/video/work-sazerac-house.mp4",
     span: "wide",
     films: [{ label: "Anthem", youtubeId: "G199DiFbPPY" }],
-    logline: "An anthem for the home of the Sazerac.",
+    logline: "An anthem for the home of the *Sazerac.*",
     credits: [
       { role: "Client", name: "Sazerac House" },
       { role: "Agency", name: "Trumpet" },
@@ -281,7 +281,7 @@ export const projects: Project[] = [
     video: "/video/work-russell-athletic.mp4",
     span: "regular",
     films: [{ label: "Brand Film", youtubeId: "UCkQXSFj5Ak" }],
-    logline: "Mark Ingram, back home in New Orleans, for Russell Athletic.",
+    logline: "*Mark* *Ingram,* back home in New Orleans, for Russell Athletic.",
     credits: [
       { role: "Client", name: "Russell Athletic" },
       { role: "Agency", name: "TBWA\\Chiat\\Day" },
@@ -305,7 +305,7 @@ export const projects: Project[] = [
       { label: "Kid Rock", youtubeId: "udwgJPKQ0KQ" },
       { label: "Lenny Kravitz", youtubeId: "4uVXsJjnnS8" },
     ],
-    logline: "Trash pickup, sold with Kid Rock, Lenny Kravitz, and the Saints.",
+    logline: "Trash pickup, sold with Kid Rock, *Lenny* *Kravitz,* and the Saints.",
     credits: [
       { role: "Client", name: "SDT Waste & Debris" },
       { role: "Featuring", name: "Kid Rock · Lenny Kravitz" },
@@ -326,7 +326,7 @@ export const projects: Project[] = [
       { label: "35 Years", youtubeId: "P2eVN0d9sgg" },
       { label: "Seafood Menu", youtubeId: "i2yZMxNJfnc" },
     ],
-    logline: "There's always something good at Copeland's.",
+    logline: "There's always something good at *Copeland's.*",
     credits: [
       { role: "Client", name: "Copeland's of New Orleans" },
       { role: "Production Company", name: "Fire on the Bayou" },
@@ -346,7 +346,7 @@ export const projects: Project[] = [
       { label: "Life's More Fun", youtubeId: "puKoEk2PsMc" },
       { label: ":30", youtubeId: "hJfejHVLXBQ" },
     ],
-    logline: "Life's more fun with seafood.",
+    logline: "Life's more fun with *seafood.*",
     credits: [
       { role: "Client", name: "ACME Oyster House" },
       { role: "Production Company", name: "Fire on the Bayou" },
@@ -366,7 +366,7 @@ export const projects: Project[] = [
       { label: "Audubon Day", youtubeId: "p0eibwIXb30" },
       { label: "New Lion Exhibit", youtubeId: "8r9JendcIz4" },
     ],
-    logline: "The zoo and the aquarium, set to a New Orleans jazz track.",
+    logline: "The zoo and the aquarium, set to a *New* *Orleans* *jazz* track.",
     approach: {
       heading: "Made with Peter Mayer.",
       body: [
@@ -393,7 +393,7 @@ export const projects: Project[] = [
       { label: "Life Has a Log In", youtubeId: "qYQPEAd28qw" },
       { label: "Birthday", youtubeId: "gh6Hl8KU6BU" },
     ],
-    logline: "Get outside yourself.",
+    logline: "Get *outside* yourself.",
     credits: [
       { role: "Client", name: "New Orleans City Park" },
       { role: "Production Company", name: "Fire on the Bayou" },
@@ -413,7 +413,7 @@ export const projects: Project[] = [
       { label: "How Glad I Am", youtubeId: "Y3alXtOBULQ" },
       { label: "Tourism Week", youtubeId: "xdp6HSCAVeM" },
     ],
-    logline: "The city, selling itself.",
+    logline: "*The* *city,* selling itself.",
     credits: [
       { role: "Client", name: "New Orleans & Company" },
       { role: "Production Company", name: "Fire on the Bayou" },
@@ -444,7 +444,7 @@ export const projects: Project[] = [
     video: "/video/work-louisiana-economic-development.mp4",
     span: "wide",
     films: [{ label: "Film", youtubeId: "trxZOgfCrao" }],
-    logline: "Making the case for doing business in Louisiana.",
+    logline: "Making the case for doing business in *Louisiana.*",
     credits: [
       { role: "Client", name: "Louisiana Economic Development" },
       { role: "Agency", name: "Peter Mayer Advertising" },

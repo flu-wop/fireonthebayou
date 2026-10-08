@@ -25,13 +25,16 @@ export function generateStaticParams() {
   return screenedProjects.map((p) => ({ slug: p.slug }));
 }
 
+/** Loglines mark crimson words with *asterisks*; strip them for plain-text uses. */
+const plain = (s: string) => s.replace(/\*/g, "");
+
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug } = await params;
   const p = getProject(slug);
   if (!p) return {};
   const title = `${p.title} — ${p.client}`;
   const description = p.logline
-    ? `${p.logline} ${p.category} for ${p.client} by ${site.name}, New Orleans.`
+    ? `${plain(p.logline)} ${p.category} for ${p.client} by ${site.name}, New Orleans.`
     : p.blurb;
   return {
     title,
@@ -58,7 +61,7 @@ export default async function ProjectPage({ params }: Params) {
     "@context": "https://schema.org",
     "@type": "VideoObject",
     name: p.films!.length > 1 ? `${p.title} — ${f.label}` : p.title,
-    description: p.logline ?? p.blurb,
+    description: p.logline ? plain(p.logline) : p.blurb,
     thumbnailUrl: [`${site.url}${p.poster}`],
     embedUrl: `https://www.youtube.com/embed/${f.youtubeId}`,
     contentUrl: `https://www.youtube.com/watch?v=${f.youtubeId}`,

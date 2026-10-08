@@ -26,7 +26,7 @@ export const morrisBartDraft: Project = {
   films: [
     // { label: "Launch Spot", youtubeId: "TODO" },
   ],
-  logline: "From a client giveaway to the shelves at Rouses.",
+  logline: "From a client giveaway to the shelves at *Rouses.*",
   approach: {
     heading: "Made the match, ran the launch.",
     body: [
