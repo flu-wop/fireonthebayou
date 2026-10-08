@@ -46,10 +46,10 @@ export const consult = {
   /** Shown on the page; set to false if the fee won't be credited. */
   creditedTowardProduction: true,
   includes: [
-    "A working session with a Fire on the Bayou director and producer",
-    "Your idea shaped into a concept and creative approach",
-    "A realistic budget range and production timeline",
-    "A written recap with next steps within two business days",
+    "A working session with a Fire on the Bayou director and producer — at the studio or by video",
+    "A written creative brief: the concept, the creative approach, and visual references",
+    "A real budget range and production timeline you can take to your team",
+    "Your brief delivered within a week of the session",
   ],
 } as const;
 

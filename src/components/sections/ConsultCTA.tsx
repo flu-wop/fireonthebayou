@@ -25,9 +25,10 @@ export default function ConsultCTA() {
           </Reveal>
           <Reveal delay={0.1}>
             <p className="mt-8 max-w-lg text-base leading-relaxed text-mist">
-              {consult.length} with a Fire on the Bayou director and producer. You leave
-              with a concept, a creative approach, and a real budget range
-              {consult.creditedTowardProduction ? <> &mdash; and the fee comes off your production.</> : "."}
+              A {consult.length.replace(" minutes", "-minute")} working session with a Fire on the Bayou
+              director and producer, then a written creative brief: concept, approach,
+              budget range, and timeline
+              {consult.creditedTowardProduction ? <> &mdash; and the full fee comes off your production.</> : "."}
             </p>
           </Reveal>
         </div>

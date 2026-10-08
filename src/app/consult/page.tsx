@@ -6,7 +6,7 @@ import { consult, formatPrice, site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Book a Creative Consult",
-  description: `A ${consult.length} creative session with ${site.name}: concept, approach, budget range, and timeline for your commercial, brand film, or video.`,
+  description: `A ${consult.length.replace(" minutes", "-minute")} working session with ${site.name}, followed by a written creative brief: concept, approach, budget range, and timeline for your commercial, brand film, or video.`,
   alternates: { canonical: "/consult" },
 };
 
@@ -23,7 +23,7 @@ export default async function ConsultPage({
       <PageHeader
         eyebrow="Creative Consult"
         title={<>Start with<br />a session.</>}
-        lede="Not sure what the film should be yet? Sit down with us first. Bring the idea — leave with a direction, a budget range, and a plan."
+        lede="Not sure what the film should be yet? Sit down with us first. Bring the idea — leave with a written creative brief, a budget range, and a plan."
       />
 
       <section className="frame grid gap-16 pb-32 md:grid-cols-12">

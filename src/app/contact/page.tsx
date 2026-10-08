@@ -36,7 +36,7 @@ export default function ContactPage() {
                 Book a {consult.name} &mdash; {formatPrice(consult.priceCents)}
               </p>
               <p className="mt-2 text-sm text-mist">
-                {consult.length} to shape the idea, budget, and timeline.{" "}
+                A working session and a written creative brief: concept, budget, timeline.{" "}
                 <span className="text-flame transition-transform group-hover:translate-x-1">→</span>
               </p>
             </Link>

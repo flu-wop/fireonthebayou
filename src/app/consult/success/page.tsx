@@ -40,7 +40,7 @@ export default async function ConsultSuccess({
         {firstName ? <>You&rsquo;re booked,<br />{firstName}.</> : <>You&rsquo;re<br />booked.</>}
       </h1>
       <p className="mt-8 max-w-xl text-lg leading-relaxed text-mist">
-        Payment received. We&rsquo;ll be in touch within one business day to set a time
+        Payment received. We&rsquo;ll be in touch within one business day to schedule your session
         {email ? <> &mdash; watch <span className="text-cream">{email}</span></> : null}. Your
         Stripe receipt is on its way.
       </p>
