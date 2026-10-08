@@ -11,7 +11,7 @@ export const services: Service[] = [
     index: "01",
     title: "Brand Films",
     blurb:
-      "Cinematic films that give a brand a heartbeat — story-led, scored, and built to live on a hero section or a festival screen.",
+      "Cinematic films that give a brand a heartbeat — story-led, scored, and built to run on TV, on the web, and in the feed.",
     capabilities: ["Concept & treatment", "Direction", "Cinematography", "Original score"],
   },
   {
@@ -23,10 +23,10 @@ export const services: Service[] = [
   },
   {
     index: "03",
-    title: "Documentary",
+    title: "Corporate & Nonprofit",
     blurb:
-      "Long-form storytelling with patience and access — the kind of work that earns trust and holds an audience.",
-    capabilities: ["Field production", "Interviews", "Archival", "Edit & finish"],
+      "Launch films, recruiting and welcome videos, and nonprofit stories — real people, told straight, for companies and institutions across Louisiana.",
+    capabilities: ["Interviews", "Field production", "Animation", "Edit & finish"],
   },
   {
     index: "04",

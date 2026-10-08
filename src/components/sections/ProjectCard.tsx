@@ -105,9 +105,11 @@ export default function ProjectCard({
             <span className="font-mono text-[11px] uppercase tracking-widest text-flame">
               {project.category}
             </span>
-            <span className="font-mono text-[11px] tracking-widest text-ash">
+            {project.year && (
+              <span className="font-mono text-[11px] tracking-widest text-ash">
               {project.year}
             </span>
+            )}
           </div>
 
           <div className="translate-y-2 transition-transform duration-500 ease-cinematic group-hover:translate-y-0">

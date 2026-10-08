@@ -7,7 +7,7 @@ import Button from "@/components/ui/Button";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Brand films, music videos, documentary, commercial, sound & score, and post — handled end to end by Fire on the Bayou.",
+    "Brand films, music videos, corporate video, commercials, sound & score, and post — handled end to end by Fire on the Bayou.",
 };
 
 export default function ServicesPage() {

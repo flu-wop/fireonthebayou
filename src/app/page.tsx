@@ -29,7 +29,7 @@ export default function HomePage() {
         items={[
           "Brand Films",
           "Music Videos",
-          "Documentary",
+          "Corporate",
           "Commercial",
           "Original Score",
           "Color & Finish",

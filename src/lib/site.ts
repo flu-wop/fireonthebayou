@@ -5,12 +5,12 @@
 export const site = {
   name: "Fire on the Bayou",
   shortName: "FOTB",
-  tagline: "A New Orleans film & video production house.",
+  tagline: "A New Orleans video production house since 2006.",
   description:
-    "Fire on the Bayou is a New Orleans video production house crafting cinematic brand films, music videos, and documentary work. Home of Mid City Sound.",
+    "Fire on the Bayou is an award-winning New Orleans video production house making TV commercials, brand films, and corporate video since 2006. Home of Mid City Sound.",
   url: "https://fireonthebayou.com",
   location: "New Orleans, Louisiana",
-  address: "530 Dr. Norman C Francis Pkwy, New Orleans, LA 70119",
+  address: "530 S Norman C Francis Pkwy, New Orleans, LA 70119",
   phone: "(504) 400-2555",
   phoneHref: "+15044002555",
   email: "firenola@gmail.com",

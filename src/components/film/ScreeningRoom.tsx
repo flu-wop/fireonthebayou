@@ -20,50 +20,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import type { Film } from "@/lib/projects";
 import { cn } from "@/lib/utils";
 
-// ---- Minimal YouTube IFrame API typing ----
-type YTPlayer = {
-  playVideo(): void;
-  pauseVideo(): void;
-  mute(): void;
-  unMute(): void;
-  setVolume(v: number): void;
-  seekTo(s: number, allowSeekAhead: boolean): void;
-  getCurrentTime(): number;
-  getDuration(): number;
-  getPlayerState(): number;
-  loadVideoById(id: string): void;
-  destroy(): void;
-};
-type YTNamespace = {
-  Player: new (el: HTMLElement, opts: Record<string, unknown>) => YTPlayer;
-};
-declare global {
-  interface Window {
-    YT?: YTNamespace;
-    onYouTubeIframeAPIReady?: () => void;
-  }
-}
-
-let apiPromise: Promise<YTNamespace> | null = null;
-function loadYouTubeAPI(): Promise<YTNamespace> {
-  if (window.YT?.Player) return Promise.resolve(window.YT);
-  if (apiPromise) return apiPromise;
-  apiPromise = new Promise((resolve) => {
-    const prev = window.onYouTubeIframeAPIReady;
-    window.onYouTubeIframeAPIReady = () => {
-      prev?.();
-      if (window.YT) resolve(window.YT);
-    };
-    const s = document.createElement("script");
-    s.src = "https://www.youtube.com/iframe_api";
-    s.async = true;
-    document.head.appendChild(s);
-  });
-  return apiPromise;
-}
-
-const PLAYING = 1;
-const ENDED = 0;
+import { loadYouTubeAPI, YT_ENDED as ENDED, YT_PLAYING as PLAYING, type YTPlayer } from "@/lib/youtube";
 
 type Phase = "silent" | "calling" | "rolling";
 
@@ -81,7 +38,7 @@ export default function ScreeningRoom({
   title: string;
   client: string;
   category: string;
-  year: string;
+  year?: string;
   award?: string;
 }) {
   const mountRef = useRef<HTMLDivElement>(null);
@@ -259,11 +216,11 @@ export default function ScreeningRoom({
       aria-label={`${title} — screening room`}
     >
       {/* ---- The film, sized to cover the frame like a projected image ---- */}
-      <div className="pointer-events-none absolute inset-0">
+      <div className="pointer-events-none absolute inset-0 overflow-hidden [container-type:size]">
         <div
           ref={mountRef}
           className={cn(
-            "absolute left-1/2 top-1/2 h-[max(100%,56.25vw)] w-[max(100%,177.78svh)] -translate-x-1/2 -translate-y-1/2 transition-opacity duration-1000",
+            "absolute left-1/2 top-1/2 h-[max(100cqh,56.25cqw)] w-[max(100cqw,177.78cqh)] -translate-x-1/2 -translate-y-1/2 transition-opacity duration-1000",
             "[&_iframe]:h-full [&_iframe]:w-full",
             playing ? "opacity-100" : "opacity-0"
           )}
@@ -340,8 +297,12 @@ export default function ScreeningRoom({
                 <span>{client}</span>
                 <span className="text-ash">/</span>
                 <span className="text-mist">{category}</span>
-                <span className="text-ash">/</span>
-                <span className="text-mist">{year}</span>
+                {year && (
+                  <>
+                    <span className="text-ash">/</span>
+                    <span className="text-mist">{year}</span>
+                  </>
+                )}
               </p>
               <h1 className="font-display text-[clamp(3.2rem,10vw,9rem)] font-light leading-[0.88] tracking-tight text-cream">
                 {title}

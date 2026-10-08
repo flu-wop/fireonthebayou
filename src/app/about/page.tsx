@@ -15,20 +15,20 @@ export const metadata: Metadata = {
 
 // Small set of stat-style facts. Edit freely.
 const stats = [
-  { value: "20+", label: "Years in New Orleans" },
-  { value: "Telly & Addy", label: "National award wins" },
+  { value: "20+", label: "Years of production" },
+  { value: "Gold Addy", label: "Award-winning work" },
   { value: "5", label: "Edit & animation bays" },
 ];
 
 // Core crew, presented like closing credits — no photos needed, just the roles
 // and the receipts. Keep this list short; it's a signature, not a directory.
 const crew = [
-  { name: "Jason Villemarette", role: "Founder / Director", note: "Innovator of the Year, City Business Magazine (2008)" },
-  { name: "Kathy Hirsch", role: "Executive Producer", note: "25 years, ex-Peter Mayer Advertising" },
+  { name: "Jason Villemarette", role: "Founder & Director", note: "Founded FOTB in 2006 · City Business Innovator of the Year (2009)" },
+  { name: "Kathy Hirsch", role: "Producer", note: "23 years heading broadcast production at Peter Mayer" },
   { name: "David Reece", role: "Director of Photography", note: "Coca-Cola, ESPN, NFL" },
   { name: "Michael Sanchez", role: "Post-Production Supervisor", note: "Edit, animation, sound design" },
-  { name: "Louis Koerner", role: "Director / DP", note: "Commercial & digital campaigns" },
-  { name: "Simon Blake", role: "Creative / Design", note: "Permanent collection, MoMA" },
+  { name: "Louis Koerner", role: "Director", note: "Director/DP · commercial & digital campaigns" },
+  { name: "Simon Blake", role: "Director", note: "Two AICP awards · permanent collection, MoMA" },
 ];
 
 export default function AboutPage() {
@@ -45,24 +45,25 @@ export default function AboutPage() {
         <div className="md:col-span-6">
           <Reveal>
             <p className="text-lg leading-relaxed text-mist">
-              We started as a crew of New Orleans filmmakers and musicians who
-              were tired of watching great footage get a mediocre mix. So we
-              built the answer ourselves — a production house with{" "}
-              <span className="text-cream">{site.studio.name}</span>, our own
-              recording and mixing studio, in the next room.
+              Jason Villemarette started out as a video editor and animator in
+              1998, and founded Fire on the Bayou in 2006. A native New Orleanian
+              and UNO graduate, he&rsquo;s grown it into a full production house
+              &mdash; five edit and animation bays, a sound stage, a grip truck, a
+              sound design room, and a stable of directors.
             </p>
           </Reveal>
           <Reveal delay={0.12}>
             <p className="mt-6 text-lg leading-relaxed text-mist">
-              The name is the city: a little bit fire, a little bit bayou. Heat
-              and patience. That tension runs through everything we make — work
-              that&rsquo;s bold enough to stop a scroll and crafted enough to
-              hold up on a festival screen.
+              <span className="text-cream">{site.studio.name}</span>, our
+              recording and mixing studio, lives under the same roof. And the
+              idea hasn&rsquo;t changed: start a fire with passion, the right
+              talent, and integrity &mdash; and do serious work without taking
+              ourselves too seriously.
             </p>
           </Reveal>
           <Reveal delay={0.2}>
             <p className="mt-6 font-mono text-[11px] uppercase tracking-widest text-mist">
-              Trusted by Home Depot &middot; Red Bull &middot; Reily Foods &middot; Rouses &middot; NOPD
+              Trusted by Aucoin Hart &middot; The Home Depot &middot; Red Bull &middot; Reily Foods &middot; Rouses &middot; Audubon
             </p>
           </Reveal>
         </div>
@@ -73,7 +74,7 @@ export default function AboutPage() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/images/about-crew.jpg"
-                alt="The Fire on the Bayou crew on set"
+                alt="A frame from Fire on the Bayou's film for New Orleans & Company"
                 className="h-full w-full object-cover"
               />
             </Parallax>

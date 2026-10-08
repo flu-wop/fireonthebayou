@@ -6,7 +6,7 @@ import Marquee from "@/components/sections/Marquee";
 export const metadata: Metadata = {
   title: "Work",
   description:
-    "Selected brand films, music videos, documentary, and commercial work from Fire on the Bayou.",
+    "Selected commercials, brand films, and corporate work from Fire on the Bayou.",
 };
 
 export default function WorkPage() {

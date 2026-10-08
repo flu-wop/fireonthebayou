@@ -14,12 +14,25 @@
  *  - Vignette + grain (global) give it the lens feel.
  */
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { site } from "@/lib/site";
 import Button from "@/components/ui/Button";
+import YouTubeBackdrop, { type BackdropHandle } from "@/components/film/YouTubeBackdrop";
+
+/** The hero reel — Fire on the Bayou's Hospitality Reel on YouTube (@firenola). */
+const HERO_REEL = { youtubeId: "6Kcbz2qkj8g", poster: "/images/hero-poster.jpg" };
 
 export default function Hero() {
   const ref = useRef<HTMLElement>(null);
+  const reel = useRef<BackdropHandle>(null);
+  const [reelReady, setReelReady] = useState(false);
+  const [sound, setSound] = useState(false);
+
+  function toggleSound() {
+    if (sound) reel.current?.cut();
+    else reel.current?.rollSound();
+    setSound(!sound);
+  }
 
   // Track scroll across the hero itself.
   const { scrollYProgress } = useScroll({
@@ -44,26 +57,14 @@ export default function Hero() {
         style={{ y: videoY, scale: videoScale }}
         className="absolute inset-0 -z-10 h-[115%]"
       >
-        {/* Poster gradient fallback sits underneath the <video> */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(120% 90% at 70% 20%, #2a1009 0%, #0b0705 55%, #060605 100%)",
-          }}
+        <YouTubeBackdrop
+          ref={reel}
+          youtubeId={HERO_REEL.youtubeId}
+          poster={HERO_REEL.poster}
+          className="opacity-70"
+          onReady={() => setReelReady(true)}
+          onSoundEnd={() => setSound(false)}
         />
-        <video
-          className="h-full w-full object-cover opacity-70"
-          autoPlay
-          muted
-          loop
-          playsInline
-          poster="/images/hero-poster.jpg"
-        >
-          {/* Drop your reel here. Multiple sources = better browser coverage. */}
-          <source src="/video/hero-reel.webm" type="video/webm" />
-          <source src="/video/hero-reel.mp4" type="video/mp4" />
-        </video>
       </motion.div>
 
       {/* Darkening scrims for text legibility */}
@@ -122,13 +123,13 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-10 flex flex-col items-start gap-8 md:flex-row md:items-center"
+          className="mt-10 flex flex-col items-start gap-6 md:flex-row md:items-center md:gap-8"
         >
           <p className="max-w-md text-base leading-relaxed text-mist">
-            A New Orleans production house making cinematic brand films, music
-            videos, and documentary work — sound and score under our own roof.
+            A New Orleans production house making commercials, brand films, and
+            corporate video since 2006 — with sound and score under our own roof.
           </p>
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4">
             <Button href="/work" variant="ember">
               View the work
             </Button>
@@ -136,6 +137,17 @@ export default function Hero() {
               Start a project
             </Button>
           </div>
+          {/* Roll sound — the reel with audio, from the top */}
+          <button
+            type="button"
+            onClick={toggleSound}
+            disabled={!reelReady}
+            aria-pressed={sound}
+            className="inline-flex items-center gap-3 font-mono text-[11px] uppercase tracking-widest text-mist transition-all duration-500 hover:text-flame disabled:pointer-events-none disabled:opacity-0"
+          >
+            <SoundBars on={sound} />
+            {sound ? "Cut sound" : "Roll sound"}
+          </button>
         </motion.div>
       </motion.div>
 
@@ -144,7 +156,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.4, duration: 1 }}
-        className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2"
+        className="absolute bottom-8 left-1/2 z-10 hidden -translate-x-1/2 md:block"
       >
         <div className="flex flex-col items-center gap-3">
           <span className="font-mono text-[10px] uppercase tracking-widest text-ash">
@@ -160,5 +172,22 @@ export default function Hero() {
         </div>
       </motion.div>
     </section>
+  );
+}
+
+/** Level meter: flat when silent, moving when sound is rolling. */
+function SoundBars({ on }: { on: boolean }) {
+  return (
+    <span className="flex h-3 items-end gap-[3px]" aria-hidden>
+      {[0.55, 1, 0.7, 0.4].map((h, i) => (
+        <motion.span
+          key={i}
+          className="w-[2px] origin-bottom rounded-sm bg-flame"
+          style={{ height: "100%" }}
+          animate={on ? { scaleY: [h, 1 - h * 0.6, h * 0.8, 1, h] } : { scaleY: 0.25 }}
+          transition={on ? { duration: 0.9 + i * 0.17, repeat: Infinity, ease: "easeInOut" } : { duration: 0.3 }}
+        />
+      ))}
+    </span>
   );
 }

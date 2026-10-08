@@ -11,7 +11,8 @@ export type Project = {
   title: string;
   client: string;
   category: "Brand Film" | "Music Video" | "Documentary" | "Commercial";
-  year: string;
+  /** Release year — leave out unless confirmed. */
+  year?: string;
   /** Short one-line description shown on hover / detail */
   blurb: string;
   poster: string; // /public/images/...
@@ -42,7 +43,6 @@ export const projects: Project[] = [
     title: "Aeuvre d'art",
     client: "Aucoin Hart Jewelers",
     category: "Brand Film",
-    year: "2023",
     blurb: "Gold Addy winner. A two-part campaign in the style of Truffaut and Godard — French New Wave shot on the streets of New Orleans.",
     poster: "/images/work-aucoin-hart.jpg",
     video: "/video/work-aucoin-hart.mp4",
@@ -77,29 +77,55 @@ export const projects: Project[] = [
     title: "Team Depot",
     client: "Home Depot",
     category: "Brand Film",
-    year: "2023",
     blurb: "A national nonprofit story, told through the New Orleans homes still being rebuilt.",
     poster: "/images/work-home-depot.jpg",
     video: "/video/work-home-depot.mp4",
     span: "regular",
+    films: [{ label: "Brand Film", youtubeId: "71qT6GkaUiQ" }],
+    logline: "Every purchase helps rebuild a New Orleans home.",
+    approach: {
+      heading: "A corporate brand, telling a neighborhood story.",
+      body: [
+        "Team Depot is the Home Depot nonprofit restoring homes damaged by natural disasters — still urgent work in New Orleans, years after Katrina.",
+        "The film is carried by its music, footage of the damaged houses, and interviews with the people Team Depot has helped — and lets viewers know their purchases keep that work going.",
+      ],
+    },
+    credits: [
+      { role: "Client", name: "The Home Depot" },
+      { role: "Production Company", name: "Fire on the Bayou" },
+      { role: "Director", name: "Jason Villemarette" },
+    ],
   },
   {
     slug: "red-bull",
     title: "Street Kings",
     client: "Red Bull",
-    category: "Music Video",
-    year: "2023",
+    category: "Brand Film",
     blurb: "Brass band New Creations, shot live in the streets for Red Bull's annual Street Kings competition.",
     poster: "/images/work-red-bull.jpg",
     video: "/video/work-red-bull.mp4",
     span: "tall",
+    films: [{ label: "Brand Film", youtubeId: "fyPEqUnW64U" }],
+    logline: "A New Orleans brass band, chasing the Street Kings crown.",
+    approach: {
+      heading: "Give the band the platform.",
+      body: [
+        "Every year Red Bull sponsors Street Kings, a New Orleans brass band competition. This film follows contenders New Creations — an interview with the band, cut against their live performances in the streets.",
+        "Directed, shot, and edited entirely in-house.",
+      ],
+    },
+    credits: [
+      { role: "Client", name: "Red Bull" },
+      { role: "Featuring", name: "New Creations Brass Band" },
+      { role: "Production Company", name: "Fire on the Bayou" },
+      { role: "Director", name: "Jason Villemarette" },
+    ],
   },
   {
     slug: "rouses",
     title: "Feels Like Home",
     client: "Rouses Markets",
     category: "Commercial",
-    year: "2023",
     blurb: "A holiday brand spot developed with Rouses' in-house agency — scored in-house at Mid City Sound with recording artist Tyron Benoit.",
     poster: "/images/work-rouses.jpg",
     video: "/video/work-rouses.mp4",
@@ -127,18 +153,30 @@ export const projects: Project[] = [
     title: "Reily Foods Commercial",
     client: "Reily Foods",
     category: "Commercial",
-    year: "2023",
     blurb: "Blue Plate, Luzianne, French Market Coffee — a family-owned New Orleans institution, told as one story.",
     poster: "/images/work-reily-foods.jpg",
     video: "/video/work-reily-foods.mp4",
     span: "regular",
+    films: [{ label: "Commercial", youtubeId: "DDFAYsJeNEk" }],
+    logline: "The brands in every New Orleans kitchen, and the traditions behind them.",
+    approach: {
+      heading: "Nostalgia as the product.",
+      body: [
+        "Reily is a family-owned New Orleans company — Blue Plate, Luzianne, French Market Coffee and more. The spot ties those familiar labels to the feeling of belonging to the city.",
+        "Scenic New Orleans locations and a voiceover carry the message: these products have been part of the city's traditions since the company's founding, and still are.",
+      ],
+    },
+    credits: [
+      { role: "Client", name: "Reily Foods" },
+      { role: "Production Company", name: "Fire on the Bayou" },
+      { role: "Director", name: "Louis Koerner" },
+    ],
   },
   {
     slug: "blue-plate",
     title: "Frady's One-Stop",
     client: "Blue Plate Mayo / Reily Foods",
     category: "Commercial",
-    year: "2023",
     blurb: "A New Orleans corner-store owner's story, told to sell a jar of mayonnaise — and it works.",
     poster: "/images/work-blue-plate.jpg",
     video: "/video/work-blue-plate.mp4",
@@ -163,7 +201,6 @@ export const projects: Project[] = [
     title: "Bigger Than Monday",
     client: "Blue Runner Foods",
     category: "Brand Film",
-    year: "2023",
     blurb: "A timeless look inspired by Herman Leonard, the Blue Note album covers, and the jazz musicians of the past.",
     poster: "/images/work-blue-runner.jpg",
     video: "/video/work-blue-runner.mp4",
@@ -190,7 +227,6 @@ export const projects: Project[] = [
     title: "Crystal Hot Sauce",
     client: "Crystal Hot Sauce",
     category: "Commercial",
-    year: "2023",
     blurb: "A New Orleans pantry staple, shot with the same care as a national brand.",
     poster: "/images/work-crystal-hot-sauce.jpg",
     video: "/video/work-crystal-hot-sauce.mp4",
@@ -209,22 +245,37 @@ export const projects: Project[] = [
     title: "Sazerac House Anthem",
     client: "Sazerac House",
     category: "Brand Film",
-    year: "2023",
     blurb: "An anthem film for New Orleans' home of the Sazerac cocktail.",
     poster: "/images/work-sazerac-house.jpg",
     video: "/video/work-sazerac-house.mp4",
     span: "wide",
+    films: [{ label: "Anthem", youtubeId: "G199DiFbPPY" }],
+    logline: "An anthem for the home of the Sazerac.",
+    credits: [
+      { role: "Client", name: "Sazerac House" },
+      { role: "Agency", name: "Trumpet" },
+      { role: "Production Company", name: "Fire on the Bayou" },
+      { role: "Director", name: "Jason Villemarette" },
+    ],
   },
   {
     slug: "russell-athletic",
     title: "Russell Athletic",
     client: "Russell Athletic, feat. Mark Ingram",
     category: "Brand Film",
-    year: "2023",
     blurb: "A brand film built around NFL running back and New Orleans native Mark Ingram.",
     poster: "/images/work-russell-athletic.jpg",
     video: "/video/work-russell-athletic.mp4",
     span: "regular",
+    films: [{ label: "Brand Film", youtubeId: "UCkQXSFj5Ak" }],
+    logline: "Mark Ingram, back home in New Orleans, for Russell Athletic.",
+    credits: [
+      { role: "Client", name: "Russell Athletic" },
+      { role: "Agency", name: "TBWA\\Chiat\\Day" },
+      { role: "Featuring", name: "Mark Ingram" },
+      { role: "Production Company", name: "Fire on the Bayou" },
+      { role: "Director", name: "Jason Villemarette" },
+    ],
   },
 ];
 

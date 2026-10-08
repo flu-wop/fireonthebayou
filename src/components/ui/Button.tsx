@@ -13,7 +13,7 @@ import type { ReactNode } from "react";
 type Variant = "ember" | "outline" | "ghost";
 
 const base =
-  "group inline-flex items-center gap-3 rounded-full px-7 py-3.5 font-mono text-[12px] uppercase tracking-widest transition-all duration-500 ease-cinematic";
+  "group inline-flex shrink-0 items-center gap-3 whitespace-nowrap rounded-full px-7 py-3.5 font-mono text-[12px] uppercase tracking-widest transition-all duration-500 ease-cinematic";
 
 const variants: Record<Variant, string> = {
   ember:
