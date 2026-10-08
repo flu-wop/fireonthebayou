@@ -34,7 +34,7 @@ export default function Footer() {
             <address className="not-italic text-sm leading-relaxed text-mist">
               {site.address.split(", ")[0]}
               <br />
-              {site.address.split(", ").slice(1).join(", ")}
+              {site.address.split(", ").slice(1).join(", ").replace(/\s+\d{5}(-\d{4})?$/, "")}
             </address>
             <p className="mt-4 text-sm leading-relaxed text-mist">
               <a href={`tel:${site.phoneHref}`} className="transition-colors hover:text-flame">
