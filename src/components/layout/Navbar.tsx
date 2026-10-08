@@ -51,13 +51,14 @@ export default function Navbar() {
           className="group flex items-center gap-2.5"
           onClick={() => setOpen(false)}
         >
-          <span className="relative flex h-2.5 w-2.5">
-            <span className="absolute inline-flex h-full w-full animate-ember-pulse rounded-full bg-ember" />
-            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-flame" />
-          </span>
-          <span className="font-display text-xl tracking-tight text-cream">
-            Fire on the Bayou
-          </span>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/fotb-logo.png"
+            alt="Fire on the Bayou"
+            width={297}
+            height={107}
+            className="h-11 w-auto transition-opacity duration-300 group-hover:opacity-85 md:h-14"
+          />
         </Link>
 
         {/* Desktop links */}

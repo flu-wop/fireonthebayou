@@ -19,8 +19,15 @@ import { site } from "@/lib/site";
 import Button from "@/components/ui/Button";
 import YouTubeBackdrop, { type BackdropHandle } from "@/components/film/YouTubeBackdrop";
 
-/** The hero reel — Fire on the Bayou's Hospitality Reel on YouTube (@firenola). */
-const HERO_REEL = { youtubeId: "6Kcbz2qkj8g", poster: "/images/hero-poster.jpg" };
+/**
+ * The hero reel — Fire on the Bayou's Hospitality Reel on YouTube (@firenola).
+ * For a guaranteed-sharp loop, drop an exported file in /public/video and set
+ * `mp4: "/video/hero-reel.mp4"` — the site then plays that instead of YouTube.
+ */
+const HERO_REEL: { youtubeId: string; poster: string; mp4?: string } = {
+  youtubeId: "6Kcbz2qkj8g",
+  poster: "/images/hero-poster.jpg",
+};
 
 export default function Hero() {
   const ref = useRef<HTMLElement>(null);
@@ -42,7 +49,6 @@ export default function Hero() {
 
   // Video drifts up + scales as we scroll (parallax depth).
   const videoY = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
-  const videoScale = useTransform(scrollYProgress, [0, 1], [1, 1.12]);
   // Content lifts faster and fades (foreground layer).
   const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "-40%"]);
   const contentOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
@@ -54,12 +60,13 @@ export default function Hero() {
     >
       {/* ---- Background reel (parallax layer) ---- */}
       <motion.div
-        style={{ y: videoY, scale: videoScale }}
+        style={{ y: videoY }}
         className="absolute inset-0 -z-10 h-[115%]"
       >
         <YouTubeBackdrop
           ref={reel}
           youtubeId={HERO_REEL.youtubeId}
+          mp4={HERO_REEL.mp4}
           poster={HERO_REEL.poster}
           className="opacity-70"
           onReady={() => setReelReady(true)}

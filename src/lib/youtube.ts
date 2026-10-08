@@ -13,6 +13,7 @@ export type YTPlayer = {
   getCurrentTime(): number;
   getDuration(): number;
   getPlayerState(): number;
+  getPlaybackQuality(): string;
   loadVideoById(id: string): void;
   destroy(): void;
 };
