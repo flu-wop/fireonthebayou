@@ -12,7 +12,7 @@ export default function ConsultCTA() {
       <div
         aria-hidden
         className="pointer-events-none absolute -right-40 top-1/2 h-[520px] w-[520px] -translate-y-1/2 rounded-full"
-        style={{ background: "radial-gradient(circle, rgba(196,15,66,0.16) 0%, transparent 65%)" }}
+        style={{ background: "radial-gradient(circle, rgba(208,17,70,0.16) 0%, transparent 65%)" }}
       />
       <div className="frame relative grid items-end gap-12 py-24 md:grid-cols-12 md:py-32">
         <div className="md:col-span-7">

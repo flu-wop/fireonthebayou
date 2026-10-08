@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "@flu-wop/design-system/core.css";
 import "@flu-wop/design-system/compat.css";
 import "./globals.css";
+import { Archivo } from "next/font/google";
 import { site } from "@/lib/site";
 import SmoothScroll from "@/components/effects/SmoothScroll";
 import GrainOverlay from "@/components/effects/GrainOverlay";
@@ -14,8 +15,15 @@ import PreviewBadge from "@/components/layout/PreviewBadge";
  * -----------
  * Order of wrappers matters:
  *   SmoothScroll (Lenis)  ->  global texture (grain/vignette)  ->  chrome (nav/footer)
- * Fonts load via @import in globals.css (ecosystem convention), so no next/font here.
+ * Archivo is self-hosted via next/font (variable width + weight axes).
  */
+const archivo = Archivo({
+  subsets: ["latin"],
+  axes: ["wdth"],
+  variable: "--font-archivo",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: {
     default: `${site.name} — ${site.tagline}`,
@@ -40,7 +48,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html data-theme="studio" lang="en" className="dark">
+    <html data-theme="studio" lang="en" className={`dark ${archivo.variable}`}>
       <body className="bg-ink text-cream antialiased">
         <SmoothScroll>
           <GrainOverlay />

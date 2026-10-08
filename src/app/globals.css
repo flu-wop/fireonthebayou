@@ -3,7 +3,7 @@
    IMPORT ORDER IS CRITICAL: @import (fonts) MUST come before the
    @tailwind directives or Turbopack throws a CSS parse error.
    ============================================================ */
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600&display=swap');
+/* Fonts: Archivo via next/font in app/layout.tsx */
 
 @tailwind base;
 @tailwind components;
@@ -17,11 +17,11 @@
   --color-cream: #f5edd8;
   --color-mist: #a89880;
 
-  /* Fire on the Bayou — Blue Note */
-  --color-ink: #0e131a;
-  --color-ember: #c40f42;
-  --color-flame: #ec5a80;
-  --color-bayou: #151c25;
+  /* Fire on the Bayou — Rolling */
+  --color-ink: #000000;
+  --color-ember: #d01146;
+  --color-flame: #f0466f;
+  --color-bayou: #121212;
 }
 
 @layer base {
@@ -65,7 +65,7 @@
     background: var(--color-ink);
   }
   ::-webkit-scrollbar-thumb {
-    background: #26303c;
+    background: #2a2a2a;
     border-radius: 9px;
   }
   ::-webkit-scrollbar-thumb:hover {
@@ -84,9 +84,9 @@
 
   /* Fire gradient text — the hot version, for big hero display type */
   .text-fire-gradient {
-    /* Kept as a class name; in the Blue Note palette it's a quiet silver italic. */
-    color: #ece8e0;
-    font-style: italic;
+    /* Kept as a class name; in the Rolling palette it's plain white. */
+    color: #ffffff;
+    font-style: normal;
   }
 
   /* Film grain — fixed full-viewport texture overlay (used in <GrainOverlay/>) */
@@ -111,7 +111,18 @@
 
   /* Subtle ember bloom glow used behind hot accents */
   .ember-bloom {
-    box-shadow: 0 0 80px -24px rgba(196, 15, 66, 0.45);
+    box-shadow: 0 0 80px -24px rgba(208, 17, 70, 0.45);
+  }
+
+  /* Display type: Archivo squeezed to its narrowest width, heavy, all caps —
+     the look of a title card. Overrides any weight/italic set on headlines. */
+  .font-display {
+    font-stretch: 62.5%;
+    font-variation-settings: "wdth" 62;
+    font-weight: 850 !important;
+    font-style: normal !important;
+    text-transform: uppercase;
+    letter-spacing: -0.005em;
   }
 
   /* Hairline rule in brand border color */

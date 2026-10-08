@@ -16,27 +16,28 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // --- Fire on the Bayou: "Blue Note" palette ---
-        // Midnight blue-black and silver, after Herman Leonard's smoke-and-
-        // shadow jazz photographs; the logo's crimson is the only warm color.
-        ink: "#0E131A", // midnight — page background
-        ember: "#C40F42", // logo crimson, deepened for fills (cream text 5:1)
-        flame: "#EC5A80", // crimson lifted for small accent text on midnight
-        "flame-light": "#F48AA6",
-        bayou: "#151C25", // raised panel
-        "bayou-deep": "#111821", // alternate section bg
-        ash: "#737D8A", // tertiary text
-        cream: "#ECE8E0", // silver-white body + headline text
-        mist: "#97A0AC", // smoke — secondary text
-        card: { DEFAULT: "#161D27", foreground: "#ECE8E0" },
-        border: "#26303C",
+        // --- Fire on the Bayou: "Rolling" palette ---
+        // Black and white like a monitor on set; the logo's crimson is the
+        // only color, used for the REC light, buttons, and small accents.
+        ink: "#000000", // page background
+        ember: "#D01146", // logo crimson — fills (white text 5.4:1)
+        flame: "#F0466F", // crimson lifted for small accent text (5.8:1)
+        "flame-light": "#F7859F",
+        bayou: "#121212", // raised panel
+        "bayou-deep": "#0A0A0A", // alternate section bg
+        ash: "#7A7A7A", // tertiary text
+        cream: "#FFFFFF", // primary text
+        mist: "#A3A3A3", // secondary text
+        card: { DEFAULT: "#141414", foreground: "#FFFFFF" },
+        border: "#2A2A2A",
       },
       fontFamily: {
         // Loaded via @import in globals.css (ecosystem convention)
-        display: ['"Instrument Serif"', "Georgia", "serif"],
-        sans: ['"Inter Tight"', "system-ui", "sans-serif"],
-        // Small labels use the sans too — no monospace in this palette.
-        mono: ['"Inter Tight"', "system-ui", "sans-serif"],
+        // One family, Archivo: condensed + heavy for display (see .font-display
+        // in globals.css), normal width for everything else.
+        display: ["var(--font-archivo)", "Archivo", "system-ui", "sans-serif"],
+        sans: ["var(--font-archivo)", "Archivo", "system-ui", "sans-serif"],
+        mono: ["var(--font-archivo)", "Archivo", "system-ui", "sans-serif"],
       },
       letterSpacing: {
         widest: "0.04em",

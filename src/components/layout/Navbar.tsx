@@ -106,7 +106,7 @@ export default function Navbar() {
                 "rounded-full border px-5 py-2 font-mono text-[13px] tracking-wide transition-colors duration-300",
                 pathname?.startsWith("/consult")
                   ? "border-flame text-flame"
-                  : "border-flame/60 text-cream hover:border-flame hover:bg-[#D9174C]/10"
+                  : "border-flame/60 text-cream hover:border-flame hover:bg-[#E21A52]/10"
               )}
             >
               Book a consult

@@ -342,7 +342,7 @@ export default function ScreeningRoom({
                   href={`https://www.youtube.com/watch?v=${film.youtubeId}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-3 rounded-full bg-ember px-7 py-4 font-mono text-[13px] tracking-wide text-cream transition-colors hover:bg-[#D9174C]"
+                  className="inline-flex items-center gap-3 rounded-full bg-ember px-7 py-4 font-mono text-[13px] tracking-wide text-cream transition-colors hover:bg-[#E21A52]"
                 >
                   Watch on YouTube ↗
                 </a>
@@ -361,7 +361,7 @@ export default function ScreeningRoom({
                   onClick={rollSound}
                   disabled={!ready}
                   aria-pressed={false}
-                  className="group inline-flex items-center gap-4 rounded-full bg-ember px-8 py-4 font-mono text-[13px] tracking-wide text-cream ember-bloom transition-all duration-500 ease-cinematic hover:bg-[#D9174C] hover:shadow-[0_0_60px_-10px_rgba(236,90,128,0.45)] disabled:opacity-50"
+                  className="group inline-flex items-center gap-4 rounded-full bg-ember px-8 py-4 font-mono text-[13px] tracking-wide text-cream ember-bloom transition-all duration-500 ease-cinematic hover:bg-[#E21A52] hover:shadow-[0_0_60px_-10px_rgba(240,70,111,0.45)] disabled:opacity-50"
                 >
                   <span className="relative flex h-2.5 w-2.5">
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cream/60" />

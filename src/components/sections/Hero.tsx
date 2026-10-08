@@ -15,7 +15,6 @@
  */
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState } from "react";
-import { site } from "@/lib/site";
 import Button from "@/components/ui/Button";
 import YouTubeBackdrop, { type BackdropHandle } from "@/components/film/YouTubeBackdrop";
 
@@ -56,6 +55,8 @@ export default function Hero() {
   return (
     <section
       ref={ref}
+      id="reel"
+      data-chapter="Reel"
       className="vignette relative flex h-[100svh] min-h-[640px] items-end overflow-hidden"
     >
       {/* ---- Background reel (parallax layer) ---- */}
@@ -68,7 +69,7 @@ export default function Hero() {
           youtubeId={HERO_REEL.youtubeId}
           mp4={HERO_REEL.mp4}
           poster={HERO_REEL.poster}
-          className="opacity-70"
+          className="opacity-80"
           onReady={() => setReelReady(true)}
           onSoundEnd={() => setSound(false)}
         />
@@ -87,98 +88,61 @@ export default function Hero() {
       {/* ---- Foreground content ---- */}
       <motion.div
         style={{ y: contentY, opacity: contentOpacity }}
-        className="frame relative z-10 pb-20 md:pb-28"
+        className="frame relative z-10 pb-14 md:pb-16 lg:pr-64"
       >
-        {/* Eyebrow */}
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="eyebrow mb-6 flex items-center gap-3"
-        >
-          <span className="inline-block h-px w-10 bg-flame/70" />
-          {site.location} &middot; Film &amp; Video
-        </motion.p>
-
-        {/* Headline — staggered word reveal */}
-        <h1 className="max-w-5xl font-display text-[clamp(3rem,11vw,10rem)] font-light leading-[0.86] tracking-tight text-cream">
-          {["We light", "the bayou", "on fire."].map((line, i) => (
+        <h1 className="font-display text-[clamp(3.6rem,12.5vw,13.5rem)] leading-[0.84] text-cream">
+          {["We light the", "bayou on fire"].map((line, i) => (
             <span key={line} className="block overflow-hidden">
               <motion.span
                 initial={{ y: "110%" }}
                 animate={{ y: 0 }}
-                transition={{
-                  duration: 1.1,
-                  delay: 0.3 + i * 0.12,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
+                transition={{ duration: 1.1, delay: 0.25 + i * 0.12, ease: [0.22, 1, 0.36, 1] }}
                 className="block"
               >
-                {/* last line gets the fire gradient */}
-                {i === 2 ? (
-                  <span className="text-fire-gradient italic">{line}</span>
-                ) : (
-                  line
-                )}
+                {line}
               </motion.span>
             </span>
           ))}
         </h1>
 
-        {/* Sub + CTAs */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-10 flex flex-col items-start gap-6 md:flex-row md:items-center md:gap-8"
+          transition={{ duration: 1, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-7 flex flex-col items-start gap-6 md:flex-row md:items-center md:gap-10"
         >
-          <p className="max-w-md text-base leading-relaxed text-mist">
-            A New Orleans production house making commercials, brand films, and
-            corporate video since 2006 — with sound and score under our own roof.
+          <p className="max-w-xs text-lg leading-snug text-cream/90">
+            Commercials and brand films made in New Orleans since 2006.
           </p>
-          <div className="flex flex-wrap items-center gap-3 sm:gap-4">
-            <Button href="/work" variant="ember">
-              View the work
-            </Button>
-            <Button href="/contact" variant="outline">
-              Start a project
-            </Button>
+          <div className="flex flex-wrap items-center gap-6">
+            {/* Roll sound — the reel with audio, from the top */}
+            <button
+              type="button"
+              onClick={toggleSound}
+              disabled={!reelReady}
+              aria-pressed={sound}
+              className="group inline-flex items-center gap-4 text-base font-semibold text-cream disabled:opacity-60"
+            >
+              <span className="grid h-14 w-14 place-items-center rounded-full bg-cream text-ink transition-transform duration-500 ease-cinematic group-hover:scale-105">
+                {sound ? <SoundBars on /> : <PlayIcon />}
+              </span>
+              {sound ? "Cut sound" : "Play the reel with sound"}
+            </button>
+            <a href="/work" className="text-base text-cream/80 underline decoration-cream/30 underline-offset-[6px] transition-colors hover:text-cream hover:decoration-flame">
+              See all the work
+            </a>
           </div>
-          {/* Roll sound — the reel with audio, from the top */}
-          <button
-            type="button"
-            onClick={toggleSound}
-            disabled={!reelReady}
-            aria-pressed={sound}
-            className="inline-flex items-center gap-3 font-mono text-[13px] tracking-wide text-mist transition-all duration-500 hover:text-flame disabled:pointer-events-none disabled:opacity-0"
-          >
-            <SoundBars on={sound} />
-            {sound ? "Cut sound" : "Roll sound"}
-          </button>
         </motion.div>
       </motion.div>
-
-      {/* Scroll cue */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.4, duration: 1 }}
-        className="absolute bottom-8 left-1/2 z-10 hidden -translate-x-1/2 md:block"
-      >
-        <div className="flex flex-col items-center gap-3">
-          <span className="font-mono text-[13px] tracking-wide text-ash">
-            Scroll
-          </span>
-          <span className="relative block h-12 w-px overflow-hidden bg-border">
-            <motion.span
-              className="absolute inset-x-0 top-0 h-4 bg-flame"
-              animate={{ y: [-16, 48] }}
-              transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-            />
-          </span>
-        </div>
-      </motion.div>
     </section>
+  );
+}
+
+function PlayIcon() {
+  return (
+    <svg viewBox="0 0 16 16" className="ml-0.5 h-4 w-4" aria-hidden>
+      <path d="M4 2.5v11l9-5.5z" fill="currentColor" />
+    </svg>
   );
 }
 
@@ -189,7 +153,7 @@ function SoundBars({ on }: { on: boolean }) {
       {[0.55, 1, 0.7, 0.4].map((h, i) => (
         <motion.span
           key={i}
-          className="w-[2px] origin-bottom rounded-sm bg-flame"
+          className="w-[2px] origin-bottom rounded-sm bg-ember"
           style={{ height: "100%" }}
           animate={on ? { scaleY: [h, 1 - h * 0.6, h * 0.8, 1, h] } : { scaleY: 0.25 }}
           transition={on ? { duration: 0.9 + i * 0.17, repeat: Infinity, ease: "easeInOut" } : { duration: 0.3 }}

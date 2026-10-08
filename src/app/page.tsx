@@ -1,55 +1,27 @@
 /**
- * Home (/)
- * --------
- * Above-the-fold = <Hero/>. Below: a scroll-illuminated mission statement, a
- * marquee, latest work teaser, the Mid City Sound differentiator, a services
- * preview, and the global footer CTA.
+ * Home (/) — the reel
+ * -------------------
+ * The page plays like a reel: the hero reel, then one full-screen frame per
+ * featured film (with a REC timecode + chapter list alongside), then the
+ * Mid City Sound studio, merch, and the paid consult.
  *
- * This file is intentionally a thin composition layer — every visual unit lives
- * in /components/sections so pages stay readable and editable.
+ * Featured films and their order: `homeReel` in src/lib/projects.ts.
  */
 import Hero from "@/components/sections/Hero";
-import Statement from "@/components/sections/Statement";
-import Marquee from "@/components/sections/Marquee";
-import WorkTeaser from "@/components/sections/WorkTeaser";
+import ReelFrames from "@/components/sections/ReelFrames";
 import StudioConnection from "@/components/sections/StudioConnection";
-import ServicesPreview from "@/components/sections/ServicesPreview";
 import ConsultCTA from "@/components/sections/ConsultCTA";
 import MerchBand from "@/components/sections/MerchBand";
+import { homeReel } from "@/lib/projects";
 
 export default function HomePage() {
   return (
     <>
-      {/* ===== ABOVE THE FOLD ===== */}
       <Hero />
-
-      {/* ===== Scroll-illuminated mission statement ===== */}
-      <Statement text="We are a New Orleans production house for brands and artists who refuse to look like everyone else. Cinematic film, sound, and story — made with heat." />
-
-      {/* ===== Capability marquee ===== */}
-      <Marquee
-        items={[
-          "Brand Films",
-          "Music Videos",
-          "Corporate",
-          "Commercial",
-          "Original Score",
-          "Color & Finish",
-        ]}
-      />
-
-      {/* ===== Latest work ===== */}
-      <WorkTeaser />
-
-      {/* ===== Mid City Sound connection ===== */}
+      <ReelFrames projects={homeReel} />
       <StudioConnection />
-      <MerchBand />
-
-      {/* ===== Services preview ===== */}
-      <ServicesPreview />
-
-      {/* ===== Paid Creative Consult ===== */}
       <ConsultCTA />
+      <MerchBand />
     </>
   );
 }

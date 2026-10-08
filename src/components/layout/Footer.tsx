@@ -22,7 +22,7 @@ export default function Footer() {
         className="pointer-events-none absolute inset-x-0 bottom-0 h-64"
         style={{
           background:
-            "radial-gradient(60% 120% at 50% 120%, rgba(196,15,66,0.18) 0%, transparent 70%)",
+            "radial-gradient(60% 120% at 50% 120%, rgba(208,17,70,0.18) 0%, transparent 70%)",
         }}
       />
 
