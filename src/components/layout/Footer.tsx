@@ -132,9 +132,14 @@ export default function Footer() {
           <p>
             &copy; {year} {site.name}. All rights reserved.
           </p>
-          <p className="font-mono tracking-wide">
-            Crafted in {site.location}
-          </p>
+          <a
+            href="https://in-flu-ential.vercel.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-colors hover:text-cream"
+          >
+            Site by James Afflu &middot; IN-FLU-ENTIAL
+          </a>
         </div>
       </div>
     </footer>

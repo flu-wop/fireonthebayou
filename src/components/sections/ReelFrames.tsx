@@ -126,7 +126,7 @@ function Frame({ project: p, index }: { project: Project; index: number }) {
       ref={ref}
       id={`frame-${p.slug}`}
       data-chapter={label}
-      className="relative h-[100svh] min-h-[560px] overflow-hidden bg-ink"
+      className="relative h-[100svh] min-h-[320px] overflow-hidden bg-ink"
     >
       <motion.div style={{ y }} className="absolute inset-0 -top-[6%] h-[112%]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -142,20 +142,20 @@ function Frame({ project: p, index }: { project: Project; index: number }) {
         className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,.35)_0%,rgba(0,0,0,0)_28%,rgba(0,0,0,0)_45%,rgba(0,0,0,.88)_100%)]"
       />
 
-      <div className="frame relative flex h-full flex-col justify-end pb-14 md:pb-16 lg:pr-64">
+      <div className="frame relative flex h-full flex-col justify-end pb-14 md:pb-16 lg:pr-64 short:pb-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-20%" }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p className="mb-3 text-base text-cream/85">{p.client}</p>
-          <h2 className="font-display text-[clamp(3.2rem,10.5vw,11rem)] leading-[0.84] text-cream">
+          <p className="mb-3 text-base text-cream/85 short:mb-1 short:text-sm">{p.client}</p>
+          <h2 className="font-display text-[clamp(2.2rem,min(10.5vw,17svh),11rem)] leading-[0.84] text-cream">
             {p.title}
           </h2>
-          <div className="mt-7 flex flex-wrap items-center gap-4">
+          <div className="mt-7 flex flex-wrap items-center gap-4 short:mt-3">
             <Link href={href} className="group inline-flex items-center gap-4 text-base font-semibold text-cream">
-              <span className="grid h-14 w-14 place-items-center rounded-full bg-cream text-ink transition-transform duration-500 ease-cinematic group-hover:scale-105">
+              <span className="grid h-14 w-14 place-items-center rounded-full bg-cream text-ink short:h-11 short:w-11 transition-transform duration-500 ease-cinematic group-hover:scale-105">
                 <svg viewBox="0 0 16 16" className="ml-0.5 h-4 w-4" aria-hidden>
                   <path d="M4 2.5v11l9-5.5z" fill="currentColor" />
                 </svg>

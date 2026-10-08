@@ -57,7 +57,7 @@ export default function Hero() {
       ref={ref}
       id="reel"
       data-chapter="Reel"
-      className="vignette relative flex h-[100svh] min-h-[640px] items-end overflow-hidden"
+      className="vignette relative flex h-[100svh] min-h-[320px] items-end overflow-hidden"
     >
       {/* ---- Background reel (parallax layer) ---- */}
       <motion.div
@@ -88,9 +88,9 @@ export default function Hero() {
       {/* ---- Foreground content ---- */}
       <motion.div
         style={{ y: contentY, opacity: contentOpacity }}
-        className="frame relative z-10 pb-14 md:pb-16 lg:pr-64"
+        className="frame relative z-10 pb-14 md:pb-16 lg:pr-64 short:pb-6"
       >
-        <h1 className="font-display text-[clamp(3.6rem,12.5vw,13.5rem)] leading-[0.84] text-cream">
+        <h1 className="font-display text-[clamp(2.4rem,min(12.5vw,19svh),13.5rem)] leading-[0.84] text-cream">
           {["We light the", "bayou on fire"].map((line, i) => (
             <span key={line} className="block overflow-hidden">
               <motion.span
@@ -109,9 +109,9 @@ export default function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-7 flex flex-col items-start gap-6 md:flex-row md:items-center md:gap-10"
+          className="mt-7 flex flex-col items-start gap-6 md:flex-row md:items-center md:gap-10 short:mt-3 short:flex-row short:items-center short:gap-6"
         >
-          <p className="max-w-xs text-lg leading-snug text-cream/90">
+          <p className="max-w-xs text-lg leading-snug text-cream/90 short:hidden">
             Commercials and brand films made in New Orleans since 2006.
           </p>
           <div className="flex flex-wrap items-center gap-6">
@@ -123,7 +123,7 @@ export default function Hero() {
               aria-pressed={sound}
               className="group inline-flex items-center gap-4 text-base font-semibold text-cream disabled:opacity-60"
             >
-              <span className="grid h-14 w-14 place-items-center rounded-full bg-cream text-ink transition-transform duration-500 ease-cinematic group-hover:scale-105">
+              <span className="grid h-14 w-14 place-items-center rounded-full bg-cream text-ink short:h-11 short:w-11 transition-transform duration-500 ease-cinematic group-hover:scale-105">
                 {sound ? <SoundBars on /> : <PlayIcon />}
               </span>
               {sound ? "Cut sound" : "Play the reel with sound"}

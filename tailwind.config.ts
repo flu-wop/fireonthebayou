@@ -15,6 +15,10 @@ const config: Config = {
   content: ["./src/**/*.{ts,tsx,mdx}", "./node_modules/@flu-wop/design-system/src/**/*.{ts,tsx}"],
   theme: {
     extend: {
+      screens: {
+        // Phones held sideways: wide but short. Used to tighten full-screen layouts.
+        short: { raw: "(max-height: 540px)" },
+      },
       colors: {
         // --- Fire on the Bayou: "Rolling" palette ---
         // Black and white like a monitor on set; the logo's crimson is the

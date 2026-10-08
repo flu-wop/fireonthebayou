@@ -69,17 +69,29 @@ export default function AboutPage() {
         </div>
 
         <div className="md:col-span-6">
-          <div className="relative aspect-[5/6] overflow-hidden rounded-sm border border-border">
-            <Parallax speed={0.35} className="absolute inset-0 h-[120%] -top-[10%]">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/images/about-crew.jpg"
-                alt="A frame from Fire on the Bayou's film for New Orleans & Company"
-                className="h-full w-full object-cover"
-              />
-            </Parallax>
-            <div className="vignette absolute inset-0" />
-          </div>
+          <figure>
+            <div className="relative aspect-[4/5] overflow-hidden rounded-sm border border-border">
+              <Parallax speed={0.35} className="absolute inset-0 h-[120%] -top-[10%]">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={site.founder.photo ?? "/images/work-aucoin-hart.jpg"}
+                  alt={
+                    site.founder.photo
+                      ? `${site.founder.name}, ${site.founder.role.toLowerCase()} of ${site.name}`
+                      : `A frame from Aeuvre d'art, directed by ${site.founder.name}`
+                  }
+                  className={site.founder.photo ? "h-full w-full object-cover" : "h-full w-full object-cover object-[35%_50%]"}
+                />
+              </Parallax>
+              <div className="vignette absolute inset-0" />
+            </div>
+            <figcaption className="mt-4 flex flex-col gap-1 text-sm lg:flex-row lg:items-baseline lg:justify-between lg:gap-4">
+              <span className="font-semibold text-cream">{site.founder.name}</span>
+              <span className="text-mist">
+                {site.founder.photo ? site.founder.role : "From Aeuvre d\u2019art, his Gold Addy film"}
+              </span>
+            </figcaption>
+          </figure>
         </div>
       </section>
 

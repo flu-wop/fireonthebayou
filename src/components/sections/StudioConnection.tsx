@@ -9,28 +9,34 @@
  */
 import { site } from "@/lib/site";
 import Reveal from "@/components/effects/Reveal";
-import Parallax from "@/components/effects/Parallax";
 import Button from "@/components/ui/Button";
 
 export default function StudioConnection() {
   return (
     <section className="relative overflow-hidden bg-bayou">
       <div className="frame grid items-center gap-12 py-24 md:grid-cols-2 md:gap-20 md:py-36">
-        {/* Image panel */}
-        <div className="relative aspect-[4/5] overflow-hidden rounded-sm border border-border">
-          <Parallax speed={0.4} className="absolute inset-0 h-[120%] -top-[10%]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/images/studio-mid-city-sound.jpg"
-              alt={`${site.studio.name} recording studio`}
-              className="h-full w-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-bayou/80 to-transparent" />
-          </Parallax>
-          <span className="absolute bottom-6 left-6 font-mono text-[13px] tracking-wide text-flame">
-            {site.studio.name}
-          </span>
-        </div>
+        {/* Logo panel — links to the studio */}
+        <a
+          href={site.studio.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`${site.studio.name} — visit the studio site`}
+          className="group relative grid aspect-[4/3] place-items-center overflow-hidden rounded-sm border border-border bg-ink md:aspect-[4/5]"
+        >
+          <div
+            aria-hidden
+            className="absolute inset-0 opacity-70 transition-opacity duration-700 group-hover:opacity-100"
+            style={{ background: "radial-gradient(55% 45% at 50% 50%, rgba(212,175,119,0.14) 0%, transparent 70%)" }}
+          />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/mcs-logo.png"
+            alt={`${site.studio.name} — New Orleans`}
+            width={900}
+            height={532}
+            className="relative w-[72%] max-w-[420px] transition-transform duration-700 ease-cinematic group-hover:scale-[1.03]"
+          />
+        </a>
 
         {/* Copy */}
         <div>
@@ -46,10 +52,7 @@ export default function StudioConnection() {
           </Reveal>
           <Reveal delay={0.16}>
             <p className="mt-7 max-w-md text-base leading-relaxed text-mist">
-              {site.studio.blurb} Most production houses outsource the score and
-              the mix. We walk it down the hall. That means tighter turnarounds,
-              a unified sonic identity, and a film that sounds as deliberate as
-              it looks.
+              {site.studio.blurb}
             </p>
           </Reveal>
           <Reveal delay={0.2}>
@@ -61,8 +64,11 @@ export default function StudioConnection() {
             </ul>
           </Reveal>
           <Reveal delay={0.24}>
-            <div className="mt-9">
-              <Button href="/about" variant="outline">
+            <div className="mt-9 flex flex-wrap gap-3">
+              <Button href={site.studio.url} variant="outline">
+                Visit {site.studio.name} ↗
+              </Button>
+              <Button href="/about" variant="ghost">
                 Our story
               </Button>
             </div>

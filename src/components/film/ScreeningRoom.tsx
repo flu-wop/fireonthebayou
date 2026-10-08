@@ -212,7 +212,7 @@ export default function ScreeningRoom({
     <section
       onMouseMove={wake}
       onTouchStart={wake}
-      className="relative h-[100svh] min-h-[620px] overflow-hidden bg-black"
+      className="relative h-[100svh] min-h-[320px] overflow-hidden bg-black"
       aria-label={`${title} — screening room`}
     >
       {/* ---- The film, sized to cover the frame like a projected image ---- */}
@@ -283,7 +283,7 @@ export default function ScreeningRoom({
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         className="pointer-events-none absolute inset-0 z-[3]"
       >
-        <div className="frame flex h-full flex-col justify-between pb-10 pt-28 md:pb-14">
+        <div className="frame flex h-full flex-col justify-between pb-10 pt-28 md:pb-14 short:pb-5 short:pt-16">
           <Link
             href="/work"
             className="pointer-events-auto self-start font-mono text-[13px] tracking-wide text-mist transition-colors hover:text-flame"
@@ -304,11 +304,11 @@ export default function ScreeningRoom({
                   </>
                 )}
               </p>
-              <h1 className="font-display text-[clamp(3.2rem,10vw,9rem)] font-light leading-[0.88] tracking-tight text-cream">
+              <h1 className="font-display text-[clamp(2.2rem,min(10vw,16svh),9rem)] font-light leading-[0.88] tracking-tight text-cream">
                 {title}
               </h1>
               {award && (
-                <p className="mt-6 inline-flex items-center gap-3 font-mono text-[13px] tracking-wide text-cream">
+                <p className="mt-6 inline-flex items-center gap-3 font-mono text-[13px] tracking-wide text-cream short:mt-2">
                   <span className="h-px w-8 bg-flame" />
                   <span className="text-fire-gradient">{award}</span>
                 </p>
@@ -371,7 +371,7 @@ export default function ScreeningRoom({
                 </button>
               )}
 
-              <p className="font-mono text-[13px] tracking-wide text-ash">
+              <p className="font-mono text-[13px] tracking-wide text-ash short:hidden">
                 {rolling
                   ? paused
                     ? "Paused — tap the frame to resume"

@@ -26,6 +26,14 @@ export const site = {
     blurb:
       "Our in-house recording and mixing studio in Mid-City — where the score, the sound design, and the room tone all live under one roof.",
   },
+  // Founder portrait on the About page. Drop the photo in /public/images and
+  // set `photo` (e.g. "/images/jason-villemarette.jpg"); until then the page
+  // shows a frame from his Aucoin Hart film, captioned as his work.
+  founder: {
+    name: "Jason Villemarette",
+    role: "Founder & Director",
+    photo: null as string | null,
+  },
   // Merch is sold through the Mid City Sound store (shared Printful + Stripe).
   merch: {
     url: "https://www.midcitysound.com/merch",

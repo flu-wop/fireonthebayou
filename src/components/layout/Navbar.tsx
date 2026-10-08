@@ -58,7 +58,7 @@ export default function Navbar() {
           : "border-b border-transparent bg-transparent"
       )}
     >
-      <nav className="frame flex h-20 items-center justify-between">
+      <nav className="frame flex h-20 items-center justify-between short:h-14">
         {/* Wordmark */}
         <Link
           href="/"
@@ -71,7 +71,7 @@ export default function Navbar() {
             alt="Fire on the Bayou"
             width={297}
             height={107}
-            className="h-9 w-auto transition-opacity duration-300 group-hover:opacity-85 md:h-12"
+            className="h-9 w-auto transition-opacity duration-300 group-hover:opacity-85 md:h-12 short:h-8"
           />
         </Link>
 
@@ -148,7 +148,7 @@ export default function Navbar() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
             data-lenis-prevent
-            className="fixed inset-0 z-40 flex flex-col justify-center overflow-y-auto bg-ink px-8 pb-10 pt-24 md:hidden"
+            className="fixed inset-0 z-40 flex flex-col justify-center overflow-y-auto bg-ink px-8 pb-10 pt-24 md:hidden short:justify-start short:pt-20"
           >
             <ul className="space-y-6">
               {navLinks.map((link, i) => (
@@ -161,7 +161,7 @@ export default function Navbar() {
                   <Link
                     href={link.href}
                     onClick={() => setOpen(false)}
-                    className="font-display text-5xl font-light text-cream"
+                    className="font-display text-5xl font-light text-cream short:text-3xl"
                   >
                     {link.label}
                   </Link>

@@ -17,7 +17,7 @@ export default function PageHeader({
   lede?: string;
 }) {
   return (
-    <header className="relative overflow-hidden pt-44 pb-20 md:pt-52 md:pb-28">
+    <header className="relative overflow-hidden pt-36 pb-16 md:pt-52 md:pb-28 short:pt-24 short:pb-10">
       {/* faint ember bloom behind the title */}
       <div
         aria-hidden
@@ -37,7 +37,7 @@ export default function PageHeader({
           <span className="inline-block h-px w-10 bg-flame/70" />
           {eyebrow}
         </motion.p>
-        <h1 className="max-w-5xl font-display text-[clamp(3rem,9vw,8rem)] font-light leading-[0.9] tracking-tight text-cream">
+        <h1 className="max-w-5xl font-display text-[clamp(2.6rem,min(9vw,17svh),8rem)] font-light leading-[0.9] tracking-tight text-cream">
           {title}
         </h1>
         {lede && (

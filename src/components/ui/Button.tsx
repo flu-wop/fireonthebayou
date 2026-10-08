@@ -46,10 +46,17 @@ export default function Button({
     </span>
   );
 
+  const external = !!href && /^https?:\/\//.test(href);
   const inner = href ? (
-    <Link href={href} className={cn(base, variants[variant], className)}>
-      {content}
-    </Link>
+    external ? (
+      <a href={href} target="_blank" rel="noopener noreferrer" className={cn(base, variants[variant], className)}>
+        {content}
+      </a>
+    ) : (
+      <Link href={href} className={cn(base, variants[variant], className)}>
+        {content}
+      </Link>
+    )
   ) : (
     <button
       type={type ?? "button"}
