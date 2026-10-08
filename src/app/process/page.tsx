@@ -3,6 +3,7 @@ import PageHeader from "@/components/sections/PageHeader";
 import ProcessSteps from "@/components/sections/ProcessSteps";
 import Statement from "@/components/sections/Statement";
 import Faq from "@/components/sections/Faq";
+import NextStep from "@/components/sections/NextStep";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/process" },
@@ -22,6 +23,7 @@ export default function ProcessPage() {
       <ProcessSteps />
       <Statement text="No middlemen. No handoffs that lose the vision. One team carries your project from the first conversation to the final frame." />
       <Faq />
+      <NextStep line="Ready when you are." />
     </>
   );
 }

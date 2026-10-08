@@ -64,12 +64,9 @@ export default function StudioConnection() {
             </ul>
           </Reveal>
           <Reveal delay={0.24}>
-            <div className="mt-9 flex flex-wrap gap-3">
+            <div className="mt-9">
               <Button href={site.studio.url} variant="outline">
                 Visit {site.studio.name} ↗
-              </Button>
-              <Button href="/about" variant="ghost">
-                Our story
               </Button>
             </div>
           </Reveal>

@@ -7,6 +7,7 @@
  */
 import Link from "next/link";
 import { navLinks, site, socialLabels } from "@/lib/site";
+import SocialIcon from "@/components/ui/SocialIcon";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -65,16 +66,18 @@ export default function Footer() {
             <p className="mb-4 font-mono text-[13px] tracking-wide text-ash">
               Follow
             </p>
-            <ul className="space-y-2">
+            <ul className="flex flex-wrap gap-3">
               {Object.entries(site.socials).map(([name, url]) => (
                 <li key={name}>
                   <a
                     href={url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm text-mist transition-colors hover:text-flame"
+                    aria-label={socialLabels[name] ?? name}
+                    title={socialLabels[name] ?? name}
+                    className="grid h-11 w-11 place-items-center rounded-full border border-border text-mist transition-colors duration-300 hover:border-flame hover:text-cream"
                   >
-                    {socialLabels[name] ?? name}
+                    <SocialIcon name={name} />
                   </a>
                 </li>
               ))}
