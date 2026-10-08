@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "@flu-wop/design-system/core.css";
 import "@flu-wop/design-system/compat.css";
 import "./globals.css";
-import { Archivo } from "next/font/google";
+import { Archivo, Cormorant_Garamond } from "next/font/google";
 import { site } from "@/lib/site";
 import SmoothScroll from "@/components/effects/SmoothScroll";
 import GrainOverlay from "@/components/effects/GrainOverlay";
@@ -20,6 +20,14 @@ const archivo = Archivo({
   subsets: ["latin"],
   axes: ["wdth"],
   variable: "--font-archivo",
+  display: "swap",
+});
+
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["300", "400", "500"],
+  style: ["normal", "italic"],
+  variable: "--font-cormorant",
   display: "swap",
 });
 
@@ -48,7 +56,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html data-theme="studio" lang="en" className={`dark ${archivo.variable}`}>
+    <html data-theme="studio" lang="en" className={`dark ${archivo.variable} ${cormorant.variable}`}>
       <body className="bg-ink text-cream antialiased">
         <SmoothScroll>
           <GrainOverlay />

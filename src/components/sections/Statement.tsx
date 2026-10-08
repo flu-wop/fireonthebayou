@@ -22,7 +22,7 @@ export default function Statement({ text }: { text: string }) {
     <section className="frame py-28 md:py-40">
       <p
         ref={ref}
-        className="mx-auto max-w-5xl flex flex-wrap justify-center gap-x-3 gap-y-1 text-center font-display text-[clamp(1.8rem,4.5vw,3.6rem)] font-light leading-[1.15] tracking-tight"
+        className="mx-auto max-w-5xl flex flex-wrap justify-center gap-x-3 gap-y-1 text-center font-serif text-[clamp(2rem,4.8vw,4rem)] font-light leading-[1.12] tracking-[-0.01em]"
       >
         {words.map((word, i) => {
           const start = i / words.length;

@@ -90,14 +90,14 @@ export default function Hero() {
         style={{ y: contentY, opacity: contentOpacity }}
         className="frame relative z-10 pb-14 md:pb-16 lg:pr-64 short:pb-6"
       >
-        <h1 className="font-display text-[clamp(2.4rem,min(12.5vw,19svh),13.5rem)] leading-[0.84] text-cream">
-          {["We light the", "bayou on fire"].map((line, i) => (
+        <h1 className="font-serif text-[clamp(2.6rem,min(11vw,17svh),11rem)] font-light leading-[0.86] tracking-[-0.01em] text-cream short:text-[clamp(2.2rem,min(9vw,14svh),11rem)] short:leading-[0.8]">
+          {["We light", "the bayou", "on fire."].map((line, i) => (
             <span key={line} className="block overflow-hidden">
               <motion.span
                 initial={{ y: "110%" }}
                 animate={{ y: 0 }}
                 transition={{ duration: 1.1, delay: 0.25 + i * 0.12, ease: [0.22, 1, 0.36, 1] }}
-                className="block"
+                className={i === 2 ? "block italic text-flame" : "block"}
               >
                 {line}
               </motion.span>

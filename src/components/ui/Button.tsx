@@ -17,7 +17,7 @@ const base =
 
 const variants: Record<Variant, string> = {
   ember:
-    "bg-ember text-cream hover:bg-[#E21A52] ember-bloom hover:shadow-[0_0_60px_-10px_rgba(240,70,111,0.45)]",
+    "bg-ember text-cream hover:bg-[#E21A52] ember-bloom hover:shadow-[0_0_60px_-10px_rgba(208,17,70,0.45)]",
   outline:
     "border border-border text-cream hover:border-flame hover:text-flame",
   ghost: "text-mist hover:text-flame",

@@ -25,8 +25,8 @@ const config: Config = {
         // only color, used for the REC light, buttons, and small accents.
         ink: "#000000", // page background
         ember: "#D01146", // logo crimson — fills (white text 5.4:1)
-        flame: "#F0466F", // crimson lifted for small accent text (5.8:1)
-        "flame-light": "#F7859F",
+        flame: "#D01146", // accent text — the logo's exact crimson
+        "flame-light": "#E0325F",
         bayou: "#121212", // raised panel
         "bayou-deep": "#0A0A0A", // alternate section bg
         ash: "#7A7A7A", // tertiary text
@@ -40,6 +40,8 @@ const config: Config = {
         // One family, Archivo: condensed + heavy for display (see .font-display
         // in globals.css), normal width for everything else.
         display: ["var(--font-archivo)", "Archivo", "system-ui", "sans-serif"],
+        // Accent serif: the hero line, film loglines, the credits' closing card.
+        serif: ["var(--font-cormorant)", '"Cormorant Garamond"', "Georgia", "serif"],
         sans: ["var(--font-archivo)", "Archivo", "system-ui", "sans-serif"],
         mono: ["var(--font-archivo)", "Archivo", "system-ui", "sans-serif"],
       },

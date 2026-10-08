@@ -78,7 +78,7 @@ export default function CreditsRoll({ credits }: { credits: Credit[] }) {
 
           {/* Closing card */}
           <div className="pb-[40vh] pt-[20vh] text-center">
-            <p className="font-display text-5xl font-light italic text-cream md:text-6xl">
+            <p className="font-serif text-5xl font-light italic text-cream md:text-6xl">
               Fire on the Bayou
             </p>
             <p className="mt-4 font-mono text-[13px] tracking-wide text-flame">

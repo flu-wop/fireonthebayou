@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import PageHeader from "@/components/sections/PageHeader";
 import StudioConnection from "@/components/sections/StudioConnection";
+import MerchBand from "@/components/sections/MerchBand";
 import Statement from "@/components/sections/Statement";
 import Reveal from "@/components/effects/Reveal";
 import Parallax from "@/components/effects/Parallax";
@@ -136,6 +137,7 @@ export default function AboutPage() {
 
       {/* Mid City Sound deep-dive */}
       <StudioConnection />
+      <MerchBand />
 
       <Statement text="We don't just shoot in New Orleans. We're of it — the rhythm, the heat, the stories that only happen below sea level." />
     </>
