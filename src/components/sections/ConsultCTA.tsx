@@ -3,10 +3,9 @@
  */
 import Button from "@/components/ui/Button";
 import Reveal from "@/components/effects/Reveal";
-import { consult, development, formatPrice } from "@/lib/site";
+import { consult, development } from "@/lib/site";
 
 export default function ConsultCTA() {
-  const price = formatPrice(consult.priceCents);
   return (
     <section className="relative overflow-hidden border-t border-border">
       <div
@@ -34,9 +33,7 @@ export default function ConsultCTA() {
         </div>
         <Reveal delay={0.15} className="md:col-span-4 md:col-start-9">
           <div className="flex flex-col items-start gap-5 md:items-end">
-            <p className="font-display text-6xl font-light text-cream">{price}</p>
-            <Button href="/consult" variant="ember">Book a consult</Button>
-            <p className="font-mono text-[13px] tracking-wide text-ash">Secure checkout by Stripe</p>
+            <Button href="/contact" variant="ember">Get in touch</Button>
             <a href="/consult" className="text-sm text-mist underline decoration-mist/30 underline-offset-4 transition-colors hover:text-cream">
               Bigger project? {development.name} from {development.priceRange.split(" ")[0]}
             </a>
