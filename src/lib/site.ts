@@ -24,6 +24,7 @@ export const site = {
     instagram: "https://www.instagram.com/fire_on_the_bayou_/",
     youtube: "https://www.youtube.com/@firenola",
     facebook: "https://www.facebook.com/fireonthebayounola/",
+    linkedin: "https://www.linkedin.com/in/jason-villemarette-17b38021/",
   },
   // Sister brand — connection highlighted on the About page
   studio: {
@@ -55,7 +56,7 @@ export const site = {
  */
 export const consult = {
   name: "Creative Consult",
-  priceCents: 100000,
+  priceCents: 250000,
   length: "60 minutes",
   /** Shown on the page; set to false if the fee won't be credited. */
   creditedTowardProduction: true,
@@ -67,9 +68,37 @@ export const consult = {
   ],
 } as const;
 
+/**
+ * Creative Development — the bigger second tier. Scoped per project, so it's
+ * an inquiry (deposit invoiced after a call), not an instant checkout.
+ * PLACEHOLDER — confirm the range and deliverables with Jason.
+ */
+export const development = {
+  name: "Creative Development",
+  priceRange: "$7,500 – $10,000",
+  creditedTowardProduction: true,
+  includes: [
+    "Everything in the Creative Consult",
+    "A full written treatment and script",
+    "A lookbook or storyboards so you can see the film before it's shot",
+    "A line-item budget and production schedule",
+    "Casting and location recommendations",
+  ],
+  /** Where the inquiry button goes; the contact form reads ?interest=. */
+  href: "/contact?interest=creative-development",
+} as const;
+
 export function formatPrice(cents: number) {
   return `$${(cents / 100).toLocaleString("en-US", { minimumFractionDigits: cents % 100 ? 2 : 0 })}`;
 }
+
+/** Display names for the social links. */
+export const socialLabels: Record<string, string> = {
+  instagram: "Instagram",
+  youtube: "YouTube",
+  facebook: "Facebook",
+  linkedin: "LinkedIn",
+};
 
 /** Primary navigation. Order matters — drives Navbar + Footer. */
 export const navLinks = [

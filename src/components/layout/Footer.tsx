@@ -7,7 +7,7 @@
  * details, nav echo, socials, and a faint ember glow bleeding up from the base.
  */
 import Link from "next/link";
-import { consult, formatPrice, navLinks, site } from "@/lib/site";
+import { consult, formatPrice, navLinks, site, socialLabels } from "@/lib/site";
 import Reveal from "@/components/effects/Reveal";
 import Button from "@/components/ui/Button";
 
@@ -96,9 +96,9 @@ export default function Footer() {
                     href={url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm capitalize text-mist transition-colors hover:text-flame"
+                    className="text-sm text-mist transition-colors hover:text-flame"
                   >
-                    {name}
+                    {socialLabels[name] ?? name}
                   </a>
                 </li>
               ))}

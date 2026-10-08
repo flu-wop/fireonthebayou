@@ -16,7 +16,7 @@ export default function ServicesPage() {
     <>
       <PageHeader
         eyebrow="Capabilities"
-        title={<>What we<br />make.</>}
+        title={<>What we<br /><span className="text-flame">make.</span></>}
         lede="Concept to final delivery, under one roof — including the sound and score, scored next door at Mid City Sound."
       />
 

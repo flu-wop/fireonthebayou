@@ -454,7 +454,7 @@ export const projects: Project[] = [
 ];
 
 /** The home page reel: one full-screen frame each, in this order. */
-export const homeReel = ["aucoin-hart", "red-bull", "rouses", "sazerac-house", "blue-plate", "home-depot"]
+export const homeReel = ["aucoin-hart", "red-bull", "rouses", "sdt-waste", "sazerac-house", "home-depot"]
   .map((slug) => projects.find((p) => p.slug === slug)!)
   .filter(Boolean);
 

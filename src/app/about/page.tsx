@@ -26,7 +26,7 @@ const stats = [
 // Core crew, presented like closing credits — no photos needed, just the roles
 // and the receipts. Keep this list short; it's a signature, not a directory.
 const crew = [
-  { name: "Jason Villemarette", role: "Founder & Director", note: "Founded FOTB in 2006 · City Business Innovator of the Year (2009)" },
+  { name: "Jason Villemarette", role: "Founder & Director", href: site.socials.linkedin, note: "Founded FOTB in 2006 · City Business Innovator of the Year (2009)" },
   { name: "Kathy Hirsch", role: "Producer", note: "23 years heading broadcast production at Peter Mayer" },
   { name: "David Reece", role: "Director of Photography", note: "Coca-Cola, ESPN, NFL" },
   { name: "Michael Sanchez", role: "Post-Production Supervisor", note: "Edit, animation, sound design" },
@@ -39,7 +39,7 @@ export default function AboutPage() {
     <>
       <PageHeader
         eyebrow="Our Story"
-        title={<>Made in<br />New Orleans.</>}
+        title={<>Made in<br /><span className="text-flame">New Orleans.</span></>}
         lede="Fire on the Bayou grew out of a simple idea: a production house where the camera and the console live in the same building."
       />
 
@@ -73,26 +73,39 @@ export default function AboutPage() {
 
         <div className="md:col-span-6">
           <figure>
-            <div className="relative aspect-[4/5] overflow-hidden rounded-sm border border-border">
-              <Parallax speed={0.35} className="absolute inset-0 h-[120%] -top-[10%]">
+            {site.founder.photo ? (
+              <div className="relative aspect-[4/5] overflow-hidden rounded-sm border border-border">
+                <Parallax speed={0.35} className="absolute inset-0 h-[120%] -top-[10%]">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={site.founder.photo}
+                    alt={`${site.founder.name}, ${site.founder.role.toLowerCase()} of ${site.name}`}
+                    className="h-full w-full object-cover"
+                  />
+                </Parallax>
+                <div className="vignette absolute inset-0" />
+              </div>
+            ) : (
+              // Until Jason's portrait arrives: the Fire on the Bayou logo on black.
+              <div className="relative grid aspect-[4/5] place-items-center overflow-hidden rounded-sm border border-border bg-ink">
+                <div
+                  aria-hidden
+                  className="absolute inset-0"
+                  style={{ background: "radial-gradient(50% 40% at 50% 50%, rgba(208,17,70,0.14) 0%, transparent 70%)" }}
+                />
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={site.founder.photo ?? "/images/work-aucoin-hart.jpg"}
-                  alt={
-                    site.founder.photo
-                      ? `${site.founder.name}, ${site.founder.role.toLowerCase()} of ${site.name}`
-                      : `A frame from Aeuvre d'art, directed by ${site.founder.name}`
-                  }
-                  className={site.founder.photo ? "h-full w-full object-cover" : "h-full w-full object-cover object-[35%_50%]"}
+                  src="/images/fotb-logo.png"
+                  alt={site.name}
+                  width={297}
+                  height={107}
+                  className="relative w-[58%] max-w-[300px]"
                 />
-              </Parallax>
-              <div className="vignette absolute inset-0" />
-            </div>
+              </div>
+            )}
             <figcaption className="mt-4 flex flex-col gap-1 text-sm lg:flex-row lg:items-baseline lg:justify-between lg:gap-4">
               <span className="font-semibold text-cream">{site.founder.name}</span>
-              <span className="text-mist">
-                {site.founder.photo ? site.founder.role : "From Aeuvre d\u2019art, his Gold Addy film"}
-              </span>
+              <span className="text-mist">{site.founder.role}</span>
             </figcaption>
           </figure>
         </div>
@@ -130,6 +143,16 @@ export default function AboutPage() {
                   {c.role}
                 </p>
                 <p className="mt-1.5 text-sm text-mist">{c.note}</p>
+                {"href" in c && c.href && (
+                  <a
+                    href={c.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-2 inline-block text-sm text-cream underline decoration-cream/30 underline-offset-4 transition-colors hover:text-flame"
+                  >
+                    Follow Jason on LinkedIn ↗
+                  </a>
+                )}
               </div>
             </Reveal>
           ))}

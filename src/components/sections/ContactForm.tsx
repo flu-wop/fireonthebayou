@@ -9,7 +9,7 @@
  *
  * Styled to match the booking-system aesthetic from the ecosystem skill.
  */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { site } from "@/lib/site";
 import Button from "@/components/ui/Button";
 
@@ -21,6 +21,14 @@ export default function ContactForm() {
   const [phone, setPhone] = useState("");
   const [budget, setBudget] = useState(budgets[1]);
   const [message, setMessage] = useState("");
+
+  // /contact?interest=creative-development (from the Consult page) prefills the ask.
+  useEffect(() => {
+    const interest = new URLSearchParams(window.location.search).get("interest");
+    if (interest === "creative-development") {
+      setMessage((m) => m || "I'm interested in Creative Development (treatment, script, storyboards, budget, and schedule). Here's the project: ");
+    }
+  }, []);
 
   function handleSubmit() {
     // Simple mailto fallback — replace with a fetch('/api/contact') when ready.

@@ -3,7 +3,7 @@
  */
 import Button from "@/components/ui/Button";
 import Reveal from "@/components/effects/Reveal";
-import { consult, formatPrice } from "@/lib/site";
+import { consult, development, formatPrice } from "@/lib/site";
 
 export default function ConsultCTA() {
   const price = formatPrice(consult.priceCents);
@@ -20,7 +20,7 @@ export default function ConsultCTA() {
             <p className="eyebrow mb-6">{consult.name}</p>
             <h2 className="font-display text-[clamp(2.6rem,6vw,5.5rem)] font-light leading-[0.95] tracking-tight text-cream">
               Have an idea?<br />
-              <span className="text-fire-gradient italic">Start with a session.</span>
+              Start with a <span className="text-flame">session.</span>
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
@@ -37,6 +37,9 @@ export default function ConsultCTA() {
             <p className="font-display text-6xl font-light text-cream">{price}</p>
             <Button href="/consult" variant="ember">Book a consult</Button>
             <p className="font-mono text-[13px] tracking-wide text-ash">Secure checkout by Stripe</p>
+            <a href="/consult" className="text-sm text-mist underline decoration-mist/30 underline-offset-4 transition-colors hover:text-cream">
+              Bigger project? {development.name} from {development.priceRange.split(" ")[0]}
+            </a>
           </div>
         </Reveal>
       </div>

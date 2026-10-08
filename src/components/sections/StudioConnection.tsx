@@ -47,7 +47,7 @@ export default function StudioConnection() {
             <h2 className="font-display text-[clamp(2.2rem,5vw,4rem)] font-light leading-[1] text-cream">
               Picture and sound,
               <br />
-              <span className="text-fire-gradient italic">designed together.</span>
+              designed <span className="text-flame">together.</span>
             </h2>
           </Reveal>
           <Reveal delay={0.16}>

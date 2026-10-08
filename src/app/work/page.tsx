@@ -17,7 +17,7 @@ export default function WorkPage() {
     <>
       <PageHeader
         eyebrow="Selected Work"
-        title={<>The<br />reel.</>}
+        title={<>The<br /><span className="text-flame">reel.</span></>}
         lede="Commercials and brand films for the companies that make New Orleans run. Pick a film to step into its screening room."
       />
       <section className="frame pb-28">

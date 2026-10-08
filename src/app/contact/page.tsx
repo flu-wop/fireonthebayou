@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import PageHeader from "@/components/sections/PageHeader";
 import ContactForm from "@/components/sections/ContactForm";
 import Link from "next/link";
-import { consult, formatPrice, site } from "@/lib/site";
+import { consult, formatPrice, site, socialLabels } from "@/lib/site";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/contact" },
@@ -15,7 +15,7 @@ export default function ContactPage() {
     <>
       <PageHeader
         eyebrow="Start a project"
-        title={<>Let&rsquo;s<br />talk.</>}
+        title={<>Let&rsquo;s<br /><span className="text-flame">talk.</span></>}
         lede="Tell us what you're making. We'll get back within two business days — usually faster."
       />
 
@@ -72,9 +72,9 @@ export default function ContactPage() {
                       href={url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="capitalize text-mist transition-colors hover:text-flame"
+                      className="text-mist transition-colors hover:text-flame"
                     >
-                      {name} ↗
+                      {socialLabels[name] ?? name} ↗
                     </a>
                   </li>
                 ))}

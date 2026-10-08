@@ -91,7 +91,7 @@ export default function Hero() {
         className="frame relative z-10 pb-14 md:pb-16 lg:pr-64 short:pb-6"
       >
         <h1 className="font-serif text-[clamp(2.6rem,min(11vw,17svh),11rem)] font-light leading-[0.86] tracking-[-0.01em] text-cream short:text-[clamp(2.2rem,min(9vw,14svh),11rem)] short:leading-[0.8]">
-          {["We light", "the bayou", "on fire."].map((line, i) => (
+          {["We light", "the bayou", "On Fire."].map((line, i) => (
             <span key={line} className="block overflow-hidden">
               <motion.span
                 initial={{ y: "110%" }}

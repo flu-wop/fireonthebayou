@@ -17,7 +17,7 @@ export default function MerchBand() {
         <Reveal>
           <p className="eyebrow mb-3">Merch</p>
           <p className="font-display text-[clamp(2rem,4.5vw,3.6rem)] font-light leading-none tracking-tight text-cream">
-            Wear the <span className="text-fire-gradient italic">fire.</span>
+            Wear the <span className="text-flame">fire.</span>
           </p>
           <p className="mt-4 max-w-md text-sm leading-relaxed text-mist">
             Fire on the Bayou gear, made to order and shipped to you.
