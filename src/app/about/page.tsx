@@ -188,7 +188,7 @@ export default function AboutPage() {
       <StudioConnection />
       <MerchBand />
 
-      <Statement text="We don't just shoot in *New* *Orleans.* We're of it — the rhythm, the heat, the stories that only happen below sea level." />
+      <Statement text="We don't just shoot in *New* *Orleans.* We're of it — *the* *rhythm,* *the* *heat,* *the* *stories* that only happen below sea level." />
       <NextStep line="Let's make something." />
     </>
   );

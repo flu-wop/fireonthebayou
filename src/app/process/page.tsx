@@ -21,7 +21,7 @@ export default function ProcessPage() {
         lede="A deliberate, five-stage process built so the people who pitch the film are the people who make it."
       />
       <ProcessSteps />
-      <Statement text="No middlemen. No handoffs that *lose* *the* *vision.* One team carries your project from the first conversation to the final frame." />
+      <Statement text="No middlemen. No handoffs that *lose* *the* *vision.* One team carries your project from the *first* *conversation* to the final frame." />
       <Faq />
       <NextStep line="Ready when you are." />
     </>
