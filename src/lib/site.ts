@@ -18,7 +18,11 @@ export const site = {
   address: "530 S Norman C Francis Pkwy, New Orleans, LA 70119",
   phone: "(504) 400-2555",
   phoneHref: "+15044002555",
-  email: "firenola@gmail.com",
+  /** Public address shown on the site. The mailbox (or a forward to `inbox`)
+   *  must exist on the fireonthebayou.com domain before launch. */
+  email: "hello@fireonthebayou.com",
+  /** Where form and booking notifications land (override with RESEND_TO_EMAIL). */
+  inbox: "firenola@gmail.com",
   socials: {
     // Same accounts fireonthebayou.com links to (checked Oct 2026).
     instagram: "https://www.instagram.com/fire_on_the_bayou_/",

@@ -3,13 +3,11 @@
 /**
  * ContactForm
  * -----------
- * Front-end only (no <form> POST wired yet). Captures intent and either:
- *   (a) opens a prefilled mailto: to site.email, or
- *   (b) you swap handleSubmit to POST to /api/contact when you add the route.
- *
- * Styled to match the booking-system aesthetic from the ecosystem skill.
+ * Posts to /api/contact, which emails the studio through Resend. If email
+ * isn't configured (or the send fails) it hands off to a prefilled mailto:
+ * so no inquiry is lost.
  */
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { site } from "@/lib/site";
 import Button from "@/components/ui/Button";
 
@@ -21,6 +19,14 @@ export default function ContactForm() {
   const [phone, setPhone] = useState("");
   const [budget, setBudget] = useState(budgets[1]);
   const [message, setMessage] = useState("");
+  const [website, setWebsite] = useState(""); // honeypot
+  const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
+  const [error, setError] = useState("");
+  const sentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (status === "sent") sentRef.current?.scrollIntoView({ block: "center", behavior: "smooth" });
+  }, [status]);
 
   // /contact?interest=creative-development (from the Consult page) prefills the ask.
   useEffect(() => {
@@ -30,8 +36,7 @@ export default function ContactForm() {
     }
   }, []);
 
-  function handleSubmit() {
-    // Simple mailto fallback — replace with a fetch('/api/contact') when ready.
+  function openMail() {
     const subject = encodeURIComponent(`New project inquiry — ${name}`);
     const body = encodeURIComponent(
       `Name: ${name}\nEmail: ${email}\nPhone: ${phone || "—"}\nBudget: ${budget}\n\n${message}`
@@ -39,15 +44,66 @@ export default function ContactForm() {
     window.location.href = `mailto:${site.email}?subject=${subject}&body=${body}`;
   }
 
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (status === "sending") return;
+    setError("");
+    setStatus("sending");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, phone, budget, message, website }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok) {
+        setStatus("sent");
+        return;
+      }
+      setStatus("idle");
+      if (data.fallback === "mailto") {
+        openMail();
+        return;
+      }
+      setError(data.error || "Something went wrong. Please try again.");
+    } catch {
+      setStatus("idle");
+      openMail();
+    }
+  }
+
+  if (status === "sent") {
+    return (
+      <div ref={sentRef} role="status" className="border-t border-border pt-10">
+        <p className="font-display text-[clamp(2rem,4.5vw,3.4rem)] leading-[0.95] text-cream">
+          Message <span className="text-flame">received.</span>
+        </p>
+        <p className="mt-5 max-w-md text-base leading-relaxed text-mist">
+          Thanks, {name.split(" ")[0] || "friend"}. We’ll be in touch within two business days.
+          Need us sooner? Call <a href={`tel:${site.phoneHref}`} className="text-cream underline underline-offset-4">{site.phone}</a>.
+        </p>
+      </div>
+    );
+  }
+
   const inputCls =
     "w-full border-b border-border bg-transparent py-4 text-cream placeholder:text-ash focus:border-flame focus:outline-none transition-colors duration-300";
 
   return (
-    <div className="space-y-10">
+    <form onSubmit={handleSubmit} className="space-y-10" noValidate={false}>
+      {/* Honeypot — hidden from people and screen readers */}
+      <div aria-hidden className="absolute -left-[9999px] h-px w-px overflow-hidden">
+        <label htmlFor="cf-website">Website</label>
+        <input id="cf-website" tabIndex={-1} autoComplete="off" value={website} onChange={(e) => setWebsite(e.target.value)} />
+      </div>
+
       <div className="grid gap-10 md:grid-cols-2">
         <div>
-          <label className="eyebrow mb-2 block text-ash">Your name</label>
+          <label htmlFor="cf-name" className="eyebrow mb-2 block text-ash">Your name</label>
           <input
+            id="cf-name"
+            required
+            autoComplete="name"
             className={inputCls}
             placeholder="Jane Doe"
             value={name}
@@ -55,10 +111,13 @@ export default function ContactForm() {
           />
         </div>
         <div>
-          <label className="eyebrow mb-2 block text-ash">Email</label>
+          <label htmlFor="cf-email" className="eyebrow mb-2 block text-ash">Email</label>
           <input
+            id="cf-email"
+            required
             className={inputCls}
             type="email"
+            autoComplete="email"
             placeholder="jane@studio.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -79,13 +138,14 @@ export default function ContactForm() {
         />
       </div>
 
-      <div>
-        <label className="eyebrow mb-4 block text-ash">Budget range</label>
+      <fieldset>
+        <legend className="eyebrow mb-4 block text-ash">Budget range</legend>
         <div className="flex flex-wrap gap-3">
           {budgets.map((b) => (
             <button
               key={b}
               type="button"
+              aria-pressed={budget === b}
               onClick={() => setBudget(b)}
               className={`rounded-full border px-5 py-2.5 font-mono text-xs tracking-wide transition-all duration-300 ${
                 budget === b
@@ -97,11 +157,13 @@ export default function ContactForm() {
             </button>
           ))}
         </div>
-      </div>
+      </fieldset>
 
       <div>
-        <label className="eyebrow mb-2 block text-ash">Tell us about the project</label>
+        <label htmlFor="cf-message" className="eyebrow mb-2 block text-ash">Tell us about the project</label>
         <textarea
+          id="cf-message"
+          required
           className={`${inputCls} min-h-[120px] resize-none`}
           placeholder="What are we making, and when?"
           value={message}
@@ -109,9 +171,15 @@ export default function ContactForm() {
         />
       </div>
 
-      <Button onClick={handleSubmit} variant="ember">
-        Send inquiry
+      {error && (
+        <p role="alert" className="text-sm text-flame-light">
+          {error}
+        </p>
+      )}
+
+      <Button type="submit" variant="ember">
+        {status === "sending" ? "Sending…" : "Send inquiry"}
       </Button>
-    </div>
+    </form>
   );
 }

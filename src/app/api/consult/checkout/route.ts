@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getStripe, siteUrl } from "@/lib/stripe";
 import { consult, site } from "@/lib/site";
+import { rateLimit } from "@/lib/rate-limit";
 
 export const runtime = "nodejs";
 
@@ -22,6 +23,14 @@ const clip = (v: unknown, max: number) =>
  * from the request. Intake answers ride along in metadata for the webhook.
  */
 export async function POST(req: Request) {
+  const wait = rateLimit(req, "checkout", { limit: 8, windowMs: 10 * 60_000 });
+  if (wait) {
+    return NextResponse.json(
+      { error: "Too many attempts. Please wait a few minutes and try again." },
+      { status: 429, headers: { "Retry-After": String(wait) } }
+    );
+  }
+
   const stripe = getStripe();
   if (!stripe) {
     return NextResponse.json(

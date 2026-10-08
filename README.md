@@ -49,8 +49,12 @@ Vercel → Settings → Environment Variables:
 | `STRIPE_WEBHOOK_SECRET` | Stripe → Webhooks → add `https://<domain>/api/stripe/webhook`, event `checkout.session.completed` |
 | `NEXT_PUBLIC_SITE_URL` | `https://fireonthebayou.com` (success/cancel redirects) |
 | `STRIPE_CONSULT_PRICE_ID` | optional — use a Stripe Price instead of the amount in `site.ts` |
-| `RESEND_API_KEY` | optional — emails each paid booking to the studio |
-| `RESEND_FROM_EMAIL` / `RESEND_TO_EMAIL` | sender (verified domain) / recipient (defaults to `site.email`) |
+| `RESEND_API_KEY` | recommended — sends contact-form inquiries and paid-booking alerts to the studio (without it the form falls back to the visitor's email app) |
+| `RESEND_FROM_EMAIL` / `RESEND_TO_EMAIL` | sender (verified domain) / recipient (defaults to `site.inbox`, firenola@gmail.com) |
+
+The public address on the site is `site.email` (hello@fireonthebayou.com). Create that mailbox or a forward to the inbox before launch.
+
+API routes (`/api/contact`, `/api/consult/checkout`) are rate limited per IP in `src/lib/rate-limit.ts`. For a platform-wide limit, also add a Vercel Firewall rate-limit rule on `/api/*`. Page views are tracked with Vercel Web Analytics (enable it in the project's Analytics tab).
 
 Flow: `/consult` form → `/api/consult/checkout` → Stripe Checkout → `/consult/success`;
 the webhook verifies the signature and emails the booking. Test with card `4242 4242 4242 4242`.

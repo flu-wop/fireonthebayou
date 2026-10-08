@@ -111,16 +111,18 @@ export default function Footer() {
         </div>
 
         <div className="mt-16 flex flex-col items-start justify-between gap-4 text-xs text-ash md:flex-row md:items-center">
-          <p>
-            &copy; {year} {site.name}. All rights reserved.
-          </p>
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+            <p>&copy; {year} {site.name}. All rights reserved.</p>
+            <Link href="/privacy" className="transition-colors hover:text-cream">Privacy</Link>
+            <Link href="/terms" className="transition-colors hover:text-cream">Terms</Link>
+          </div>
           <a
             href="https://in-flu-ential.vercel.app"
             target="_blank"
             rel="noopener noreferrer"
             className="transition-colors hover:text-cream"
           >
-            Site by James Afflu &middot; IN-FLU-ENTIAL
+            Designed by IN-FLU-ENTIAL
           </a>
         </div>
       </div>

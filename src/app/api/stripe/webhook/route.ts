@@ -88,7 +88,7 @@ async function notifyStudio(
     },
     body: JSON.stringify({
       from: process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev",
-      to: process.env.RESEND_TO_EMAIL || site.email,
+      to: process.env.RESEND_TO_EMAIL || site.inbox,
       reply_to: b.email,
       subject: `New ${consult.name}: ${b.name}${b.company ? ` — ${b.company}` : ""}`,
       html: `<div style="font-family:system-ui,sans-serif;color:#111">

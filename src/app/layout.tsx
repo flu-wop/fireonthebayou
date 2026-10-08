@@ -8,6 +8,8 @@ import SmoothScroll from "@/components/effects/SmoothScroll";
 import GrainOverlay from "@/components/effects/GrainOverlay";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import ScrollToTop from "@/components/effects/ScrollToTop";
+import { Analytics } from "@vercel/analytics/next";
 
 /**
  * Root layout
@@ -63,7 +65,9 @@ export default function RootLayout({
           <Navbar />
           <main className="min-h-screen">{children}</main>
           <Footer />
+          <ScrollToTop />
         </SmoothScroll>
+        <Analytics />
       </body>
     </html>
   );

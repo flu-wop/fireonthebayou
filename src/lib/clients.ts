@@ -7,7 +7,7 @@ export const clients = [
   "ACME Oyster House", "Aucoin Hart Jewelers", "Audubon Nature Institute", "Blue Plate",
   "Blue Runner Foods", "Broussard's", "CenturyLink", "Copeland's of New Orleans",
   "Country Day", "Crystal Hot Sauce", "Entergy", "Evamor", "Fair Grounds",
-  "French Market Coffee", "Gulf Seafood Trace", "The Home Depot", "Jazz Fest",
+  "French Market Coffee", "Gulf Seafood Trace", "The Home Depot", "IV Waste", "Jazz Fest",
   "Louisiana Dental Center", "Louisiana Economic Development", "Louisiana SPCA",
   "Morris Bart", "Murphy Cadillac", "New Orleans & Company", "New Orleans City Park",
   "New Orleans Convention Center", "PJ's Coffee", "Progressive Waste", "Red Bull",

@@ -27,7 +27,7 @@ const stats = [
 // Core crew, presented like closing credits — no photos needed, just the roles
 // and the receipts. Keep this list short; it's a signature, not a directory.
 const crew = [
-  { name: "Jason Villemarette", role: "Founder & Director", href: site.socials.linkedin, note: "Founded FOTB in 2006 · City Business Innovator of the Year (2009)" },
+  { name: "Jason Villemarette", role: "Founder & Director", href: site.socials.linkedin, note: "Founded FOTB in 2006 · City Business Innovator of the Year (2008)" },
   { name: "Kathy Hirsch", role: "Producer", note: "23 years heading broadcast production at Peter Mayer" },
   { name: "David Reece", role: "Director of Photography", note: "Coca-Cola, ESPN, NFL" },
   { name: "Michael Sanchez", role: "Post-Production Supervisor", note: "Edit, animation, sound design" },

@@ -60,7 +60,7 @@ export default function ConsultForm({ canceled = false }: { canceled?: boolean }
     >
       {canceled && (
         <p className="border-l-2 border-flame pl-4 text-sm text-mist">
-          Checkout was canceled — nothing was charged. Your details are below whenever you&rsquo;re ready.
+          Checkout was canceled — nothing was charged. Your details are below whenever you’re ready.
         </p>
       )}
 
@@ -129,6 +129,10 @@ export default function ConsultForm({ canceled = false }: { canceled?: boolean }
         </Button>
         <p className="font-mono text-[13px] tracking-wide text-ash">Secure checkout by Stripe</p>
       </div>
+      <p className="text-sm text-ash">
+        Free rescheduling with 24 hours’ notice. See the{" "}
+        <Link href="/terms" className="text-mist underline underline-offset-4 hover:text-cream">booking terms</Link>.
+      </p>
     </form>
   );
 }
