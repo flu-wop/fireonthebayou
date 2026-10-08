@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import PageHeader from "@/components/sections/PageHeader";
 import ContactForm from "@/components/sections/ContactForm";
-import { site } from "@/lib/site";
+import Link from "next/link";
+import { consult, formatPrice, site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -26,6 +27,19 @@ export default function ContactPage() {
         {/* Direct details */}
         <aside className="md:col-span-4 md:col-start-9">
           <div className="space-y-10">
+            <Link
+              href="/consult"
+              className="group block rounded-sm border border-border p-6 transition-colors duration-500 hover:border-flame"
+            >
+              <p className="eyebrow mb-3">Ready to start?</p>
+              <p className="font-display text-2xl font-light leading-tight text-cream">
+                Book a {consult.name} &mdash; {formatPrice(consult.priceCents)}
+              </p>
+              <p className="mt-2 text-sm text-mist">
+                {consult.length} to shape the idea, budget, and timeline.{" "}
+                <span className="text-flame transition-transform group-hover:translate-x-1">→</span>
+              </p>
+            </Link>
             <div>
               <p className="eyebrow mb-3">Email</p>
               <a

@@ -26,8 +26,25 @@ git remote add origin https://github.com/flu-wop/fire-on-the-bayou.git
 git push -u origin main
 ```
 
-Then import the repo in Vercel — it auto-deploys on every push. No env vars needed yet
-(the contact form uses a `mailto:` fallback; wire `/api/contact` later if you want server email).
+Then import the repo in Vercel — it auto-deploys on every push. The site runs with no env
+vars; until Stripe is set, "Book a consult" falls back to the contact page.
+
+### Paid Creative Consult (Stripe)
+
+Price, length, and what's included live in `consult` in `src/lib/site.ts` (enforced server-side).
+Vercel → Settings → Environment Variables:
+
+| Var | What |
+|---|---|
+| `STRIPE_SECRET_KEY` | Stripe secret key (`sk_test_…` to test, `sk_live_…` to go live) |
+| `STRIPE_WEBHOOK_SECRET` | Stripe → Webhooks → add `https://<domain>/api/stripe/webhook`, event `checkout.session.completed` |
+| `NEXT_PUBLIC_SITE_URL` | `https://fireonthebayou.com` (success/cancel redirects) |
+| `STRIPE_CONSULT_PRICE_ID` | optional — use a Stripe Price instead of the amount in `site.ts` |
+| `RESEND_API_KEY` | optional — emails each paid booking to the studio |
+| `RESEND_FROM_EMAIL` / `RESEND_TO_EMAIL` | sender (verified domain) / recipient (defaults to `site.email`) |
+
+Flow: `/consult` form → `/api/consult/checkout` → Stripe Checkout → `/consult/success`;
+the webhook verifies the signature and emails the booking. Test with card `4242 4242 4242 4242`.
 
 ---
 

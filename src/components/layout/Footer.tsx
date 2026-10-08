@@ -7,7 +7,7 @@
  * details, nav echo, socials, and a faint ember glow bleeding up from the base.
  */
 import Link from "next/link";
-import { navLinks, site } from "@/lib/site";
+import { consult, formatPrice, navLinks, site } from "@/lib/site";
 import Reveal from "@/components/effects/Reveal";
 import Button from "@/components/ui/Button";
 
@@ -38,9 +38,12 @@ export default function Footer() {
         </Reveal>
 
         <Reveal delay={0.16}>
-          <div className="mt-10">
+          <div className="mt-10 flex flex-wrap items-center gap-4">
             <Button href="/contact" variant="ember">
               Get in touch
+            </Button>
+            <Button href="/consult" variant="outline">
+              Book a consult &middot; {formatPrice(consult.priceCents)}
             </Button>
           </div>
         </Reveal>
@@ -115,7 +118,7 @@ export default function Footer() {
               {site.studio.name} ↗
             </a>
             <a
-              href="https://midcitysound.com/merch"
+              href={site.merch.url}
               target="_blank"
               rel="noopener noreferrer"
               className="mt-3 text-sm text-mist transition-colors hover:text-flame"

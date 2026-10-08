@@ -26,7 +26,36 @@ export const site = {
     blurb:
       "Our in-house recording and mixing studio in Mid-City — where the score, the sound design, and the room tone all live under one roof.",
   },
+  // Merch is sold through the Mid City Sound store (shared Printful + Stripe).
+  merch: {
+    url: "https://www.midcitysound.com/merch",
+  },
 } as const;
+
+/**
+ * Paid Creative Consult — the site's "pay to start" offer, sold through
+ * Stripe Checkout (/api/consult/checkout). The price is enforced server-side
+ * from this file; the browser never sends an amount.
+ *
+ * PLACEHOLDER — confirm price, length, and the credit policy with Jason.
+ */
+export const consult = {
+  name: "Creative Consult",
+  priceCents: 25000,
+  length: "60 minutes",
+  /** Shown on the page; set to false if the fee won't be credited. */
+  creditedTowardProduction: true,
+  includes: [
+    "A working session with a Fire on the Bayou director and producer",
+    "Your idea shaped into a concept and creative approach",
+    "A realistic budget range and production timeline",
+    "A written recap with next steps within two business days",
+  ],
+} as const;
+
+export function formatPrice(cents: number) {
+  return `$${(cents / 100).toLocaleString("en-US", { minimumFractionDigits: cents % 100 ? 2 : 0 })}`;
+}
 
 /** Primary navigation. Order matters — drives Navbar + Footer. */
 export const navLinks = [

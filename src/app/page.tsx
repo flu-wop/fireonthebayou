@@ -14,6 +14,8 @@ import Marquee from "@/components/sections/Marquee";
 import WorkTeaser from "@/components/sections/WorkTeaser";
 import StudioConnection from "@/components/sections/StudioConnection";
 import ServicesPreview from "@/components/sections/ServicesPreview";
+import ConsultCTA from "@/components/sections/ConsultCTA";
+import MerchBand from "@/components/sections/MerchBand";
 
 export default function HomePage() {
   return (
@@ -41,9 +43,13 @@ export default function HomePage() {
 
       {/* ===== Mid City Sound connection ===== */}
       <StudioConnection />
+      <MerchBand />
 
       {/* ===== Services preview ===== */}
       <ServicesPreview />
+
+      {/* ===== Paid Creative Consult ===== */}
+      <ConsultCTA />
     </>
   );
 }
