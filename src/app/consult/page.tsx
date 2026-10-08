@@ -50,6 +50,9 @@ export default async function ConsultPage({
                   The full {price} is credited toward your production when you book with us.
                 </p>
               )}
+              <div className="mt-8">
+                <Button href="#book" variant="ember">Book now</Button>
+              </div>
             </div>
           </Reveal>
           <Reveal delay={0.1}>
@@ -88,7 +91,7 @@ export default async function ConsultPage({
         </div>
 
         {/* Intake + checkout */}
-        <div className="md:col-span-7 md:col-start-6">
+        <div id="book" className="scroll-mt-28 md:col-span-7 md:col-start-6">
           <ConsultForm canceled={canceled === "1"} />
         </div>
       </section>
