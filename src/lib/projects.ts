@@ -18,7 +18,23 @@ export type Project = {
   video: string; // /public/video/...  (muted, looping, hover-to-play)
   /** Layout hint for the masonry-ish grid */
   span: "wide" | "tall" | "regular";
+
+  // ---- Screening-room page (/work/[slug]) ----
+  // A project gets its own page only when it has at least one film.
+  /** YouTube films, in order. Multi-part campaigns get a part switcher. */
+  films?: Film[];
+  /** Award line shown under the title, e.g. "Gold Addy Award". */
+  award?: string;
+  /** One big sentence — the film in a breath. */
+  logline?: string;
+  /** The creative idea behind it. */
+  approach?: { heading: string; body: string[]; references?: string[] };
+  /** End credits, rolled at the bottom of the page. */
+  credits?: Credit[];
 };
+
+export type Film = { label: string; youtubeId: string };
+export type Credit = { role: string; name: string };
 
 export const projects: Project[] = [
   {
@@ -31,6 +47,30 @@ export const projects: Project[] = [
     poster: "/images/work-aucoin-hart.jpg",
     video: "/video/work-aucoin-hart.mp4",
     span: "wide",
+    films: [
+      { label: "Part I", youtubeId: "9jG69cUBXlM" },
+      { label: "Part II", youtubeId: "EKBfIJaogKc" },
+    ],
+    award: "Gold Addy Award",
+    logline:
+      "A New Orleans jeweler, told in the language of the French New Wave.",
+    approach: {
+      heading: "Truffaut and Godard, by way of New Orleans.",
+      body: [
+        "Made with the agency Brand Society, the campaign borrows its grammar from the French New Wave — but its real inspiration was the city itself.",
+        "Part I keeps the jewelry at the center while following a customer through the moments in a life where a piece starts to mean something. Part II picks the story back up as a relationship, warm and a little bittersweet, set against the same streets.",
+        "Both films won Gold Addy Awards.",
+      ],
+      references: ["François Truffaut", "Jean-Luc Godard", "French New Wave", "New Orleans"],
+    },
+    credits: [
+      { role: "Client", name: "Aucoin Hart Jewelers" },
+      { role: "Agency", name: "Brand Society" },
+      { role: "Production Company", name: "Fire on the Bayou" },
+      { role: "Director", name: "Jason Villemarette" },
+      { role: "Recognition", name: "Gold Addy Award — Part I" },
+      { role: "Recognition", name: "Gold Addy Award — Part II" },
+    ],
   },
   {
     slug: "home-depot",
@@ -64,6 +104,23 @@ export const projects: Project[] = [
     poster: "/images/work-rouses.jpg",
     video: "/video/work-rouses.mp4",
     span: "regular",
+    films: [{ label: "Holiday Spot", youtubeId: "t61-eZrV708" }],
+    logline: "A Gulf Coast holiday that really does feel like home.",
+    approach: {
+      heading: "Concepted with Rouses, scored next door.",
+      body: [
+        "Jason worked directly with Rouses Markets' in-house agency to develop the concept from the ground up.",
+        "Mid City Sound wrote and recorded the music with recording artist Tyron Benoit — and the sunlight and Gulf Coast locations took care of the rest.",
+      ],
+    },
+    credits: [
+      { role: "Client", name: "Rouses Markets" },
+      { role: "Agency", name: "Rouses In-House" },
+      { role: "Production Company", name: "Fire on the Bayou" },
+      { role: "Director", name: "Jason Villemarette" },
+      { role: "Music", name: "Mid City Sound" },
+      { role: "Featuring", name: "Tyron Benoit" },
+    ],
   },
   {
     slug: "reily-foods",
@@ -86,6 +143,20 @@ export const projects: Project[] = [
     poster: "/images/work-blue-plate.jpg",
     video: "/video/work-blue-plate.mp4",
     span: "tall",
+    films: [{ label: "Commercial", youtubeId: "mi9d3ijqFxA" }],
+    logline: "A corner-store owner's story, told to sell a jar of mayonnaise.",
+    approach: {
+      heading: "Sell the mayo by loving the city.",
+      body: [
+        "Kirk Frady, owner of Frady's One-Stop Food Store, tells the story of his store and his family's passion for making food people love.",
+        "Tying Blue Plate to the neighborhood food stores of New Orleans lets the brand speak in the city's own voice — about its love for its food.",
+      ],
+    },
+    credits: [
+      { role: "Client", name: "Blue Plate Mayonnaise" },
+      { role: "Featuring", name: "Kirk Frady, Frady's One-Stop" },
+      { role: "Production Company", name: "Fire on the Bayou" },
+    ],
   },
   {
     slug: "blue-runner",
@@ -97,6 +168,22 @@ export const projects: Project[] = [
     poster: "/images/work-blue-runner.jpg",
     video: "/video/work-blue-runner.mp4",
     span: "regular",
+    films: [{ label: "Commercial", youtubeId: "SoIBpqmuVjg" }],
+    logline: "Red beans, shot like a Blue Note record sleeve.",
+    approach: {
+      heading: "A timeless look, on purpose.",
+      body: [
+        "Jason and the agency Brand Society wanted something that would never look dated. The look draws on photographer Herman Leonard, the Blue Note album covers, and the jazz musicians of the past.",
+        "That cinematic restraint is exactly what makes it stand out on TV and in the feed.",
+      ],
+      references: ["Herman Leonard", "Blue Note Records", "Jazz portraiture"],
+    },
+    credits: [
+      { role: "Client", name: "Blue Runner Foods" },
+      { role: "Agency", name: "Brand Society" },
+      { role: "Production Company", name: "Fire on the Bayou" },
+      { role: "Director", name: "Jason Villemarette" },
+    ],
   },
   {
     slug: "crystal-hot-sauce",
@@ -108,6 +195,14 @@ export const projects: Project[] = [
     poster: "/images/work-crystal-hot-sauce.jpg",
     video: "/video/work-crystal-hot-sauce.mp4",
     span: "regular",
+    films: [{ label: "Commercial", youtubeId: "vuS5CARLiak" }],
+    logline: "A New Orleans pantry staple, shot with the care of a national brand.",
+    credits: [
+      { role: "Client", name: "Crystal Hot Sauce" },
+      { role: "Agency", name: "Brand Society" },
+      { role: "Production Company", name: "Fire on the Bayou" },
+      { role: "Director", name: "Simon Blake" },
+    ],
   },
   {
     slug: "sazerac-house",
@@ -135,3 +230,21 @@ export const projects: Project[] = [
 
 /** Featured subset for the home page teaser. */
 export const featuredProjects = projects.slice(0, 4);
+
+/** Projects that have a screening-room page. */
+export const screenedProjects = projects.filter((p) => p.films?.length);
+
+export function getProject(slug: string) {
+  return screenedProjects.find((p) => p.slug === slug);
+}
+
+/** Where a card should link: its own page if it has one, else the reel. */
+export function projectHref(p: Project) {
+  return p.films?.length ? `/work/${p.slug}` : "/work";
+}
+
+/** The next screened film after this one, wrapping around. */
+export function nextScreened(slug: string) {
+  const i = screenedProjects.findIndex((p) => p.slug === slug);
+  return screenedProjects[(i + 1) % screenedProjects.length];
+}

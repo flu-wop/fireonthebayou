@@ -13,7 +13,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState } from "react";
 import Link from "next/link";
-import type { Project } from "@/lib/projects";
+import { projectHref, type Project } from "@/lib/projects";
 import { cn } from "@/lib/utils";
 
 const spanClasses: Record<Project["span"], string> = {
@@ -63,7 +63,7 @@ export default function ProjectCard({
     >
       <Link
         ref={ref}
-        href={`/work#${project.slug}`}
+        href={projectHref(project)}
         onMouseEnter={onEnter}
         onMouseLeave={onLeave}
         className="relative block h-full w-full overflow-hidden rounded-sm border border-border bg-card"
