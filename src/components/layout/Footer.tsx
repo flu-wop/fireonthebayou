@@ -31,9 +31,12 @@ export default function Footer() {
             <p className="mb-4 font-mono text-[13px] tracking-wide text-ash">
               Studio
             </p>
-            <p className="text-sm leading-relaxed text-mist">
-              {site.address}
+            <address className="not-italic text-sm leading-relaxed text-mist">
+              {site.address.split(", ")[0]}
               <br />
+              {site.address.split(", ").slice(1).join(", ")}
+            </address>
+            <p className="mt-4 text-sm leading-relaxed text-mist">
               <a href={`tel:${site.phoneHref}`} className="transition-colors hover:text-flame">
                 {site.phone}
               </a>

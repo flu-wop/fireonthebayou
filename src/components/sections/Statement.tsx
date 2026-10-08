@@ -4,7 +4,8 @@
  * Statement
  * ---------
  * A big editorial mission paragraph where individual words illuminate from ash
- * to cream as the block scrolls through the viewport — a signature uva.co.uk /
+ * to cream as the block scrolls through the viewport. Wrap a word in *asterisks*
+ * to have it light up in the logo crimson instead — a signature uva.co.uk /
  * silent-house style moment.
  */
 import { motion, useScroll, useTransform } from "framer-motion";
@@ -27,7 +28,9 @@ export default function Statement({ text }: { text: string }) {
         {words.map((word, i) => {
           const start = i / words.length;
           const end = start + 1 / words.length;
-          return <Word key={i} progress={scrollYProgress} range={[start, end]}>{word}</Word>;
+          const accent = /^\*.*\*[.,;:!?—]*$/.test(word);
+          const clean = accent ? word.replace(/\*/g, "") : word;
+          return <Word key={i} progress={scrollYProgress} range={[start, end]} accent={accent}>{clean}</Word>;
         })}
       </p>
     </section>
@@ -38,14 +41,16 @@ function Word({
   children,
   progress,
   range,
+  accent = false,
 }: {
   children: string;
   progress: ReturnType<typeof useScroll>["scrollYProgress"];
   range: [number, number];
+  accent?: boolean;
 }) {
   const opacity = useTransform(progress, range, [0.3, 1]);
   return (
-    <motion.span style={{ opacity }} className="text-cream">
+    <motion.span style={{ opacity }} className={accent ? "text-flame" : "text-cream"}>
       {children}
     </motion.span>
   );

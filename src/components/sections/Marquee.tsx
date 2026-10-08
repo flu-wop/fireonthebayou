@@ -15,13 +15,16 @@ export default function Marquee({
   items: string[];
   className?: string;
 }) {
-  const row = [...items, ...items]; // duplicate for seamless loop
+  // Each half holds the phrases 3x so it's always wider than the screen (no gap
+  // on wide desktops); the track scrolls exactly one half, then loops seamlessly.
+  const half = [...items, ...items, ...items];
+  const row = [...half, ...half];
   return (
     <div className={`relative overflow-hidden border-y border-border py-6 ${className}`}>
       <motion.div
         className="flex w-max items-center gap-10 whitespace-nowrap"
         animate={{ x: ["0%", "-50%"] }}
-        transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
+        transition={{ duration: 28 * 3, repeat: Infinity, ease: "linear" }}
       >
         {row.map((item, i) => (
           <span key={i} className="flex items-center gap-10">
