@@ -3,7 +3,7 @@
  */
 import Button from "@/components/ui/Button";
 import Reveal from "@/components/effects/Reveal";
-import { consult, development } from "@/lib/site";
+import { consult } from "@/lib/site";
 
 export default function ConsultCTA() {
   return (
@@ -34,9 +34,6 @@ export default function ConsultCTA() {
         <Reveal delay={0.15} className="md:col-span-4 md:col-start-9">
           <div className="flex flex-col items-start gap-5 md:items-end">
             <Button href="/contact" variant="ember">Get in touch</Button>
-            <a href="/consult" className="text-sm text-mist underline decoration-mist/30 underline-offset-4 transition-colors hover:text-cream">
-              Bigger project? {development.name} from {development.priceRange.split(" ")[0]}
-            </a>
           </div>
         </Reveal>
       </div>
