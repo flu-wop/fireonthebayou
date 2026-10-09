@@ -179,7 +179,7 @@ export default function AboutPage() {
             ))}
           </ul>
           <p className="mt-14 border-t border-border pt-6 text-sm text-mist">
-            <span className="text-flame">Agency partners</span>&ensp;{agencies.join(" · ")}
+            <span className="text-flame">Agency Partners</span>&ensp;{agencies.join(" · ")}
           </p>
         </div>
       </section>

@@ -17,7 +17,7 @@ export default function ProcessSteps() {
         {/* Sticky left rail */}
         <div className="md:col-span-4">
           <div className="md:sticky md:top-32">
-            <p className="eyebrow mb-5">How it works</p>
+            <p className="eyebrow mb-5">How It Works</p>
             <h2 className="font-display text-[clamp(2.5rem,5vw,4.5rem)] font-light leading-[0.95] text-cream">
               The
               <br />

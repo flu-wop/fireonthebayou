@@ -41,7 +41,7 @@ export default function StudioConnection() {
         {/* Copy */}
         <div>
           <Reveal>
-            <p className="eyebrow mb-6">The advantage</p>
+            <p className="eyebrow mb-6">The Advantage</p>
           </Reveal>
           <Reveal delay={0.08}>
             <h2 className="font-display text-[clamp(2.2rem,5vw,4rem)] font-light leading-[1] text-cream">
@@ -49,11 +49,6 @@ export default function StudioConnection() {
               <br />
               designed <span className="text-flame">together.</span>
             </h2>
-          </Reveal>
-          <Reveal delay={0.16}>
-            <p className="mt-7 max-w-md text-base leading-relaxed text-mist">
-              {site.studio.blurb}
-            </p>
           </Reveal>
           <Reveal delay={0.2}>
             {/* Keep the two businesses' facilities separate — don't merge these lists. */}

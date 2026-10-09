@@ -16,7 +16,7 @@ export default function ProcessPage() {
   return (
     <>
       <PageHeader
-        eyebrow="How it works"
+        eyebrow="How It Works"
         title={<>From spark<br />to <span className="text-flame">screen.</span></>}
         lede="A deliberate, five-stage process built so the people who pitch the film are the people who make it."
       />

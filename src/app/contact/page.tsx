@@ -14,7 +14,7 @@ export default function ContactPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Start a project"
+        eyebrow="Start a Project"
         title={<>Let&rsquo;s<br /><span className="text-flame">talk.</span></>}
         lede="Tell us what you're making. We'll get back within two business days — usually faster."
       />
@@ -32,7 +32,7 @@ export default function ContactPage() {
               href="/consult"
               className="group block rounded-sm border border-border p-6 transition-colors duration-500 hover:border-flame"
             >
-              <p className="eyebrow mb-3">Ready to start?</p>
+              <p className="eyebrow mb-3">Ready to Start?</p>
               <p className="font-display text-2xl font-light leading-tight text-cream">
                 Book a {consult.name} &mdash; {formatPrice(consult.priceCents)}
               </p>

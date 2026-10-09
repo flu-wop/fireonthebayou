@@ -92,7 +92,7 @@ export default async function ProjectPage({ params }: Params) {
         <section className="frame grid gap-12 pb-28 md:grid-cols-12 md:gap-16 md:pb-36">
           <div className="md:col-span-5">
             <Reveal>
-              <p className="eyebrow mb-6">The approach</p>
+              <p className="eyebrow mb-6">The Approach</p>
               <h2 className="font-display text-[clamp(2.2rem,4.5vw,3.8rem)] font-light leading-[1.02] tracking-tight text-cream">
                 {p.approach.heading}
               </h2>
@@ -143,7 +143,7 @@ export default async function ProjectPage({ params }: Params) {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-ink/60" />
           <div className="frame relative flex h-full flex-col justify-end pb-16">
-            <p className="eyebrow mb-4">Next film</p>
+            <p className="eyebrow mb-4">Next Film</p>
             <p className="font-mono text-[13px] tracking-wide text-mist">
               {next.client}
             </p>

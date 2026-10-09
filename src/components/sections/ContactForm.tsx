@@ -99,7 +99,7 @@ export default function ContactForm() {
 
       <div className="grid gap-10 md:grid-cols-2">
         <div>
-          <label htmlFor="cf-name" className="eyebrow mb-2 block text-ash">Your name</label>
+          <label htmlFor="cf-name" className="eyebrow mb-2 block text-ash">Your Name</label>
           <input
             id="cf-name"
             required
@@ -139,7 +139,7 @@ export default function ContactForm() {
       </div>
 
       <fieldset>
-        <legend className="eyebrow mb-4 block text-ash">Budget range</legend>
+        <legend className="eyebrow mb-4 block text-ash">Budget Range</legend>
         <div className="flex flex-wrap gap-3">
           {budgets.map((b) => (
             <button
@@ -160,7 +160,7 @@ export default function ContactForm() {
       </fieldset>
 
       <div>
-        <label htmlFor="cf-message" className="eyebrow mb-2 block text-ash">Tell us about the project</label>
+        <label htmlFor="cf-message" className="eyebrow mb-2 block text-ash">Tell Us About the Project</label>
         <textarea
           id="cf-message"
           required

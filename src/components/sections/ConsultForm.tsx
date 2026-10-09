@@ -66,7 +66,7 @@ export default function ConsultForm({ canceled = false }: { canceled?: boolean }
 
       <div className="grid gap-10 md:grid-cols-2">
         <div>
-          <label htmlFor="c-name" className="eyebrow mb-2 block text-ash">Your name</label>
+          <label htmlFor="c-name" className="eyebrow mb-2 block text-ash">Your Name</label>
           <input id="c-name" className={inputCls} placeholder="Jane Doe" autoComplete="name" value={name} onChange={(e) => setName(e.target.value)} />
         </div>
         <div>
@@ -76,12 +76,12 @@ export default function ConsultForm({ canceled = false }: { canceled?: boolean }
       </div>
 
       <div>
-        <label htmlFor="c-company" className="eyebrow mb-2 block text-ash">Company or brand <span className="text-ash">(optional)</span></label>
+        <label htmlFor="c-company" className="eyebrow mb-2 block text-ash">Company or Brand <span className="text-ash">(optional)</span></label>
         <input id="c-company" className={inputCls} placeholder="Who's this for?" autoComplete="organization" value={company} onChange={(e) => setCompany(e.target.value)} />
       </div>
 
       <fieldset>
-        <legend className="eyebrow mb-4 block text-ash">What are you making?</legend>
+        <legend className="eyebrow mb-4 block text-ash">What Are You Making?</legend>
         <div className="flex flex-wrap gap-3">
           {projectTypes.map((t) => (
             <button
@@ -101,7 +101,7 @@ export default function ConsultForm({ canceled = false }: { canceled?: boolean }
       </fieldset>
 
       <div>
-        <label htmlFor="c-msg" className="eyebrow mb-2 block text-ash">The short version <span className="text-ash">(optional)</span></label>
+        <label htmlFor="c-msg" className="eyebrow mb-2 block text-ash">The Short Version <span className="text-ash">(optional)</span></label>
         <textarea
           id="c-msg"
           className={`${inputCls} min-h-[110px] resize-none`}
