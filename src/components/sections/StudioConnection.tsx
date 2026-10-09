@@ -67,7 +67,7 @@ export default function StudioConnection() {
               <div>
                 <dt className="text-[13px] font-semibold text-cream">{site.name}</dt>
                 <dd className="mt-2 font-mono text-[13px] leading-relaxed tracking-wide text-ash">
-                  5 edit &amp; animation bays<br />Sound stage<br />Grip truck
+                  5 edit &amp; animation bays<br />Sound stage<br />Grip truck<br />Sound design room
                 </dd>
               </div>
             </dl>
