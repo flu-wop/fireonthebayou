@@ -56,12 +56,21 @@ export default function StudioConnection() {
             </p>
           </Reveal>
           <Reveal delay={0.2}>
-            <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 font-mono text-[13px] tracking-wide text-ash">
-              <li>5 edit &amp; animation bays</li>
-              <li>Sound stage</li>
-              <li>Grip truck</li>
-              <li>Sound design room</li>
-            </ul>
+            {/* Keep the two businesses' facilities separate — don't merge these lists. */}
+            <dl className="mt-8 grid gap-6 border-t border-border pt-6 sm:grid-cols-2">
+              <div>
+                <dt className="text-[13px] font-semibold text-cream">{site.studio.name}</dt>
+                <dd className="mt-2 font-mono text-[13px] leading-relaxed tracking-wide text-ash">
+                  3 studio rooms
+                </dd>
+              </div>
+              <div>
+                <dt className="text-[13px] font-semibold text-cream">{site.name}</dt>
+                <dd className="mt-2 font-mono text-[13px] leading-relaxed tracking-wide text-ash">
+                  5 edit &amp; animation bays<br />Sound stage<br />Grip truck
+                </dd>
+              </div>
+            </dl>
           </Reveal>
           <Reveal delay={0.24}>
             <div className="mt-9">
