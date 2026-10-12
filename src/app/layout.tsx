@@ -10,6 +10,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import ScrollToTop from "@/components/effects/ScrollToTop";
 import { Analytics } from "@vercel/analytics/next";
+import { SiteAnalytics } from "@/components/analytics/SiteAnalytics";
 
 /**
  * Root layout
@@ -68,6 +69,7 @@ export default function RootLayout({
           <ScrollToTop />
         </SmoothScroll>
         <Analytics />
+        <SiteAnalytics />
       </body>
     </html>
   );

@@ -9,6 +9,7 @@ import Link from "next/link";
 import { consult, formatPrice } from "@/lib/site";
 import Button from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
+import { beacon } from "@/lib/beacon";
 
 const projectTypes = ["Commercial", "Brand film", "Music video", "Corporate / nonprofit", "Not sure yet"];
 
@@ -29,6 +30,7 @@ export default function ConsultForm({ canceled = false }: { canceled?: boolean }
       return;
     }
     setLoading(true);
+    beacon("checkout_click");
     try {
       const res = await fetch("/api/consult/checkout", {
         method: "POST",
