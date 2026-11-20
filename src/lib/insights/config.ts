@@ -1,60 +1,21 @@
 // lib/insights/config.ts
-// Fire on the Bayou's InsightsConfig. Sales come live from Stripe. This site has its
-// own database and its own events table.
-import Stripe from "stripe"
-import type { DayRange, DayValue, InsightsConfig } from "./types"
-import { localDay, addDays } from "./core"
-
-const TZ = "America/Chicago"
-
-type Paid = { date: string; cents: number }
-const memo = new Map<string, { at: number; rows: Promise<Paid[]> }>()
-
-function paidSessions(range: DayRange): Promise<Paid[]> {
-  const key = `${range.start}:${range.end}`
-  const hit = memo.get(key)
-  if (hit && Date.now() - hit.at < 60_000) return hit.rows
-  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
-  const gte = Math.floor(new Date(`${addDays(range.start, -1)}T00:00:00Z`).getTime() / 1000)
-  const rows = stripe.checkout.sessions
-    .list({ limit: 100, created: { gte } })
-    .autoPagingToArray({ limit: 2000 })
-    .then((all) =>
-      all
-        .filter((s) => s.payment_status === "paid")
-        .map((s) => ({ date: localDay(new Date(s.created * 1000), TZ), cents: s.amount_total ?? 0 })),
-    )
-  memo.set(key, { at: Date.now(), rows })
-  rows.catch(() => memo.delete(key))
-  return rows
-}
+// Fire on the Bayou's InsightsConfig. The site takes no online payments, so there
+// are no revenue sources: Insights tracks visitors, pages, and contact inquiries.
+import type { InsightsConfig } from "./types"
 
 export const insightsConfig: InsightsConfig = {
   siteName: "Fire on the Bayou",
   eventsTable: "fotb_site_events",
-  timezone: TZ,
-  eventTypes: ["page_view", "page_time", "checkout_click"],
-  sources: [
-    {
-      key: "revenue",
-      label: "Revenue",
-      format: "money",
-      fetch: async (r): Promise<DayValue[]> => (await paidSessions(r)).map((s) => ({ date: s.date, value: s.cents / 100 })),
-    },
-    {
-      key: "sales",
-      label: "Sales",
-      format: "count",
-      fetch: async (r): Promise<DayValue[]> => (await paidSessions(r)).map((s) => ({ date: s.date, value: 1 })),
-    },
-  ],
+  timezone: "America/Chicago",
+  eventTypes: ["page_view", "page_time", "inquiry_sent"],
+  sources: [],
   funnels: [
     {
-      label: "Booking a consult",
+      label: "Starting a project",
       steps: [
         { label: "Visited the site", type: "page_view" },
-        { label: "Opened the Consult page", type: "page_view", path: "/consult" },
-        { label: "Started checkout", type: "checkout_click" },
+        { label: "Opened Let's Talk", type: "page_view", path: "/contact" },
+        { label: "Sent an inquiry", type: "inquiry_sent" },
       ],
     },
   ],

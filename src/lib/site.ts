@@ -21,7 +21,7 @@ export const site = {
   /** Public address shown on the site. The mailbox (or a forward to `inbox`)
    *  must exist on the fireonthebayou.com domain before launch. */
   email: "hello@fireonthebayou.com",
-  /** Where form and booking notifications land (override with RESEND_TO_EMAIL). */
+  /** Where studio-side inquiry notifications are meant to land (see notifyNewInquiry). */
   inbox: "firenola@gmail.com",
   socials: {
     // Same accounts fireonthebayou.com links to (checked Oct 2026).
@@ -45,56 +45,7 @@ export const site = {
     role: "Founder & Director",
     photo: null as string | null,
   },
-  // Merch is sold through the Mid City Sound store (shared Printful + Stripe).
-  merch: {
-    url: "https://www.midcitysound.com/merch",
-  },
 } as const;
-
-/**
- * Paid Creative Consult — the site's "pay to start" offer, sold through
- * Stripe Checkout (/api/consult/checkout). The price is enforced server-side
- * from this file; the browser never sends an amount.
- *
- * PLACEHOLDER — confirm price, length, and the credit policy with Jason.
- */
-export const consult = {
-  name: "Creative Consult",
-  priceCents: 100000,
-  length: "60 minutes",
-  /** Shown on the page; set to false if the fee won't be credited. */
-  creditedTowardProduction: true,
-  includes: [
-    "A working session with a Fire on the Bayou director and producer — at the studio or by video",
-    "A written creative brief: the concept, the creative approach, and visual references",
-    "A real budget range and production timeline you can take to your team",
-    "Your brief delivered within a week of the session",
-  ],
-} as const;
-
-/**
- * Creative Development — the bigger second tier. Scoped per project, so it's
- * an inquiry (deposit invoiced after a call), not an instant checkout.
- * PLACEHOLDER — confirm the range and deliverables with Jason.
- */
-export const development = {
-  name: "Creative Development",
-  priceRange: "$7,500 – $10,000",
-  creditedTowardProduction: true,
-  includes: [
-    "Everything in the Creative Consult",
-    "A full written treatment and script",
-    "A lookbook or storyboards so you can see the film before it's shot",
-    "A line-item budget and production schedule",
-    "Casting and location recommendations",
-  ],
-  /** Where the inquiry button goes; the contact form reads ?interest=. */
-  href: "/contact?interest=creative-development",
-} as const;
-
-export function formatPrice(cents: number) {
-  return `$${(cents / 100).toLocaleString("en-US", { minimumFractionDigits: cents % 100 ? 2 : 0 })}`;
-}
 
 /** Display names for the social links. */
 export const socialLabels: Record<string, string> = {
@@ -110,5 +61,6 @@ export const navLinks = [
   { label: "Services", href: "/services" },
   { label: "Process", href: "/process" },
   { label: "Studio", href: "/about" },
+  { label: "Testimonials", href: "/testimonials" },
   { label: "Contact", href: "/contact" },
 ] as const;

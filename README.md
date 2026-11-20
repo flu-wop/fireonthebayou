@@ -25,39 +25,29 @@ Repo: `flu-wop/fireonthebayou` → Vercel auto-deploys `main` to fireonthebayou.
    live WordPress site.
 3. Redirects from all 110 old WordPress URLs are already in place (`src/lib/redirects.ts`) — they
    take effect as soon as the domain points here.
-4. Wire Stripe + Resend (below) and run a 4242 test purchase.
+4. Set the Mailchimp env vars and send a test inquiry.
 
 ## Content
 
-- Projects, films, credits: `src/lib/projects.ts` (`homeReel` = home page, `workOrder` = Work page order)
+- Portfolio catalog (source of truth, 89 projects): `data/fotb-catalog.json`. Screening-room write-ups: `src/lib/projects.ts`
 - Filmography (the rest of the work, plays in place): `src/lib/archive.ts`
 - Clients + agency partners (Studio page): `src/lib/clients.ts`
 - FAQ (Process page): `src/lib/faq.ts`
 - Old WordPress URL redirects: `src/lib/redirects.ts` (already wired in `next.config.ts`)
-- Brand facts, socials, studio, founder photo, consult offer: `src/lib/site.ts`
+- Brand facts, socials, studio, founder photo: `src/lib/site.ts`
 - Hero reel: `HERO_REEL` in `src/components/sections/Hero.tsx` (YouTube id, or a self-hosted `mp4`)
 - Jason's portrait: add `/public/images/jason-villemarette.jpg`, set `site.founder.photo`
 
-### Paid Creative Consult (Stripe)
+### Contact + email
 
-Price, length, and what's included live in `consult` in `src/lib/site.ts` (enforced server-side).
-Vercel → Settings → Environment Variables:
+The site takes **no online payments**. `/api/contact` is rate limited (`src/lib/rate-limit.ts`) and honeypotted.
+Email moves from Resend to Mailchimp in the next phase; the public address is `site.email`
+(hello@fireonthebayou.com). Page views are tracked with Vercel Web Analytics (enable it in the project's Analytics tab).
 
-| Var | What |
-|---|---|
-| `STRIPE_SECRET_KEY` | Stripe secret key (`sk_test_…` to test, `sk_live_…` to go live) |
-| `STRIPE_WEBHOOK_SECRET` | Stripe → Webhooks → add `https://<domain>/api/stripe/webhook`, event `checkout.session.completed` |
-| `NEXT_PUBLIC_SITE_URL` | `https://fireonthebayou.com` (success/cancel redirects) |
-| `STRIPE_CONSULT_PRICE_ID` | optional — use a Stripe Price instead of the amount in `site.ts` |
-| `RESEND_API_KEY` | recommended — sends contact-form inquiries and paid-booking alerts to the studio (without it the form falls back to the visitor's email app) |
-| `RESEND_FROM_EMAIL` / `RESEND_TO_EMAIL` | sender (verified domain) / recipient (defaults to `site.inbox`, firenola@gmail.com) |
+### Placeholders
 
-The public address on the site is `site.email` (hello@fireonthebayou.com). Create that mailbox or a forward to the inbox before launch.
-
-API routes (`/api/contact`, `/api/consult/checkout`) are rate limited per IP in `src/lib/rate-limit.ts`. For a platform-wide limit, also add a Vercel Firewall rate-limit rule on `/api/*`. Page views are tracked with Vercel Web Analytics (enable it in the project's Analytics tab).
-
-Flow: `/consult` form → `/api/consult/checkout` → Stripe Checkout → `/consult/success`;
-the webhook verifies the signature and emails the booking. Test with card `4242 4242 4242 4242`.
+Every empty image or video slot renders a labeled placeholder. `/placeholders` (noindex) lists what is still empty,
+with exact sizes and upload paths, from `src/lib/media-manifest.ts`.
 
 ---
 

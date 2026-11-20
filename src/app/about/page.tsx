@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import PageHeader from "@/components/sections/PageHeader";
 import StudioConnection from "@/components/sections/StudioConnection";
-import MerchBand from "@/components/sections/MerchBand";
 import NextStep from "@/components/sections/NextStep";
 import Statement from "@/components/sections/Statement";
 import Reveal from "@/components/effects/Reveal";
 import Parallax from "@/components/effects/Parallax";
 import CountUp from "@/components/effects/CountUp";
 import { site } from "@/lib/site";
-import { agencies, clients } from "@/lib/clients";
+import { clients } from "@/lib/clients";
+import { crew } from "@/lib/crew";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/about" },
@@ -22,17 +22,6 @@ const stats = [
   { value: "20+", label: "Years of production" },
   { value: "Telly & Addy", label: "National award wins" },
   { value: "5", label: "Edit & animation bays" },
-];
-
-// Core crew, presented like closing credits — no photos needed, just the roles
-// and the receipts. Keep this list short; it's a signature, not a directory.
-const crew = [
-  { name: "Jason Villemarette", role: "Founder & Director", href: site.socials.linkedin, note: "Founded FOTB in 2006 · City Business Innovator of the Year (2008)" },
-  { name: "Kathy Hirsch", role: "Producer", note: "23 years heading broadcast production at Peter Mayer" },
-  { name: "David Reece", role: "Director of Photography", note: "Coca-Cola, ESPN, NFL" },
-  { name: "Michael Sanchez", role: "Post-Production Supervisor", note: "Edit, animation, sound design" },
-  { name: "Louis Koerner", role: "Director", note: "Director/DP · commercial & digital campaigns" },
-  { name: "Simon Blake", role: "Director", note: "Two AICP awards · permanent collection, MoMA" },
 ];
 
 export default function AboutPage() {
@@ -67,7 +56,7 @@ export default function AboutPage() {
           </Reveal>
           <Reveal delay={0.2}>
             <p className="mt-6 font-mono text-[13px] tracking-wide text-mist">
-              Trusted by Aucoin Hart &middot; The Home Depot &middot; Red Bull &middot; Reily Foods &middot; Rouses &middot; Audubon
+              Trusted by Aucoin Hart &middot; Reily Foods &middot; Rouses &middot; Audubon
             </p>
           </Reveal>
         </div>
@@ -178,15 +167,11 @@ export default function AboutPage() {
               <li key={c} className="break-inside-avoid">{c}</li>
             ))}
           </ul>
-          <p className="mt-14 border-t border-border pt-6 text-sm text-mist">
-            <span className="text-flame">Agency Partners</span>&ensp;{agencies.join(" · ")}
-          </p>
         </div>
       </section>
 
       {/* Mid City Sound deep-dive */}
       <StudioConnection />
-      <MerchBand />
 
       <Statement text="We don't just shoot in *New* *Orleans.* We're of it — the rhythm, the heat, the stories that only happen *below* *sea* *level.*" />
       <NextStep line="Let's make something." />

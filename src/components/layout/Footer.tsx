@@ -89,24 +89,11 @@ export default function Footer() {
 
           <div className="flex flex-col items-start gap-2">
             <p className="mb-4 font-mono text-[13px] tracking-wide text-ash">
-              Sister studio
+              Let&rsquo;s talk
             </p>
-            <a
-              href={site.studio.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm text-mist transition-colors hover:text-flame"
-            >
-              {site.studio.name} ↗
-            </a>
-            <a
-              href={site.merch.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm text-mist transition-colors hover:text-flame"
-            >
-              Shop Merch ↗
-            </a>
+            <Link href="/contact" className="text-sm text-mist transition-colors hover:text-flame">
+              Start a project &rarr;
+            </Link>
           </div>
         </div>
 

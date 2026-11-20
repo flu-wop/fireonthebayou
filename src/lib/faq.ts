@@ -29,6 +29,6 @@ export const faq: { q: string; a: string }[] = [
   },
   {
     q: "What does it cost?",
-    a: "Every production is scoped to the job. If you're not sure what you need yet, start with a Creative Consult — the fee comes off your production when you book with us.",
+    a: "Every production is scoped to the job. If you're not sure what you need yet, tell us about the project on the Let's Talk page and we'll talk through a range.",
   },
 ];

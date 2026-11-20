@@ -76,7 +76,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop links */}
-        <ul className="hidden items-center gap-9 md:flex">
+        <ul className="hidden items-center gap-6 lg:gap-9 md:flex">
           {navLinks.map((link) => {
             const active = pathname === link.href;
             return (
@@ -99,19 +99,6 @@ export default function Navbar() {
               </li>
             );
           })}
-          <li>
-            <Link
-              href="/consult"
-              className={cn(
-                "rounded-full border px-5 py-2 font-mono text-[13px] tracking-wide transition-colors duration-300",
-                pathname?.startsWith("/consult")
-                  ? "border-flame text-flame"
-                  : "border-flame/60 text-cream hover:border-flame hover:bg-[#E21A52]/10"
-              )}
-            >
-              Book a consult
-            </Link>
-          </li>
         </ul>
 
         {/* Mobile hamburger */}
@@ -168,23 +155,6 @@ export default function Navbar() {
                 </motion.li>
               ))}
             </ul>
-            <div className="mt-12 flex flex-wrap gap-3">
-              <Link
-                href="/consult"
-                onClick={() => setOpen(false)}
-                className="rounded-full bg-ember px-6 py-3 font-mono text-[13px] tracking-wide text-cream"
-              >
-                Book a consult
-              </Link>
-              <a
-                href={site.merch.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-full border border-border px-6 py-3 font-mono text-[13px] tracking-wide text-cream"
-              >
-                Merch ↗
-              </a>
-            </div>
             <p className="mt-12 font-mono text-xs tracking-wide text-ash">
               {site.location}
             </p>

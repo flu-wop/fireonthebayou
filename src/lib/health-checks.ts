@@ -1,5 +1,3 @@
-import { getStripe } from "@/lib/stripe";
-
 export type Status = "ok" | "warn" | "fail";
 export interface Check {
   label: string;
@@ -12,9 +10,6 @@ export const REQUIRED_VARS: { group: string; name: string; required: boolean; no
   { group: "Site", name: "NEXT_PUBLIC_SITE_URL", required: true },
   { group: "Site", name: "SITE_INDEXABLE", required: false, note: "Set to true at launch so search engines can index" },
   { group: "Admin", name: "ADMIN_PASSWORD", required: true },
-  { group: "Stripe", name: "STRIPE_SECRET_KEY", required: true },
-  { group: "Stripe", name: "STRIPE_WEBHOOK_SECRET", required: true },
-  { group: "Stripe", name: "STRIPE_CONSULT_PRICE_ID", required: true },
   { group: "Resend", name: "RESEND_API_KEY", required: true },
   { group: "Resend", name: "RESEND_FROM_EMAIL", required: true, note: "Must be on a verified Resend domain" },
   { group: "Resend", name: "RESEND_TO_EMAIL", required: false, note: "Defaults to the studio inbox" },
@@ -25,54 +20,6 @@ export function checkEnvVars() {
 }
 
 const safe = (e: unknown) => (e instanceof Error ? e.message : String(e)).slice(0, 160);
-
-export async function checkStripe(): Promise<Check[]> {
-  const stripe = getStripe();
-  if (!stripe) return [{ label: "Stripe API", status: "fail", detail: "STRIPE_SECRET_KEY is not set" }];
-  const out: Check[] = [];
-  const key = process.env.STRIPE_SECRET_KEY ?? "";
-  try {
-    await stripe.balance.retrieve();
-    out.push({
-      label: "Stripe API",
-      status: key.startsWith("sk_live") || key.startsWith("rk_live") ? "ok" : "warn",
-      detail: key.includes("_live") ? "Connected (live mode)" : "Connected, but in TEST mode",
-    });
-  } catch (e) {
-    return [{ label: "Stripe API", status: "fail", detail: safe(e) }];
-  }
-  try {
-    const base = (process.env.NEXT_PUBLIC_SITE_URL ?? "").replace(/\/$/, "");
-    const eps = await stripe.webhookEndpoints.list({ limit: 100 });
-    const mine = eps.data.find((w) => w.url.replace(/\/$/, "") === `${base}/api/stripe/webhook`);
-    if (!mine) {
-      out.push({ label: "Stripe webhook", status: "fail", detail: `No endpoint for ${base}/api/stripe/webhook` });
-    } else if (mine.status !== "enabled") {
-      out.push({ label: "Stripe webhook", status: "fail", detail: `Endpoint is ${mine.status}` });
-    } else if (!mine.enabled_events.includes("checkout.session.completed") && !mine.enabled_events.includes("*")) {
-      out.push({ label: "Stripe webhook", status: "fail", detail: "Missing checkout.session.completed event" });
-    } else {
-      out.push({ label: "Stripe webhook", status: "ok", detail: "Enabled and listening for checkout.session.completed" });
-    }
-  } catch (e) {
-    out.push({ label: "Stripe webhook", status: "warn", detail: `Couldn't read endpoints: ${safe(e)}` });
-  }
-  return out;
-}
-
-export async function checkLastSale(): Promise<Check> {
-  const stripe = getStripe();
-  if (!stripe) return { label: "Last consult booking", status: "warn", detail: "Stripe not configured" };
-  try {
-    const list = await stripe.checkout.sessions.list({ limit: 50 });
-    const paid = list.data.find((s) => s.payment_status === "paid" && s.metadata?.kind === "consult");
-    if (!paid) return { label: "Last consult booking", status: "ok", detail: "No paid consult bookings yet" };
-    const when = new Date(paid.created * 1000).toLocaleString("en-US", { timeZone: "America/Chicago" });
-    return { label: "Last consult booking", status: "ok", detail: `${when} (Central)` };
-  } catch (e) {
-    return { label: "Last consult booking", status: "warn", detail: safe(e) };
-  }
-}
 
 export async function checkResend(): Promise<Check[]> {
   const key = process.env.RESEND_API_KEY;

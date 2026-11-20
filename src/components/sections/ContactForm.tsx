@@ -3,8 +3,8 @@
 /**
  * ContactForm
  * -----------
- * Posts to /api/contact, which emails the studio through Resend. If email
- * isn't configured (or the send fails) it hands off to a prefilled mailto:
+ * Posts to /api/contact, which saves the inquiry. If that
+ * fails it hands off to a prefilled mailto:
  * so no inquiry is lost.
  */
 import { useEffect, useRef, useState } from "react";
@@ -27,14 +27,6 @@ export default function ContactForm() {
   useEffect(() => {
     if (status === "sent") sentRef.current?.scrollIntoView({ block: "center", behavior: "smooth" });
   }, [status]);
-
-  // /contact?interest=creative-development (from the Consult page) prefills the ask.
-  useEffect(() => {
-    const interest = new URLSearchParams(window.location.search).get("interest");
-    if (interest === "creative-development") {
-      setMessage((m) => m || "I'm interested in Creative Development (treatment, script, storyboards, budget, and schedule). Here's the project: ");
-    }
-  }, []);
 
   function openMail() {
     const subject = encodeURIComponent(`New project inquiry — ${name}`);

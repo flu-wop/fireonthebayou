@@ -1,7 +1,7 @@
 // src/lib/beacon.ts
 // Client-side sender for /api/beacon. No cookies, no third parties; the id
 // lives in sessionStorage (one per tab, gone when it closes).
-export type BeaconType = "page_view" | "page_time" | "checkout_click"
+export type BeaconType = "page_view" | "page_time" | "inquiry_sent"
 
 function sid(): string {
   try {

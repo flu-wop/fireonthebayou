@@ -130,7 +130,6 @@ export function PagesTab({ data }: { data: Insights }) {
 }
 
 export function FunnelTab({ data }: { data: Insights }) {
-  const sales = data.sources.find((s) => s.key === "sales")
   return (
     <div className="space-y-5">
       {data.funnels.map((f) => {
@@ -146,7 +145,6 @@ export function FunnelTab({ data }: { data: Insights }) {
                 <div className="h-2 bg-border/60 rounded-sm"><div className="h-2 bg-ember rounded-sm" style={{ width: `${(s.value / top) * 100}%` }} /></div>
               </div>
             ))}
-            {sales && <div className="text-xs text-mist mt-4">Completed purchases in this range: <b className="text-cream">{num(sales.total)}</b> (from Stripe, counted separately from visitor tracking).</div>}
           </Card>
         )
       })}

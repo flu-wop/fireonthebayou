@@ -28,7 +28,7 @@ export interface InsightsConfig {
   /** Events table for this site. MUST be unique when sites share one database. */
   eventsTable: string
   timezone: string
-  /** Event types the beacon route accepts, e.g. ["page_view", "page_time", "checkout_click"]. */
+  /** Event types the beacon route accepts, e.g. ["page_view", "page_time", "inquiry_sent"]. */
   eventTypes: string[]
   sources: InsightsSource[]
   funnels?: { label: string; steps: FunnelStep[] }[]

@@ -28,15 +28,6 @@ export default function Page() {
               message. We use them only to reply about your project.
             </li>
             <li>
-              <strong className="text-cream">Creative Consult bookings.</strong> Your name, email, company, project type, and
-              notes, so we can prepare for and schedule your session.
-            </li>
-            <li>
-              <strong className="text-cream">Payments.</strong> Card payments are handled entirely by Stripe. Your card number
-              never touches our servers and we never see or store it. Stripe shares the payment
-              status and the details you entered at checkout with us.
-            </li>
-            <li>
               <strong className="text-cream">Site analytics.</strong> We use Vercel Web Analytics to count page views and see which
               pages are useful. It does not use cookies and does not identify you personally.
             </li>
@@ -46,7 +37,6 @@ export default function Page() {
         <LegalSection title="Who processes it">
           <p>We use a small number of trusted services to run the site:</p>
           <ul>
-            <li><a href="https://stripe.com/privacy" target="_blank" rel="noopener noreferrer">Stripe</a> for payments.</li>
             <li><a href="https://resend.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">Resend</a> to deliver form and booking emails to our inbox.</li>
             <li><a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">Vercel</a> to host the site and provide privacy-friendly analytics.</li>
             <li>YouTube (in privacy-enhanced mode) to play our films. YouTube may set cookies once you press play.</li>
@@ -56,8 +46,7 @@ export default function Page() {
 
         <LegalSection title="How long we keep it">
           <p>
-            Inquiries and booking details stay in our email for as long as we’re talking about a project, and for our
-            records afterward. Payment records are kept as long as tax law requires. Ask us at any time to see or delete
+            Inquiries stay in our records for as long as we’re talking about a project, and afterward. Ask us at any time to see or delete
             what we hold about you.
           </p>
         </LegalSection>

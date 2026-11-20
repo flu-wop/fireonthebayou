@@ -68,10 +68,10 @@ export default async function InsightsPage({ searchParams }: { searchParams: Pro
         )}
         {failed && <p className="text-red-300 text-sm mb-4">Couldn&apos;t reach the database. Refresh in a moment.</p>}
         {data && !data.trackingSince && (
-          <p className="text-mist text-sm mb-4">Visitor tracking is live. Sales are complete; visitors and page times start counting from today.</p>
+          <p className="text-mist text-sm mb-4">Visitor tracking is live. Visitors and page times start counting from today.</p>
         )}
         {data?.trackingSince && data.trackingSince.slice(0, 10) > data.range.start && (
-          <p className="text-mist text-sm mb-4">Visitor numbers start {longDate(data.trackingSince.slice(0, 10))}, when tracking went live. Sales cover the full range.</p>
+          <p className="text-mist text-sm mb-4">Visitor numbers start {longDate(data.trackingSince.slice(0, 10))}, when tracking went live.</p>
         )}
 
         {data && tab === "overview" && <Overview data={data} />}
