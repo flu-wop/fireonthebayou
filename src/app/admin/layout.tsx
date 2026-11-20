@@ -15,10 +15,10 @@ const link = "block rounded px-3 py-1.5 text-sm text-mist transition-colors hove
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
   const user = await getSession();
   return (
-    <div className="fixed inset-0 z-[200] overflow-y-auto bg-ink text-cream">
+    <div data-admin-shell data-lenis-prevent className="fixed inset-0 z-[200] overflow-hidden bg-ink text-cream">
       {user ? (
-        <div className="flex min-h-full flex-col md:flex-row">
-          <aside className="shrink-0 border-b border-border bg-bayou-deep p-4 md:w-60 md:border-b-0 md:border-r">
+        <div className="flex h-full flex-col md:flex-row">
+          <aside data-lenis-prevent className="no-scrollbar shrink-0 overflow-y-auto border-b border-border bg-bayou-deep p-4 md:h-full md:w-60 md:border-b-0 md:border-r">
             <Link href="/admin" className="mb-4 block font-display text-xl text-cream">FOTB Admin</Link>
             <nav aria-label="Admin" className="flex flex-wrap gap-x-2 md:block md:space-y-0.5">
               <Link href="/admin" className={link}>Overview</Link>
@@ -36,7 +36,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
               <Link href="/admin/insights" className={link}>Insights</Link>
               {user.role === "owner" && (
                 <>
-                  <p className="mt-3 hidden px-3 text-[11px] uppercase tracking-wider text-ash md:block">Owner</p>
+                  <p className="mt-3 hidden px-3 text-[11px] uppercase tracking-wider text-ash md:block">Site</p>
                   <Link href="/admin/settings" className={link}>Settings</Link>
                   <Link href="/admin/taxonomy" className={link}>Formats &amp; industries</Link>
                   <Link href="/admin/system" className={link}>System health</Link>
@@ -48,10 +48,10 @@ export default async function AdminLayout({ children }: { children: React.ReactN
               <button className="ml-2 underline hover:text-cream">Sign out</button>
             </form>
           </aside>
-          <div className="min-w-0 flex-1">{children}</div>
+          <div data-lenis-prevent className="min-h-0 min-w-0 flex-1 overflow-y-auto">{children}</div>
         </div>
       ) : (
-        children
+        <div data-lenis-prevent className="h-full overflow-y-auto">{children}</div>
       )}
     </div>
   );

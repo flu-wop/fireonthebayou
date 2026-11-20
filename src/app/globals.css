@@ -169,3 +169,9 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* Admin is a full-screen shell with its own scrolling areas: lock the page behind it so there is one scrollbar. */
+html:has([data-admin-shell]),
+html:has([data-admin-shell]) body {
+  overflow: hidden !important;
+}
