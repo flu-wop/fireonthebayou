@@ -46,4 +46,11 @@ export function counts(items: CatalogProject[], tax: Taxonomy) {
 }
 
 export const labelFor = (list: Taxon[], key: string) => list.find((t) => t.key === key)?.label ?? key;
-export const ytThumb = (id: string) => `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
+/** YouTube thumbnail. Default is the 1280×720 version (sharp); `hq` is the 480×360 one that always exists. */
+export const ytThumb = (id: string, size: "max" | "hq" = "max") => `https://i.ytimg.com/vi/${id}/${size === "max" ? "maxresdefault" : "hqdefault"}.jpg`;
+
+/** onError for <img>: a video without a 1280×720 thumbnail falls back to the 480×360 one. */
+export function onYtImgError(e: { currentTarget: HTMLImageElement }) {
+  const img = e.currentTarget;
+  if (img.src.includes("/maxresdefault.jpg")) img.src = img.src.replace("maxresdefault", "hqdefault");
+}

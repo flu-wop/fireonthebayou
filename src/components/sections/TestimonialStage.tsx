@@ -3,7 +3,7 @@
 import { useState } from "react";
 import MediaView from "@/components/media/MediaView";
 import PlaceholderFrame from "@/components/media/PlaceholderFrame";
-import { ytThumb } from "@/lib/catalog";
+import { onYtImgError, ytThumb } from "@/lib/catalog";
 import { cn } from "@/lib/utils";
 
 export type StageItem = {
@@ -42,7 +42,7 @@ export default function TestimonialStage({ items }: { items: StageItem[] }) {
           <button type="button" onClick={() => setPlaying(true)} aria-label={`Play ${cur.client} testimonial`} className="group absolute inset-0 block w-full">
             {stageImg && (
               // eslint-disable-next-line @next/next/no-img-element
-              <img src={stageImg} alt="" className="h-full w-full object-cover opacity-80 transition-opacity group-hover:opacity-100" />
+              <img src={stageImg} onError={onYtImgError} alt="" className="h-full w-full object-cover opacity-80 transition-opacity group-hover:opacity-100" />
             )}
             <span className="absolute inset-0 grid place-items-center">
               <span className="grid h-20 w-20 place-items-center rounded-full bg-cream text-ink transition-transform duration-500 ease-cinematic group-hover:scale-105">

@@ -64,6 +64,7 @@ export default function Hero({ mp4, poster, youtubeId, lines, sub, phone, phoneH
           <span>&copy; {new Date().getFullYear()} Fire on the Bayou</span>
           <Link href="/privacy" className="transition-colors hover:text-cream">Privacy</Link>
           <Link href="/terms" className="transition-colors hover:text-cream">Terms</Link>
+          <Link href="/admin" className="transition-colors hover:text-cream">Admin</Link>
           <a href={`tel:${phoneHref}`} className="ml-auto transition-colors hover:text-cream">{phone}</a>
         </p>
       </div>

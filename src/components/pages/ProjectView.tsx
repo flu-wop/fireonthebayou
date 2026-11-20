@@ -15,7 +15,7 @@ import { site } from "@/lib/site";
 export const plain = (s: string) => s.replace(/\*/g, "");
 
 export const screened = (p: ProjectData) => Boolean(p.writeup) && p.youtubeIds.length > 0;
-export const posterFor = (map: MediaMap, p: ProjectData) => resolveWith(map, projectPosterPath(p.slug)) ?? (p.youtubeIds[0] ? ytThumb(p.youtubeIds[0]) : "");
+export const posterFor = (map: MediaMap, p: ProjectData, size: "max" | "hq" = "max") => resolveWith(map, projectPosterPath(p.slug)) ?? (p.youtubeIds[0] ? ytThumb(p.youtubeIds[0], size) : "");
 export const filmsFor = (p: ProjectData) =>
   p.youtubeIds.map((id, i) => ({ label: p.writeup?.filmLabels?.[id] ?? (p.youtubeIds.length > 1 ? `Part ${i + 1}` : "Film"), youtubeId: id }));
 
@@ -105,7 +105,7 @@ export default async function ProjectView({ slug, draft }: { slug: string; draft
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={posterFor(map, next)}
+            src={posterFor(map, next, "hq")}
             alt=""
             className="absolute inset-0 h-full w-full scale-105 object-cover opacity-40 transition-all duration-1000 ease-cinematic group-hover:scale-100 group-hover:opacity-70"
           />

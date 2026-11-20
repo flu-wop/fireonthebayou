@@ -1,4 +1,7 @@
+"use client";
+
 import PlaceholderFrame, { type PlaceholderFrameProps } from "./PlaceholderFrame";
+import { onYtImgError } from "@/lib/catalog";
 import { cn } from "@/lib/utils";
 
 /**
@@ -43,6 +46,6 @@ export default function MediaView({ src, fallbackSrc, present, alt, kind = "imag
   }
   return (
     // eslint-disable-next-line @next/next/no-img-element
-    <img src={url} alt={alt} loading={loading} decoding="async" className={cn("h-full w-full object-cover", className, imgClassName)} />
+    <img src={url} alt={alt} loading={loading} decoding="async" onError={onYtImgError} className={cn("h-full w-full object-cover", className, imgClassName)} />
   );
 }
