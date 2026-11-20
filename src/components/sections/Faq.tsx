@@ -1,9 +1,10 @@
+import { jsonLd as ldJson } from "@/lib/json-ld";
 /**
  * FAQ — native <details> so it works without JavaScript; FAQPage JSON-LD
  * so the answers can appear in search results.
  */
 export default function Faq({ items: faq }: { items: { q: string; a: string }[] }) {
-  const jsonLd = {
+  const data = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     mainEntity: faq.map((f) => ({
@@ -15,7 +16,7 @@ export default function Faq({ items: faq }: { items: { q: string; a: string }[] 
 
   return (
     <section id="faq" className="frame scroll-mt-24 pb-28" aria-labelledby="faq-title">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={ldJson(data)} />
       <div className="grid gap-12 border-t border-border pt-16 md:grid-cols-12 md:gap-16">
         <div className="md:col-span-4">
           <h2 id="faq-title" className="font-display text-[clamp(2.4rem,5vw,4.5rem)] leading-[0.9] text-cream">

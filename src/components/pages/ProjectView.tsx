@@ -1,3 +1,4 @@
+import { jsonLd as ldJson } from "@/lib/json-ld";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import ScreeningRoom from "@/components/film/ScreeningRoom";
@@ -28,7 +29,7 @@ export default async function ProjectView({ slug, draft }: { slug: string; draft
   const poster = posterFor(map, p);
   const next = list[(list.findIndex((x) => x.slug === slug) + 1) % list.length];
 
-  const jsonLd = films.map((f) => ({
+  const data = films.map((f) => ({
     "@context": "https://schema.org",
     "@type": "VideoObject",
     name: films.length > 1 ? `${p.title} — ${f.label}` : p.title,
@@ -41,7 +42,7 @@ export default async function ProjectView({ slug, draft }: { slug: string; draft
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={ldJson(data)} />
 
       <ScreeningRoom
         films={films}

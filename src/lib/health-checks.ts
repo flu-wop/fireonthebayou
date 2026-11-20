@@ -12,7 +12,8 @@ export interface Check {
 export const REQUIRED_VARS: { group: string; name: string; required: boolean; note?: string }[] = [
   { group: "Site", name: "NEXT_PUBLIC_SITE_URL", required: true },
   { group: "Site", name: "SITE_INDEXABLE", required: false, note: "Set to true at launch so search engines can index" },
-  { group: "Admin", name: "ADMIN_PASSWORD", required: true },
+  { group: "Admin", name: "ADMIN_PASSWORD", required: true, note: "Bootstraps the first Owner login" },
+  { group: "Admin", name: "ADMIN_SESSION_SECRET", required: false, note: "Optional separate signing secret for login cookies (defaults to ADMIN_PASSWORD)" },
   { group: "Database", name: "TURSO_URL", required: true },
   { group: "Database", name: "TURSO_TOKEN", required: true },
   { group: "Storage", name: "BLOB_READ_WRITE_TOKEN", required: true, note: "Created by adding a Blob store in Vercel" },

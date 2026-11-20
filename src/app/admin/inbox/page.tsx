@@ -20,7 +20,7 @@ export default async function Inbox({ searchParams }: { searchParams: Promise<{ 
   let err = "";
   try {
     await ensureInquiriesTable();
-    const r = await getDB()!.execute({ sql: `SELECT * FROM fotb_inquiries ${status === "new" || status === "replied" ? "WHERE status = ?" : ""} ORDER BY id DESC LIMIT 300`, args: status === "new" || status === "replied" ? [status] : [] });
+    const r = await getDB()!.execute({ sql: `SELECT * FROM fotb_inquiries ${status === "new" || status === "replied" ? "WHERE status = ?" : ""} ORDER BY id DESC LIMIT 500`, args: status === "new" || status === "replied" ? [status] : [] });
     rows = r.rows as unknown as Record<string, unknown>[];
   } catch (e) {
     err = e instanceof Error ? e.message : "Database unavailable.";
@@ -29,6 +29,7 @@ export default async function Inbox({ searchParams }: { searchParams: Promise<{ 
   return (
     <Page title="Inbox" sub="Every Let's Talk inquiry, saved before anything else happens." actions={<a href="/api/admin/inbox.csv" className={btnGhost}>Export CSV</a>}>
       <div className="mb-5 flex gap-2">{tab(undefined, "All")}{tab("new", "New")}{tab("replied", "Replied")}</div>
+      {rows.length >= 500 && <p className="mb-4 text-xs text-amber-300">Showing the latest 500. Use Export CSV for everything.</p>}
       {err && <p role="alert" className="mb-4 text-sm text-flame-light">{err}</p>}
       <ul className="space-y-4">
         {rows.map((q) => {

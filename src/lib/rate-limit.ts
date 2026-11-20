@@ -2,7 +2,7 @@
  * Small fixed-window rate limiter for the API routes.
  *
  * It lives in memory, so each serverless instance keeps its own count. That
- * stops a single visitor (or a script) from hammering checkout or the contact
+ * stops a single visitor (or a script) from hammering the contact
  * form. For a hard, platform-wide limit add a Vercel Firewall rate-limit rule
  * on /api/* as well; this is the in-app backstop.
  */

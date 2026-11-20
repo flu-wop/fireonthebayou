@@ -9,7 +9,8 @@
     "start": "next start",
     "lint": "next lint",
     "check:catalog": "node scripts/check-catalog.mjs",
-    "seed": "tsx --env-file=.env.local scripts/seed.ts"
+    "seed": "tsx --env-file=.env.local scripts/seed.ts",
+    "check:redirects": "tsx scripts/check-redirects.ts"
   },
   "dependencies": {
     "@flu-wop/design-system": "github:flu-wop/design-system#v0.4.0",

@@ -44,7 +44,7 @@ seed files when the database is unset, unseeded or unreachable, so previews and 
 | Title, description, link preview per page | Admin > SEO | code defaults |
 | Images, SVG logos, hero MP4 | Admin > Placeholders / Media library (Vercel Blob) | files in `/public` |
 
-**Setup (once):** set `TURSO_URL`, `TURSO_TOKEN`, `ADMIN_PASSWORD`, `BLOB_READ_WRITE_TOKEN` (add a Blob store in Vercel).
+**Setup (once):** set `TURSO_URL`, `TURSO_TOKEN`, `ADMIN_PASSWORD`, `BLOB_READ_WRITE_TOKEN` (add a Blob store in Vercel); optionally `ADMIN_SESSION_SECRET` (signs login cookies and preview links; defaults to `ADMIN_PASSWORD`).
 Open `/admin`, sign in with your email and `ADMIN_PASSWORD` (first sign-in creates the Owner account), then press
 **Seed from files** on the Overview page (or run `npm run seed`). Add Editors under Users; each person has their own
 login. After the first sign-in, change the Owner password and stop sharing `ADMIN_PASSWORD`.

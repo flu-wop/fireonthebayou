@@ -13,9 +13,19 @@
  * Respects prefers-reduced-motion by simply not initializing.
  */
 import { ReactLenis } from "lenis/react";
-import type { ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 
 export default function SmoothScroll({ children }: { children: ReactNode }) {
+  // Reduced motion: no Lenis at all, so scrolling stays native.
+  const [reduce, setReduce] = useState(false);
+  useEffect(() => {
+    const q = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const on = () => setReduce(q.matches);
+    on();
+    q.addEventListener("change", on);
+    return () => q.removeEventListener("change", on);
+  }, []);
+  if (reduce) return <>{children}</>;
   return (
     <ReactLenis
       root
