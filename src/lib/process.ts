@@ -28,7 +28,7 @@ export const processSteps: ProcessStep[] = [
     index: "04",
     title: "Sound & Score",
     description:
-      "Mid City Sound scores, mixes, and masters under our own roof — so picture and sound are designed together, not stitched together.",
+      "Voiceover, sound design, and mix are handled with the picture — so sound is designed together with the film, not stitched on at the end.",
   },
   {
     index: "05",
@@ -37,3 +37,22 @@ export const processSteps: ProcessStep[] = [
       "Editorial and a hand-crafted color grade. Delivered in every format you need, built to look like film on any screen.",
   },
 ];
+
+/**
+ * The Post-Production tab on /process.
+ * INTERIM COPY, built from the facilities already described on the site
+ * (five edit and animation bays, sound design room, isolation booth).
+ * Jason to supply the final copy and 3–4 stills.
+ */
+export const postProduction = {
+  heading: "Where the film is finished.",
+  intro:
+    "Five edit and animation bays under one roof: editorial, color, graphics, sound, and delivery handled by the same team that shot the film.",
+  steps: [
+    { title: "Editorial", description: "Story first. Rough cut, revisions, and a locked picture you can sign off on." },
+    { title: "Color", description: "A hand-crafted grade that makes it look like film on any screen." },
+    { title: "Graphics & animation", description: "Titles, lower thirds, logo animation, and full motion graphics built in-house." },
+    { title: "Sound design & voiceover", description: "Sound design room and an isolation booth for voiceover and ADR, with voice talent nationwide who can record remotely." },
+    { title: "Delivery", description: "Every format you need — broadcast, web, and social cutdowns — and revisions whenever you need them." },
+  ],
+};

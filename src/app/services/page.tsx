@@ -3,12 +3,14 @@ import PageHeader from "@/components/sections/PageHeader";
 import { services } from "@/lib/services";
 import Reveal from "@/components/effects/Reveal";
 import Button from "@/components/ui/Button";
+import MediaSlot from "@/components/media/MediaSlot";
+import { servicePhotoPath } from "@/lib/media-manifest";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/services" },
   title: "Services",
   description:
-    "TV and web commercials, brand films, corporate and nonprofit video, events, animation, voiceover and sound, and post — handled end to end by Fire on the Bayou in New Orleans.",
+    "TV and web commercials, social content, brand films, corporate and nonprofit video, events, animation, voiceover and sound, and post — handled end to end by Fire on the Bayou in New Orleans.",
 };
 
 export default function ServicesPage() {
@@ -17,7 +19,7 @@ export default function ServicesPage() {
       <PageHeader
         eyebrow="Capabilities"
         title={<>What we<br /><span className="text-flame">make.</span></>}
-        lede="Concept to final delivery, under one roof — including the sound and score, scored next door at Mid City Sound."
+        lede="Concept to final delivery, under one roof — including sound design and voiceover, social content, and post."
       />
 
       <section className="frame pb-32">
@@ -25,6 +27,20 @@ export default function ServicesPage() {
           {services.map((service, i) => (
             <Reveal key={service.index} delay={(i % 2) * 0.08}>
               <article className="card-lift flex h-full flex-col bg-charcoal p-9 md:p-12">
+                <div className="-mx-9 -mt-9 mb-8 overflow-hidden md:-mx-12 md:-mt-12">
+                  <MediaSlot
+                    src={servicePhotoPath(service.title)}
+                    alt={service.title}
+                    placeholder={{
+                      variant: "still",
+                      label: "STILL 1600×1067",
+                      size: "1600×1067 JPG (3:2)",
+                      where: `/public${servicePhotoPath(service.title)}`,
+                      title: service.title,
+                      aspect: "aspect-[3/2]",
+                    }}
+                  />
+                </div>
                 <div className="mb-6 flex items-center justify-between">
                   <span className="font-mono text-xs tracking-wide text-flame">
                     {service.index}

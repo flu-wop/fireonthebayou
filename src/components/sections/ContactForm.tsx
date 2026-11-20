@@ -10,6 +10,7 @@
 import { useEffect, useRef, useState } from "react";
 import { site } from "@/lib/site";
 import Button from "@/components/ui/Button";
+import { beacon } from "@/lib/beacon";
 
 const budgets = ["< $5k", "$5k–15k", "$15k–40k", "$40k+"];
 
@@ -20,6 +21,7 @@ export default function ContactForm() {
   const [budget, setBudget] = useState(budgets[1]);
   const [message, setMessage] = useState("");
   const [website, setWebsite] = useState(""); // honeypot
+  const [optIn, setOptIn] = useState(false); // Mailchimp list — off unless ticked
   const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
   const [error, setError] = useState("");
   const sentRef = useRef<HTMLDivElement>(null);
@@ -45,10 +47,11 @@ export default function ContactForm() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, phone, budget, message, website }),
+        body: JSON.stringify({ name, email, phone, budget, message, website, optIn }),
       });
       const data = await res.json().catch(() => ({}));
       if (res.ok) {
+        beacon("inquiry_sent");
         setStatus("sent");
         return;
       }
@@ -162,6 +165,18 @@ export default function ContactForm() {
           onChange={(e) => setMessage(e.target.value)}
         />
       </div>
+
+      <label className="flex cursor-pointer items-start gap-3 text-sm text-mist">
+        <input
+          type="checkbox"
+          checked={optIn}
+          onChange={(e) => setOptIn(e.target.checked)}
+          className="mt-1 h-4 w-4 shrink-0 accent-[#D01146]"
+        />
+        <span>
+          Add me to the Fire on the Bayou email list for news and new work. Optional; unsubscribe any time.
+        </span>
+      </label>
 
       {error && (
         <p role="alert" className="text-sm text-flame-light">

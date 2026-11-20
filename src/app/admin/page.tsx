@@ -6,7 +6,7 @@ import { isAdmin } from "@/lib/admin-auth"
 
 const PAGES = [
   { href: "/admin/insights", title: "Insights", desc: "Sales, visitors, top pages and the buying funnel." },
-  { href: "/admin/system", title: "System", desc: "Environment variables and integration health." },
+  { href: "/admin/system", title: "System", desc: "Environment variables, database and Mailchimp health." },
 ]
 
 export default async function AdminHome() {

@@ -25,7 +25,7 @@ export default function Page() {
           <ul>
             <li>
               <strong className="text-cream">Contact form.</strong> Your name, email, optional phone number, budget range, and
-              message. We use them only to reply about your project.
+              message. We save them so we can reply about your project. If you tick the optional box, your name and email are also added to our Mailchimp email list.
             </li>
             <li>
               <strong className="text-cream">Site analytics.</strong> We use Vercel Web Analytics to count page views and see which
@@ -37,7 +37,8 @@ export default function Page() {
         <LegalSection title="Who processes it">
           <p>We use a small number of trusted services to run the site:</p>
           <ul>
-            <li><a href="https://resend.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">Resend</a> to deliver form and booking emails to our inbox.</li>
+            <li><a href="https://mailchimp.com/legal/privacy/" target="_blank" rel="noopener noreferrer">Mailchimp</a> for our email list (only if you opt in).</li>
+            <li><a href="https://turso.tech/privacy-policy" target="_blank" rel="noopener noreferrer">Turso</a> to store inquiries in a database.</li>
             <li><a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">Vercel</a> to host the site and provide privacy-friendly analytics.</li>
             <li>YouTube (in privacy-enhanced mode) to play our films. YouTube may set cookies once you press play.</li>
           </ul>

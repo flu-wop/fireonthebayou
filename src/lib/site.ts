@@ -11,7 +11,7 @@ export const site = {
   /** Short supporting line under the headline. */
   heroSub: "Commercials and brand films made in New Orleans since 2006.",
   description:
-    "Fire on the Bayou is an award-winning New Orleans video production house making TV commercials, brand films, and corporate video since 2006. Home of Mid City Sound.",
+    "Fire on the Bayou is an award-winning New Orleans video production house making TV commercials, brand films, and corporate video since 2006.",
   url: (process.env.NEXT_PUBLIC_SITE_URL || "https://fireonthebayou.com").replace(/\/$/, ""),
   /**
    * Search engines are kept out until launch, so this preview never competes
@@ -33,13 +33,6 @@ export const site = {
     youtube: "https://www.youtube.com/@firenola",
     facebook: "https://www.facebook.com/fireonthebayounola/",
     linkedin: "https://www.linkedin.com/in/jason-villemarette-17b38021/",
-  },
-  // Sister brand — connection highlighted on the About page
-  studio: {
-    name: "Mid City Sound",
-    url: "https://midcitysound.com",
-    blurb:
-      "Our in-house recording and mixing studio in Mid-City — where the score, the sound design, and the room tone all live under one roof.",
   },
   // Founder portrait on the About page. Drop the photo in /public/images and
   // set `photo` (e.g. "/images/jason-villemarette.jpg"); until then the page

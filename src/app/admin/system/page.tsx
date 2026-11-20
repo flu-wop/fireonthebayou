@@ -1,7 +1,7 @@
 import { isAdmin } from "@/lib/admin-auth";
 import { logoutAction } from "../actions";
 import LoginForm from "./LoginForm";
-import { checkEnvVars, checkResend, type Check, type Status } from "@/lib/health-checks";
+import { checkDatabase, checkEnvVars, checkMailchimp, type Check, type Status } from "@/lib/health-checks";
 
 export const dynamic = "force-dynamic";
 
@@ -25,9 +25,9 @@ function Row({ c }: { c: Check }) {
 export default async function SystemPage() {
   if (!(await isAdmin())) return <LoginForm />;
 
-  const resend = await checkResend();
+  const [db, mc] = await Promise.all([checkDatabase(), checkMailchimp()]);
   const env = checkEnvVars();
-  const checks = [...resend];
+  const checks = [...db, ...mc];
   const missing = env.filter((v) => v.required && !v.set).length;
   const worst: Status = checks.some((c) => c.status === "fail") || missing ? "fail" : checks.some((c) => c.status === "warn") ? "warn" : "ok";
   const groups = [...new Set(env.map((v) => v.group))];
@@ -37,7 +37,7 @@ export default async function SystemPage() {
       <div className="mb-8 flex items-center justify-between">
         <div>
           <h1 className="font-display text-2xl uppercase tracking-widest">System</h1>
-          <p className="text-sm text-mist">Env vars and email. Refresh the page to re-check.</p>
+          <p className="text-sm text-mist">Env vars, database and Mailchimp. Refresh the page to re-check.</p>
         </div>
         <form action={logoutAction}>
           <button className="text-sm text-mist underline hover:text-cream">Sign out</button>

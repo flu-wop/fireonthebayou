@@ -1,20 +1,21 @@
 import type { Metadata } from "next";
 import PageHeader from "@/components/sections/PageHeader";
-import StudioConnection from "@/components/sections/StudioConnection";
 import NextStep from "@/components/sections/NextStep";
 import Statement from "@/components/sections/Statement";
 import Reveal from "@/components/effects/Reveal";
 import Parallax from "@/components/effects/Parallax";
 import CountUp from "@/components/effects/CountUp";
 import { site } from "@/lib/site";
-import { clients } from "@/lib/clients";
+import LogoWall from "@/components/sections/LogoWall";
+import MediaSlot from "@/components/media/MediaSlot";
+import { crewPortraitPath } from "@/lib/media-manifest";
 import { crew } from "@/lib/crew";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/about" },
-  title: "Our Story",
+  title: "Studio",
   description:
-    "Fire on the Bayou is a New Orleans production house, home of Mid City Sound. Our story, our crew, and why sound lives under our own roof.",
+    "Fire on the Bayou is a New Orleans production house: five edit and animation bays, a sound stage, a grip truck, a sound design room, and the crew behind the work.",
 };
 
 // Small set of stat-style facts. Edit freely.
@@ -28,7 +29,7 @@ export default function AboutPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Our Story"
+        eyebrow="Studio"
         title={<>Made in<br /><span className="text-flame">New Orleans.</span></>}
         lede="Fire on the Bayou grew out of a simple idea: a production house where the camera and the console live in the same building."
       />
@@ -47,9 +48,7 @@ export default function AboutPage() {
           </Reveal>
           <Reveal delay={0.12}>
             <p className="mt-6 text-lg leading-relaxed text-mist">
-              <span className="text-cream">{site.studio.name}</span>, our
-              recording and mixing studio, lives under the same roof. And the
-              idea hasn&rsquo;t changed: start a fire with passion, the right
+              The idea hasn&rsquo;t changed: start a fire with passion, the right
               talent, and integrity &mdash; and do serious work without taking
               ourselves too seriously.
             </p>
@@ -119,30 +118,44 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Crew — presented like closing credits, no photos, just the receipts */}
+      {/* Crew — set like film credits, with portraits where supplied */}
       <section className="frame py-28">
         <Reveal>
           <p className="eyebrow mb-12 text-center">The Crew</p>
         </Reveal>
-        <div className="mx-auto grid max-w-3xl grid-cols-1 gap-x-12 gap-y-8 sm:grid-cols-2">
+        <div className="mx-auto grid max-w-5xl grid-cols-1 gap-x-10 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
           {crew.map((c, i) => (
-            <Reveal key={c.name} delay={(i % 2) * 0.08}>
-              <div className="border-b border-border pb-4">
-                <p className="font-display text-xl text-cream">{c.name}</p>
-                <p className="mt-1 font-mono text-[13px] tracking-wide text-flame">
-                  {c.role}
-                </p>
-                <p className="mt-1.5 text-sm text-mist">{c.note}</p>
-                {"href" in c && c.href && (
-                  <a
-                    href={c.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-2 inline-block text-sm text-cream underline decoration-cream/30 underline-offset-4 transition-colors hover:text-flame"
-                  >
-                    Follow Jason on LinkedIn ↗
-                  </a>
-                )}
+            <Reveal key={c.slug} delay={(i % 3) * 0.08}>
+              <div>
+                <div className="mb-5 aspect-[4/5] overflow-hidden rounded-sm border border-border">
+                  <MediaSlot
+                    src={crewPortraitPath(c.slug)}
+                    alt={`${c.name}, ${c.role}`}
+                    placeholder={{
+                      variant: "crew",
+                      label: "PORTRAIT 1000×1250",
+                      size: "1000×1250 JPG (4:5)",
+                      where: `/public${crewPortraitPath(c.slug)}`,
+                      title: c.name,
+                      aspect: "aspect-[4/5]",
+                    }}
+                  />
+                </div>
+                <div className="border-b border-border pb-4">
+                  <p className="font-display text-xl text-cream">{c.name}</p>
+                  <p className="mt-1 font-mono text-[13px] tracking-wide text-flame">{c.role}</p>
+                  <p className="mt-1.5 text-sm text-mist">{c.note}</p>
+                  {c.href && (
+                    <a
+                      href={c.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-2 inline-block text-sm text-cream underline decoration-cream/30 underline-offset-4 transition-colors hover:text-flame"
+                    >
+                      Follow Jason on LinkedIn ↗
+                    </a>
+                  )}
+                </div>
               </div>
             </Reveal>
           ))}
@@ -159,19 +172,13 @@ export default function AboutPage() {
               made films for
             </h2>
             <p className="max-w-sm text-sm leading-relaxed text-mist">
-              Twenty years of New Orleans brands, institutions, and the occasional rock star.
+              Twenty years of New Orleans brands and institutions.
             </p>
           </div>
-          <ul className="columns-2 gap-x-10 text-base leading-[2.1] text-cream sm:columns-3 lg:columns-4">
-            {clients.map((c) => (
-              <li key={c} className="break-inside-avoid">{c}</li>
-            ))}
-          </ul>
+          <LogoWall />
         </div>
       </section>
 
-      {/* Mid City Sound deep-dive */}
-      <StudioConnection />
 
       <Statement text="We don't just shoot in *New* *Orleans.* We're of it — the rhythm, the heat, the stories that only happen *below* *sea* *level.*" />
       <NextStep line="Let's make something." />

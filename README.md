@@ -41,7 +41,10 @@ Repo: `flu-wop/fireonthebayou` → Vercel auto-deploys `main` to fireonthebayou.
 ### Contact + email
 
 The site takes **no online payments**. `/api/contact` is rate limited (`src/lib/rate-limit.ts`) and honeypotted.
-Email moves from Resend to Mailchimp in the next phase; the public address is `site.email`
+Each inquiry is saved to Turso (`fotb_inquiries`); if the visitor ticked the opt-in box the contact is also added to a
+Mailchimp audience with a tag. Env vars: `TURSO_URL`, `TURSO_TOKEN`, `MAILCHIMP_API_KEY`, `MAILCHIMP_SERVER_PREFIX`
+(e.g. `us21`), `MAILCHIMP_AUDIENCE_ID` (optional `MAILCHIMP_TAG`, default "Website inquiry"). The internal new-inquiry
+alert is undecided: implement it in `notifyNewInquiry()` in `src/lib/notify.ts`. The public address is `site.email`
 (hello@fireonthebayou.com). Page views are tracked with Vercel Web Analytics (enable it in the project's Analytics tab).
 
 ### Placeholders
