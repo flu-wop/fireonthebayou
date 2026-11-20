@@ -125,6 +125,14 @@
     letter-spacing: -0.005em;
   }
 
+  /* Hide scrollbars on horizontally scrolling chip rows */
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
   /* Hairline rule in brand border color */
   .rule {
     @apply h-px w-full bg-border;

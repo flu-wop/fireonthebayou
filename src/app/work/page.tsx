@@ -1,32 +1,33 @@
 import type { Metadata } from "next";
 import PageHeader from "@/components/sections/PageHeader";
-import WorkGrid from "@/components/sections/WorkGrid";
-import Marquee from "@/components/sections/Marquee";
-import FilmArchive from "@/components/sections/FilmArchive";
-import { archive } from "@/lib/archive";
+import WorkBrowser from "@/components/work/WorkBrowser";
+import type { WorkItem } from "@/components/work/types";
+import { catalog } from "@/lib/catalog";
+import { publicFileExists } from "@/lib/media-manifest";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/work" },
   title: "Work",
-  description:
-    "Selected commercials, brand films, and corporate work from Fire on the Bayou.",
+  description: "Commercials, brand films, social content and more from Fire on the Bayou — filter by format and industry.",
 };
 
 export default function WorkPage() {
+  // File checks happen at build time (static page); phase 4 reads them from the database.
+  const items: WorkItem[] = catalog.map((p) => ({
+    ...p,
+    posterPresent: publicFileExists(`/images/work-${p.slug}.jpg`),
+    previewPresent: publicFileExists(`/video/work-${p.slug}.mp4`),
+  }));
   return (
     <>
       <PageHeader
         eyebrow="Selected Work"
-        title={<>The<br /><span className="text-flame">reel.</span></>}
-        lede="Commercials and brand films for the companies that make New Orleans run. Pick a film to step into its screening room."
+        title={<>The<br /><span className="text-flame">work.</span></>}
+        lede="Every commercial, brand film and social spot, sorted by format and industry."
       />
       <section className="frame pb-28">
-        <WorkGrid />
+        <WorkBrowser items={items} />
       </section>
-      <FilmArchive films={archive} />
-      <Marquee
-        items={["Shot in New Orleans", "Scored at Mid City Sound", "Graded like film"]}
-      />
     </>
   );
 }

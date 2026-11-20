@@ -6,6 +6,10 @@ export const site = {
   name: "Fire on the Bayou",
   shortName: "FOTB",
   tagline: "A New Orleans video production house since 2006.",
+  /** Homepage stage headline, one entry per line; the last line is crimson. Interim wording until Izzie/Jason supply the tagline. */
+  heroLines: ["We Light", "the Bayou", "ON FIRE"],
+  /** Short supporting line under the headline. */
+  heroSub: "Commercials and brand films made in New Orleans since 2006.",
   description:
     "Fire on the Bayou is an award-winning New Orleans video production house making TV commercials, brand films, and corporate video since 2006. Home of Mid City Sound.",
   url: (process.env.NEXT_PUBLIC_SITE_URL || "https://fireonthebayou.com").replace(/\/$/, ""),

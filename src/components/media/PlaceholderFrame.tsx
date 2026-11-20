@@ -49,7 +49,7 @@ function Corners() {
   );
 }
 
-function FilmStrip({ side }: { side: "left" | "right" }) {
+export function FilmStrip({ side }: { side: "left" | "right" }) {
   return (
     <span
       aria-hidden
@@ -125,7 +125,7 @@ export default function PlaceholderFrame({
           <p
             className={cn(
               variant === "logo" ? "font-display text-cream" : "font-display text-cream",
-              compact ? "text-lg leading-none md:text-xl" : variant === "project" ? "text-2xl leading-[0.95] md:text-3xl" : "text-2xl leading-none"
+              compact ? "line-clamp-2 text-sm leading-[1.05]" : variant === "project" ? "text-2xl leading-[0.95] md:text-3xl" : "text-2xl leading-none"
             )}
           >
             {title}

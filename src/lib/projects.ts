@@ -73,60 +73,6 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug: "home-depot",
-    title: "Team Depot",
-    client: "Home Depot",
-    category: "Brand Film",
-    blurb: "A national nonprofit story, told through the New Orleans homes still being rebuilt.",
-    poster: "/images/work-home-depot.jpg",
-    video: "/video/work-home-depot.mp4",
-    span: "regular",
-    films: [{ label: "Brand Film", youtubeId: "71qT6GkaUiQ" }],
-    logline: "Every purchase helps rebuild a *New* *Orleans* *home.*",
-    approach: {
-      heading: "A corporate brand, telling a neighborhood story.",
-      body: [
-        "Team Depot is the Home Depot nonprofit restoring homes damaged by natural disasters — still urgent work in New Orleans, years after Katrina.",
-        "The film is carried by its music, footage of the damaged houses, and interviews with the people Team Depot has helped — and lets viewers know their purchases keep that work going.",
-      ],
-    },
-    credits: [
-      { role: "Client", name: "The Home Depot" },
-      { role: "Production Company", name: "Fire on the Bayou" },
-      { role: "Director", name: "Jason Villemarette" },
-    ],
-  },
-  {
-    slug: "red-bull",
-    title: "Street Kings",
-    client: "Red Bull",
-    category: "Brand Film",
-    blurb: "Brass band New Creations, shot live in the streets for Red Bull's annual Street Kings competition.",
-    poster: "/images/work-red-bull.jpg",
-    video: "/video/work-red-bull.mp4",
-    span: "tall",
-    films: [
-      { label: "New Creations", youtubeId: "fyPEqUnW64U" },
-      { label: "TBC", youtubeId: "GCGTQJ98YVE" },
-      { label: "New Breed", youtubeId: "hx84_T1rfBU" },
-      { label: "Pinettes", youtubeId: "Can0CEKW8lA" },
-    ],
-    logline: "Four *New* *Orleans* brass bands, chasing the Street Kings crown.",
-    approach: {
-      heading: "Give the band the platform.",
-      body: [
-        "Every year Red Bull sponsors Street Kings, a New Orleans brass band competition. Each film follows one contender — New Creations, TBC, New Breed, and the Pinettes — interviews with the band cut against their live performances in the streets.",
-        "Directed, shot, and edited entirely in-house.",
-      ],
-    },
-    credits: [
-      { role: "Client", name: "Red Bull" },
-      { role: "Featuring", name: "New Creations · TBC · New Breed · The Pinettes" },
-      { role: "Production Company", name: "Fire on the Bayou" },
-      { role: "Director", name: "Jason Villemarette" },
-    ],
-  },
-  {
     slug: "rouses",
     title: "Feels Like Home",
     client: "Rouses Markets",
@@ -217,7 +163,6 @@ export const projects: Project[] = [
     span: "regular",
     films: [
       { label: "Bigger Than Monday", youtubeId: "SoIBpqmuVjg" },
-      { label: "Nothing Beats Louisiana", youtubeId: "_GKzVp_MMDs" },
     ],
     logline: "Red beans, shot like a *Blue* *Note* record sleeve.",
     approach: {
@@ -292,47 +237,6 @@ export const projects: Project[] = [
   },
   // ---- Added from fireonthebayou.com and the @firenola YouTube channel ----
   {
-    slug: "sdt-waste",
-    title: "SDT Waste & Debris",
-    client: "SDT Waste & Debris (Sidney Torres)",
-    category: "Commercial",
-    blurb: "Sidney Torres's New Orleans sanitation company, with Kid Rock, Lenny Kravitz, and the Saints.",
-    poster: "/images/work-sdt-waste.jpg",
-    video: "/video/work-sdt-waste.mp4",
-    span: "wide",
-    films: [
-      { label: "Saints", youtubeId: "jnPoIbi4Hak" },
-      { label: "Kid Rock", youtubeId: "udwgJPKQ0KQ" },
-      { label: "Lenny Kravitz", youtubeId: "4uVXsJjnnS8" },
-    ],
-    logline: "Trash pickup, sold with Kid Rock, *Lenny* *Kravitz,* and the Saints.",
-    credits: [
-      { role: "Client", name: "SDT Waste & Debris" },
-      { role: "Featuring", name: "Kid Rock · Lenny Kravitz" },
-      { role: "Production Company", name: "Fire on the Bayou" },
-    ],
-  },
-  {
-    slug: "copelands",
-    title: "There's Always Something Good",
-    client: "Copeland's of New Orleans",
-    category: "Commercial",
-    blurb: "The \"There's Always Something Good\" campaign for Copeland's of New Orleans.",
-    poster: "/images/work-copelands.jpg",
-    video: "/video/work-copelands.mp4",
-    span: "regular",
-    films: [
-      { label: "Campaign", youtubeId: "5laDHj5slDg" },
-      { label: "35 Years", youtubeId: "P2eVN0d9sgg" },
-      { label: "Seafood Menu", youtubeId: "i2yZMxNJfnc" },
-    ],
-    logline: "There's always something good at *Copeland's.*",
-    credits: [
-      { role: "Client", name: "Copeland's of New Orleans" },
-      { role: "Production Company", name: "Fire on the Bayou" },
-    ],
-  },
-  {
     slug: "acme-oyster-house",
     title: "Life's More Fun With Seafood",
     client: "ACME Oyster House",
@@ -363,7 +267,6 @@ export const projects: Project[] = [
     video: "/video/work-audubon.mp4",
     span: "tall",
     films: [
-      { label: "Audubon Day", youtubeId: "p0eibwIXb30" },
       { label: "New Lion Exhibit", youtubeId: "8r9JendcIz4" },
     ],
     logline: "The zoo and the aquarium, set to a *New* *Orleans* *jazz* track.",
@@ -390,7 +293,6 @@ export const projects: Project[] = [
     span: "regular",
     films: [
       { label: "Get Outside Yourself", youtubeId: "n9sqhdTuWkI" },
-      { label: "Life Has a Log In", youtubeId: "qYQPEAd28qw" },
       { label: "Birthday", youtubeId: "gh6Hl8KU6BU" },
     ],
     logline: "Get *outside* yourself.",
@@ -434,52 +336,17 @@ export const projects: Project[] = [
       { role: "Production Company", name: "Fire on the Bayou" },
     ],
   },
-  {
-    slug: "louisiana-economic-development",
-    title: "Louisiana Economic Development",
-    client: "Louisiana Economic Development",
-    category: "Brand Film",
-    blurb: "Made with Peter Mayer Advertising for the state agency that brings businesses and jobs to Louisiana.",
-    poster: "/images/work-louisiana-economic-development.jpg",
-    video: "/video/work-louisiana-economic-development.mp4",
-    span: "wide",
-    films: [{ label: "Film", youtubeId: "trxZOgfCrao" }],
-    logline: "Making the case for doing business in *Louisiana.*",
-    credits: [
-      { role: "Client", name: "Louisiana Economic Development" },
-      { role: "Agency", name: "Peter Mayer Advertising" },
-      { role: "Production Company", name: "Fire on the Bayou" },
-    ],
-  },
 ];
 
-/** The home page reel: one full-screen frame each, in this order. */
-export const homeReel = ["aucoin-hart", "red-bull", "rouses", "sdt-waste", "sazerac-house", "home-depot"]
-  .map((slug) => projects.find((p) => p.slug === slug)!)
-  .filter(Boolean);
-
-/** Order on the Work page — headline clients first. Unlisted projects follow. */
-const workOrder = [
-  "aucoin-hart", "red-bull", "rouses", "sdt-waste", "home-depot", "copelands",
-  "sazerac-house", "acme-oyster-house", "audubon", "new-orleans-and-company",
-  "blue-runner", "blue-plate", "reily-foods", "crystal-hot-sauce", "city-park",
-  "smoothie-king", "russell-athletic", "louisiana-economic-development",
-];
-export const orderedProjects = [...projects].sort((a, b) => {
-  const ia = workOrder.indexOf(a.slug), ib = workOrder.indexOf(b.slug);
-  return (ia < 0 ? 999 : ia) - (ib < 0 ? 999 : ib);
-});
-
-/** Projects that have a screening-room page. */
-export const screenedProjects = orderedProjects.filter((p) => p.films?.length);
+/**
+ * Screening-room write-ups. Only projects that are also in
+ * data/fotb-catalog.json belong here (see src/lib/catalog-meta.ts for the slug
+ * mapping); everything else lives in the catalog alone.
+ */
+export const screenedProjects = projects.filter((p) => p.films?.length);
 
 export function getProject(slug: string) {
   return screenedProjects.find((p) => p.slug === slug);
-}
-
-/** Where a card should link: its own page if it has one, else the reel. */
-export function projectHref(p: Project) {
-  return p.films?.length ? `/work/${p.slug}` : "/work";
 }
 
 /** The next screened film after this one, wrapping around. */

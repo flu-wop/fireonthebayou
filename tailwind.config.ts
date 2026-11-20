@@ -59,6 +59,10 @@ const config: Config = {
         shimmer: {
           "100%": { transform: "translateX(100%)" },
         },
+        marquee: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
         "ember-pulse": {
           "0%, 100%": { opacity: "0.5" },
           "50%": { opacity: "1" },
@@ -66,6 +70,7 @@ const config: Config = {
       },
       animation: {
         shimmer: "shimmer 2s infinite",
+        marquee: "marquee 90s linear infinite",
         "ember-pulse": "ember-pulse 4s ease-in-out infinite",
       },
     },

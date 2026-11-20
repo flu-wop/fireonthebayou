@@ -6,11 +6,14 @@
  * Contact details, nav echo, socials, and a faint ember glow from the base.
  */
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { navLinks, site, socialLabels } from "@/lib/site";
 import SocialIcon from "@/components/ui/SocialIcon";
 
 export default function Footer() {
   const year = new Date().getFullYear();
+  // The homepage is a single screen; it carries its own slim legal line.
+  if (usePathname() === "/") return null;
 
   return (
     <footer className="relative overflow-hidden border-t border-border bg-ink">

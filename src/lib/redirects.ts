@@ -1,7 +1,9 @@
 /**
  * 301s from the old WordPress site (fireonthebayou.com), so links and search
  * rankings carry over at launch. Generated from its sitemaps (110 URLs).
- * Project/client pages map to their new screening room where one exists.
+ * Project/client pages map to their screening room where one exists; pages for
+ * projects no longer in the catalog (Red Bull, Home Depot, Louisiana Economic
+ * Development) land on /work.
  * The old blog posts were generic SEO articles; they point home.
  */
 export const legacyRedirects: { source: string; destination: string; permanent: true }[] = [
@@ -9,8 +11,8 @@ export const legacyRedirects: { source: string; destination: string; permanent: 
   { source: "/project/aucoin-hart-commercial-part-2", destination: "/work/aucoin-hart", permanent: true },
   { source: "/project/aucoin-hart-commercial", destination: "/work/aucoin-hart", permanent: true },
   { source: "/project/dressed-blue-plate-mayonnaise", destination: "/work/blue-plate", permanent: true },
-  { source: "/project/team-depot-new-orleans", destination: "/work/home-depot", permanent: true },
-  { source: "/project/red-bull-featuring-new-creation-brass-band", destination: "/work/red-bull", permanent: true },
+  { source: "/project/team-depot-new-orleans", destination: "/work", permanent: true },
+  { source: "/project/red-bull-featuring-new-creation-brass-band", destination: "/work", permanent: true },
   { source: "/project/nothing-beats-louisiana", destination: "/work/blue-runner", permanent: true },
   { source: "/project/bigger-than-monday", destination: "/work/blue-runner", permanent: true },
   { source: "/project/rouses-markets-crawfish", destination: "/work/rouses", permanent: true },
@@ -22,13 +24,13 @@ export const legacyRedirects: { source: string; destination: string; permanent: 
   { source: "/project/life-has-a-log-in", destination: "/work/city-park", permanent: true },
   { source: "/project/russel-athletic-mark-ingram-brand-video", destination: "/work/russell-athletic", permanent: true },
   { source: "/project/crystal-hot-sauce", destination: "/work/crystal-hot-sauce", permanent: true },
-  { source: "/project/louisiana-economic-development", destination: "/work/louisiana-economic-development", permanent: true },
+  { source: "/project/louisiana-economic-development", destination: "/work", permanent: true },
   { source: "/project/:slug*", destination: "/work", permanent: true },
-  { source: "/client/louisiana-economic-development", destination: "/work/louisiana-economic-development", permanent: true },
+  { source: "/client/louisiana-economic-development", destination: "/work", permanent: true },
   { source: "/client/blue-runner-foods-commercials-and-videos", destination: "/work/blue-runner", permanent: true },
   { source: "/client/crystal-hot-sauce-commercial-new-orleans", destination: "/work/crystal-hot-sauce", permanent: true },
-  { source: "/client/home-depot", destination: "/work/home-depot", permanent: true },
-  { source: "/client/red-bull", destination: "/work/red-bull", permanent: true },
+  { source: "/client/home-depot", destination: "/work", permanent: true },
+  { source: "/client/red-bull", destination: "/work", permanent: true },
   { source: "/client/reily-foods", destination: "/work/reily-foods", permanent: true },
   { source: "/client/louisiana-rouses-supermarket-video-production", destination: "/work/rouses", permanent: true },
   { source: "/client/russel-athletic", destination: "/work/russell-athletic", permanent: true },
