@@ -10,6 +10,9 @@ import { listAudit } from "@/lib/content/admin-store";
 import { KINDS, formValues, projectToForm } from "@/lib/content/forms";
 import type { Kind, ProjectData } from "@/lib/content/types";
 import { PREVIEW_PAGES, previewSlugFor } from "@/lib/preview-pages";
+import { slotFor } from "@/lib/content/media-slots";
+import { getMediaOverrides, resolveWith } from "@/lib/media";
+import UploadButton from "@/components/admin/UploadButton";
 
 export const dynamic = "force-dynamic";
 
@@ -29,6 +32,8 @@ export default async function EditRecord({ params, searchParams }: { params: Pro
   const values = formValues(meta.fields, base);
   const sp = await searchParams;
   const history = isNew ? [] : (await listAudit(8, kind, key)).filter((a) => a.action.startsWith("publish") || a.action.startsWith("draft"));
+  const slot = isNew ? null : slotFor(kind as Kind, key);
+  const current = slot ? resolveWith(await getMediaOverrides(), slot.path) : null;
   const page = PREVIEW_PAGES.find((p) => p.path === meta.previewPage)?.slug ?? previewSlugFor(meta.previewPage);
   const previewHref = kind === "project" && rec && (rec.data as ProjectData).writeup ? `/preview/work/${key}?t=${previewToken()}` : `/preview/${page}?t=${previewToken()}`;
 
@@ -42,6 +47,20 @@ export default async function EditRecord({ params, searchParams }: { params: Pro
       <Card>
         <RecordForm action={saveRecordAction} fields={meta.fields} values={values} tax={tax} hidden={{ kind, key: isNew ? "" : key }} existing={!isNew} allowDelete previewHref={isNew ? undefined : previewHref} />
       </Card>
+      {slot && (
+        <Card title={slot.label}>
+          <div className="flex flex-wrap items-start gap-5">
+            <div className="grid h-24 w-40 shrink-0 place-items-center overflow-hidden rounded border border-border bg-ink">
+              {current ? /* eslint-disable-next-line @next/next/no-img-element */ <img src={current} alt="" className="max-h-full max-w-full object-contain" /> : <span className="px-2 text-center text-xs text-amber-300">None yet. A labeled placeholder is showing on the site.</span>}
+            </div>
+            <div className="min-w-0 space-y-2">
+              <p className="text-xs text-ash">{slot.hint}</p>
+              <UploadButton slot={slot.path} kind={slot.kind} width={slot.width} height={slot.height} defaultAlt={String((rec?.data as unknown as Record<string, unknown>)?.name ?? (rec?.data as unknown as Record<string, unknown>)?.title ?? (rec?.data as unknown as Record<string, unknown>)?.client ?? "")} label={current ? `Replace ${slot.label.toLowerCase()}` : `Upload ${slot.label.toLowerCase()}`} />
+              <p className="text-xs text-ash">Uploads go live right away; they don&rsquo;t need Publish.</p>
+            </div>
+          </div>
+        </Card>
+      )}
       {history.length > 0 && (
         <Card title="Recent changes">
           <ul className="divide-y divide-border text-sm">

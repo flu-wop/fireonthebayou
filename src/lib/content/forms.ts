@@ -84,7 +84,7 @@ export const KINDS: Partial<Record<Kind, KindMeta>> = {
     label: "Client",
     plural: "Clients and logos",
     previewPage: "/",
-    description: "Feeds the home-page logo banner and the Studio wall. Upload logos under Placeholders (SVG, white on transparent).",
+    description: "Feeds the home-page logo banner and the Studio wall. Add each logo on the client's own page, or many at once from the list (SVG, white on transparent). A client being Published doesn\u2019t mean its logo is uploaded.",
     title: (d) => String(d.name ?? ""),
     keyFor: (d) => slugify(String(d.name ?? "")),
     keyLocked: true,
