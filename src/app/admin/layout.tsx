@@ -19,7 +19,8 @@ export default async function AdminLayout({ children }: { children: React.ReactN
       {user ? (
         <div className="flex h-full flex-col md:flex-row">
           <aside data-lenis-prevent className="no-scrollbar shrink-0 overflow-y-auto border-b border-border bg-bayou-deep p-4 md:h-full md:w-60 md:border-b-0 md:border-r">
-            <Link href="/admin" className="mb-4 block font-display text-xl text-cream">FOTB Admin</Link>
+            <Link href="/admin" className="block font-display text-xl text-cream">FOTB Admin</Link>
+            <a href="/" className="mb-4 mt-1 inline-block text-xs text-mist transition-colors hover:text-flame">← Back to site</a>
             <nav aria-label="Admin" className="flex flex-wrap gap-x-2 md:block md:space-y-0.5">
               <Link href="/admin" className={link}>Overview</Link>
               <p className="mt-3 hidden px-3 text-[11px] uppercase tracking-wider text-ash md:block">Content</p>
