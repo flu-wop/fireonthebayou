@@ -1,7 +1,5 @@
-import { isAdmin } from "@/lib/admin-auth";
-import { logoutAction } from "../actions";
-import LoginForm from "./LoginForm";
-import { checkDatabase, checkEnvVars, checkMailchimp, type Check, type Status } from "@/lib/health-checks";
+import { guard } from "../guard";
+import { checkBlob, checkDatabase, checkEnvVars, checkMailchimp, type Check, type Status } from "@/lib/health-checks";
 
 export const dynamic = "force-dynamic";
 
@@ -23,11 +21,11 @@ function Row({ c }: { c: Check }) {
 }
 
 export default async function SystemPage() {
-  if (!(await isAdmin())) return <LoginForm />;
+  await guard("owner");
 
-  const [db, mc] = await Promise.all([checkDatabase(), checkMailchimp()]);
+  const [db, mc, blob] = await Promise.all([checkDatabase(), checkMailchimp(), checkBlob()]);
   const env = checkEnvVars();
-  const checks = [...db, ...mc];
+  const checks = [...db, ...blob, ...mc];
   const missing = env.filter((v) => v.required && !v.set).length;
   const worst: Status = checks.some((c) => c.status === "fail") || missing ? "fail" : checks.some((c) => c.status === "warn") ? "warn" : "ok";
   const groups = [...new Set(env.map((v) => v.group))];
@@ -37,11 +35,8 @@ export default async function SystemPage() {
       <div className="mb-8 flex items-center justify-between">
         <div>
           <h1 className="font-display text-2xl uppercase tracking-widest">System</h1>
-          <p className="text-sm text-mist">Env vars, database and Mailchimp. Refresh the page to re-check.</p>
+          <p className="text-sm text-mist">Env vars, database, file storage and Mailchimp. Refresh the page to re-check.</p>
         </div>
-        <form action={logoutAction}>
-          <button className="text-sm text-mist underline hover:text-cream">Sign out</button>
-        </form>
       </div>
 
       <div className="mb-6 flex items-center gap-3 rounded border border-border bg-bayou p-4">

@@ -8,9 +8,10 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { navLinks, site, socialLabels } from "@/lib/site";
+import type { SiteSettings } from "@/lib/content/types";
 import SocialIcon from "@/components/ui/SocialIcon";
 
-export default function Footer() {
+export default function Footer({ settings }: { settings: SiteSettings }) {
   const year = new Date().getFullYear();
   // The homepage is a single screen; it carries its own slim legal line.
   if (usePathname() === "/") return null;
@@ -35,17 +36,17 @@ export default function Footer() {
               Studio
             </p>
             <address className="not-italic text-sm leading-relaxed text-mist">
-              {site.address.split(", ")[0]}
+              {settings.address.split(", ")[0]}
               <br />
-              {site.address.split(", ").slice(1).join(", ").replace(/\s+\d{5}(-\d{4})?$/, "")}
+              {settings.address.split(", ").slice(1).join(", ").replace(/\s+\d{5}(-\d{4})?$/, "")}
             </address>
             <p className="mt-4 text-sm leading-relaxed text-mist">
-              <a href={`tel:${site.phoneHref}`} className="transition-colors hover:text-flame">
-                {site.phone}
+              <a href={`tel:${settings.phoneHref}`} className="transition-colors hover:text-flame">
+                {settings.phone}
               </a>
               <br />
-              <a href={`mailto:${site.email}`} className="transition-colors hover:text-flame">
-                {site.email}
+              <a href={`mailto:${settings.email}`} className="transition-colors hover:text-flame">
+                {settings.email}
               </a>
             </p>
           </div>
@@ -73,7 +74,7 @@ export default function Footer() {
               Follow
             </p>
             <ul className="flex flex-wrap gap-3">
-              {Object.entries(site.socials).map(([name, url]) => (
+              {Object.entries(settings.socials).map(([name, url]) => (
                 <li key={name}>
                   <a
                     href={url}

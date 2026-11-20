@@ -1,6 +1,7 @@
 "use client";
 
-import { FORMATS, INDUSTRIES, type FormatKey, type IndustryKey, type Filters, counts } from "@/lib/catalog";
+import { type Filters, counts } from "@/lib/catalog";
+import type { Taxonomy } from "@/lib/content/types";
 import { cn } from "@/lib/utils";
 
 type Counts = ReturnType<typeof counts>;
@@ -29,10 +30,12 @@ function Chip({ active, onClick, label, count }: { active: boolean; onClick: () 
 export default function FilterBar({
   filters,
   counts: c,
+  taxonomy,
   onChange,
 }: {
   filters: Filters;
   counts: Counts;
+  taxonomy: Taxonomy;
   onChange: (next: Filters) => void;
 }) {
   return (
@@ -42,8 +45,8 @@ export default function FilterBar({
           <p className="w-16 shrink-0 text-[11px] uppercase tracking-wider text-ash">Format</p>
           <div role="group" aria-label="Filter by format" className="no-scrollbar flex gap-2 overflow-x-auto">
             <Chip active={!filters.format} onClick={() => onChange({ ...filters, format: null })} label="All" count={c.total} />
-            {FORMATS.map((f) => (
-              <Chip key={f.key} active={filters.format === f.key} onClick={() => onChange({ ...filters, format: f.key as FormatKey })} label={f.label} count={c.format[f.key]} />
+            {taxonomy.formats.map((f) => (
+              <Chip key={f.key} active={filters.format === f.key} onClick={() => onChange({ ...filters, format: f.key })} label={f.label} count={c.format[f.key]} />
             ))}
           </div>
         </div>
@@ -51,8 +54,8 @@ export default function FilterBar({
           <p className="w-16 shrink-0 text-[11px] uppercase tracking-wider text-ash">Industry</p>
           <div role="group" aria-label="Filter by industry" className="no-scrollbar flex gap-2 overflow-x-auto">
             <Chip active={!filters.industry} onClick={() => onChange({ ...filters, industry: null })} label="All" count={c.total} />
-            {INDUSTRIES.map((i) => (
-              <Chip key={i.key} active={filters.industry === i.key} onClick={() => onChange({ ...filters, industry: i.key as IndustryKey })} label={i.label} count={c.industry[i.key]} />
+            {taxonomy.industries.map((i) => (
+              <Chip key={i.key} active={filters.industry === i.key} onClick={() => onChange({ ...filters, industry: i.key })} label={i.label} count={c.industry[i.key]} />
             ))}
           </div>
         </div>

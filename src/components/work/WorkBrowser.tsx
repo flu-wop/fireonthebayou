@@ -3,7 +3,8 @@
 import { Suspense, useCallback, useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
-import { FEATURED_SLUGS, counts, filterCatalog, parseFilters, type Filters } from "@/lib/catalog";
+import { counts, filterCatalog, parseFilters, type Filters } from "@/lib/catalog";
+import type { Taxonomy } from "@/lib/content/types";
 import CatalogCard from "./CatalogCard";
 import FilterBar from "./FilterBar";
 import Lightbox from "./Lightbox";
@@ -19,21 +20,21 @@ function writeUrl(f: Filters, open: string | null) {
   window.history.replaceState(null, "", s ? `?${s}` : window.location.pathname);
 }
 
-function Browser({ items }: { items: WorkItem[] }) {
+function Browser({ items, taxonomy }: { items: WorkItem[]; taxonomy: Taxonomy }) {
   const params = useSearchParams();
-  const [filters, setFilters] = useState<Filters>(() => parseFilters(params));
+  const [filters, setFilters] = useState<Filters>(() => parseFilters(params, taxonomy));
   const [open, setOpen] = useState<string | null>(() => params.get("p"));
 
   // Back/forward and shared links: re-read the URL when it changes under us.
   useEffect(() => {
-    setFilters(parseFilters(params));
+    setFilters(parseFilters(params, taxonomy));
     setOpen(params.get("p"));
-  }, [params]);
+  }, [params, taxonomy]);
 
-  const c = useMemo(() => counts(items), [items]);
-  const visible = useMemo(() => filterCatalog(items, filters) as WorkItem[], [items, filters]);
+  const c = useMemo(() => counts(items, taxonomy), [items, taxonomy]);
+  const visible = useMemo(() => filterCatalog(items, filters), [items, filters]);
   const filtered = Boolean(filters.format || filters.industry);
-  const featured = useMemo(() => FEATURED_SLUGS.map((s) => items.find((i) => i.slug === s)).filter(Boolean) as WorkItem[], [items]);
+  const featured = useMemo(() => items.filter((i) => i.featured && i.youtubeIds.length > 0).slice(0, 6), [items]);
 
   const change = useCallback((next: Filters) => {
     setFilters(next);
@@ -53,7 +54,7 @@ function Browser({ items }: { items: WorkItem[] }) {
 
   return (
     <>
-      {!filtered && (
+      {!filtered && featured.length > 0 && (
         <section aria-labelledby="featured-title" className="mb-14">
           <h2 id="featured-title" className="eyebrow mb-5">Featured</h2>
           <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 md:gap-5">
@@ -64,7 +65,7 @@ function Browser({ items }: { items: WorkItem[] }) {
         </section>
       )}
 
-      <FilterBar filters={filters} counts={c} onChange={change} />
+      <FilterBar filters={filters} counts={c} taxonomy={taxonomy} onChange={change} />
 
       <p className="mb-5 mt-5 text-sm text-mist" aria-live="polite">
         Showing <span className="text-cream">{visible.length}</span> of {c.total} projects
@@ -102,10 +103,10 @@ function Browser({ items }: { items: WorkItem[] }) {
   );
 }
 
-export default function WorkBrowser({ items }: { items: WorkItem[] }) {
+export default function WorkBrowser({ items, taxonomy }: { items: WorkItem[]; taxonomy: Taxonomy }) {
   return (
     <Suspense fallback={null}>
-      <Browser items={items} />
+      <Browser items={items} taxonomy={taxonomy} />
     </Suspense>
   );
 }

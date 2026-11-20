@@ -1,7 +1,7 @@
 import PlaceholderFrame from "@/components/media/PlaceholderFrame";
-import { clientLogoPath } from "@/lib/media-manifest";
+import { clientLogoPath } from "@/lib/media";
 
-export type LogoItem = { name: string; src: string | null };
+export type LogoItem = { name: string; slug: string; src: string | null };
 
 /**
  * Scrolling banner of client logos along the stage's bottom edge. A client
@@ -26,7 +26,7 @@ export default function LogoBanner({ logos }: { logos: LogoItem[] }) {
                 className="h-12 w-40"
                 label="LOGO — SVG"
                 size="SVG, white on transparent"
-                where={`/public${clientLogoPath(l.name)}`}
+                where={`/public${clientLogoPath(l.slug)}`}
                 title={l.name}
               />
             )}

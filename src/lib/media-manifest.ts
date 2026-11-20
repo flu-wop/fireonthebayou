@@ -1,24 +1,16 @@
-import fs from "node:fs";
-import path from "node:path";
-import catalogJson from "../../data/fotb-catalog.json";
-import { projectSlug } from "@/lib/catalog-meta";
-import { crew } from "@/lib/crew";
-import { services } from "@/lib/services";
-import { slugify } from "@/lib/slugs";
-import { testimonials } from "@/lib/testimonials";
+import { getClients, getCrew, getProjects, getServices, getTestimonials } from "@/lib/content";
+import { HERO_POSTER_PATH, HERO_REEL_PATH, OG_IMAGE_PATH, FOUNDER_PHOTO_PATH, clientLogoPath, crewPortraitPath, dirHasMedia, getMediaOverrides, postStillPath, projectPosterPath, resolveWith, servicePhotoPath, testimonialPosterPath, type MediaMap } from "@/lib/media";
+
 
 /**
  * Media manifest — every image / video slot on the site, with the exact size
- * and the place to put the file. MediaSlot reads it to label placeholders and
- * /placeholders (later: Admin > Placeholders) reports from it.
+ * and the place to put the file. /placeholders and Admin > Placeholders report
+ * from it, and the admin upload buttons use `upload` for the target size.
  *
- * A slot is "filled" when its file exists under /public (or its YouTube ID is
- * set), "fallback" when something acceptable stands in (a project poster that
- * falls back to the YouTube thumbnail), and "empty" otherwise.
+ * "filled": a file (uploaded in admin, or in /public) or a YouTube ID is set.
+ * "fallback": something acceptable stands in (a project poster that falls back
+ * to the YouTube thumbnail). "empty": a labeled placeholder is showing.
  */
-type CatalogRow = { title: string; client: string; youtubeIds: string[] };
-const catalog = catalogJson as CatalogRow[];
-
 export type SlotStatus = "filled" | "fallback" | "empty";
 export type Slot = {
   id: string;
@@ -29,6 +21,10 @@ export type Slot = {
   /** Where the file goes (public path) or the field that holds the ID. */
   where: string;
   status: SlotStatus;
+  /** How an admin upload button should treat this slot. */
+  upload?: { path: string; kind: "image" | "svg" | "video"; width?: number; height?: number };
+  /** For YouTube-ID slots: where to edit it in admin. */
+  editHref?: string;
 };
 
 export const GROUP_ORDER = [
@@ -41,97 +37,68 @@ export const GROUP_ORDER = [
   "Testimonial videos",
   "Testimonial posters",
   "Crew portraits",
+  "Founder portrait",
   "Photography",
   "Service stills",
   "Post-Production stills",
 ] as const;
 
-export function publicFileExists(publicPath: string): boolean {
-  try {
-    return fs.existsSync(path.join(process.cwd(), "public", publicPath.replace(/^\//, "")));
-  } catch {
-    return false;
-  }
-}
-
-export function directoryHasFiles(publicDir: string): boolean {
-  try {
-    return fs.readdirSync(path.join(process.cwd(), "public", publicDir.replace(/^\//, ""))).some((f) => !f.startsWith("."));
-  } catch {
-    return false;
-  }
-}
-
-export const clientLogoPath = (client: string) => `/images/clients/${slugify(client)}.svg`;
-export const projectPosterPath = (title: string) => `/images/work-${projectSlug(title)}.jpg`;
-export const crewPortraitPath = (slug: string) => `/images/crew/${slug}.jpg`;
-export const testimonialPosterPath = (slug: string) => `/images/testimonials/${slug}.jpg`;
-export const servicePhotoPath = (title: string) => `/images/services/${slugify(title)}.jpg`;
-export const postStillPath = (n: number) => `/images/process/post-production-${n}.jpg`;
-
-/** Distinct client names in the catalog, alphabetical — the logo list. */
-export function catalogClients(): string[] {
-  return [...new Set(catalog.map((p) => p.client.trim()).filter(Boolean))].sort((a, b) => a.localeCompare(b));
-}
-
-export function buildManifest(): Slot[] {
+export async function buildManifest(): Promise<Slot[]> {
+  const map: MediaMap = await getMediaOverrides();
+  const [projects, clients, testimonials, crew, services] = await Promise.all([getProjects(), getClients(), getTestimonials(), getCrew(), getServices()]);
   const slots: Slot[] = [];
-  const add = (s: Omit<Slot, "status"> & { status: SlotStatus }) => slots.push(s);
-  const fileStatus = (p: string): SlotStatus => (publicFileExists(p) ? "filled" : "empty");
+  const has = (p: string) => resolveWith(map, p) !== null;
+  const fileSlot = (s: Omit<Slot, "status" | "where"> & { path: string }): Slot => ({ ...s, where: `/public${s.path}`, status: has(s.path) ? "filled" : "empty" });
+  const img = (path: string, w: number, h: number) => ({ path, kind: "image" as const, width: w, height: h });
 
-  add({ id: "hero-reel", group: "Hero reel", label: "Hero reel", size: "1920×1080", format: "MP4, H.264, muted loop, 15 MB or less", where: "/public/video/hero-reel.mp4", status: fileStatus("/video/hero-reel.mp4") });
-  add({ id: "hero-poster", group: "Hero poster", label: "Hero poster", size: "1920×1080", format: "JPG", where: "/public/images/hero-poster.jpg", status: fileStatus("/images/hero-poster.jpg") });
-  add({ id: "og-image", group: "Link-preview image", label: "Link-preview image", size: "1200×630", format: "JPG", where: "/public/images/og-image.jpg", status: fileStatus("/images/og-image.jpg") });
+  slots.push(fileSlot({ id: "hero-reel", group: "Hero reel", label: "Hero reel", size: "1920×1080", format: "MP4, H.264, muted loop, 15 MB or less (the YouTube reel plays until it arrives)", path: HERO_REEL_PATH, upload: { path: HERO_REEL_PATH, kind: "video" } }));
+  slots.push(fileSlot({ id: "hero-poster", group: "Hero poster", label: "Hero poster", size: "1920×1080", format: "JPG", path: HERO_POSTER_PATH, upload: img(HERO_POSTER_PATH, 1920, 1080) }));
+  slots.push(fileSlot({ id: "og-image", group: "Link-preview image", label: "Link-preview image", size: "1200×630", format: "JPG", path: OG_IMAGE_PATH, upload: img(OG_IMAGE_PATH, 1200, 630) }));
 
-  for (const client of catalogClients()) {
-    const p = clientLogoPath(client);
-    add({ id: `logo-${slugify(client)}`, group: "Client logos", label: client, size: "SVG, any width, ~96 px tall", format: "SVG, white on transparent", where: `/public${p}`, status: fileStatus(p) });
+  for (const c of clients) {
+    const p = clientLogoPath(c.key);
+    slots.push(fileSlot({ id: `logo-${c.key}`, group: "Client logos", label: c.data.name, size: "SVG, ~96 px tall", format: "SVG, white on transparent", path: p, upload: { path: p, kind: "svg" } }));
   }
 
-  for (const row of catalog) {
-    const slug = projectSlug(row.title);
-    const poster = projectPosterPath(row.title);
-    const hasId = row.youtubeIds.length > 0;
-    add({
-      id: `poster-${slug}`,
-      group: "Project posters",
-      label: row.title,
-      size: "1280×720",
-      format: "JPG (falls back to the YouTube thumbnail)",
-      where: `/public${poster}`,
-      status: publicFileExists(poster) ? "filled" : hasId ? "fallback" : "empty",
+  for (const r of projects) {
+    const d = r.data;
+    const poster = projectPosterPath(d.slug);
+    const hasId = d.youtubeIds.length > 0;
+    slots.push({
+      id: `poster-${d.slug}`, group: "Project posters", label: d.title, size: "1280×720", format: "JPG (falls back to the YouTube thumbnail)",
+      where: `/public${poster}`, status: has(poster) ? "filled" : hasId ? "fallback" : "empty", upload: img(poster, 1280, 720),
     });
-    add({
-      id: `video-${slug}`,
-      group: "Project videos",
-      label: row.title,
-      size: "YouTube video",
-      format: "YouTube ID",
-      where: "Project > YouTube ID(s)",
-      status: hasId ? "filled" : "empty",
+    slots.push({
+      id: `video-${d.slug}`, group: "Project videos", label: d.title, size: "YouTube video", format: "YouTube ID",
+      where: "Project > YouTube ID(s)", status: hasId ? "filled" : "empty", editHref: `/admin/content/project/${encodeURIComponent(d.slug)}`,
     });
   }
 
   for (const t of testimonials) {
-    add({ id: `tvideo-${t.slug}`, group: "Testimonial videos", label: t.client, size: "YouTube video", format: "YouTube ID", where: "src/lib/testimonials.ts > youtubeId", status: t.youtubeId ? "filled" : "empty" });
-    const p = testimonialPosterPath(t.slug);
-    add({ id: `tposter-${t.slug}`, group: "Testimonial posters", label: t.client, size: "1280×720", format: "JPG", where: `/public${p}`, status: fileStatus(p) });
+    slots.push({ id: `tvideo-${t.key}`, group: "Testimonial videos", label: t.data.client, size: "YouTube video", format: "YouTube ID", where: "Testimonial > YouTube ID", status: t.data.youtubeId ? "filled" : "empty", editHref: `/admin/content/testimonial/${encodeURIComponent(t.key)}` });
+    const p = testimonialPosterPath(t.key);
+    slots.push(fileSlot({ id: `tposter-${t.key}`, group: "Testimonial posters", label: t.data.client, size: "1280×720", format: "JPG", path: p, upload: img(p, 1280, 720) }));
   }
 
   for (const c of crew) {
-    const p = crewPortraitPath(c.slug);
-    add({ id: `crew-${c.slug}`, group: "Crew portraits", label: c.name, size: "1000×1250 (4:5)", format: "JPG", where: `/public${p}`, status: fileStatus(p) });
+    const p = crewPortraitPath(c.key);
+    slots.push(fileSlot({ id: `crew-${c.key}`, group: "Crew portraits", label: c.data.name, size: "1000×1250 (4:5)", format: "JPG", path: p, upload: img(p, 1000, 1250) }));
   }
+  slots.push(fileSlot({ id: "founder", group: "Founder portrait", label: "Founder portrait (Studio page)", size: "1000×1250 (4:5)", format: "JPG", path: FOUNDER_PHOTO_PATH, upload: img(FOUNDER_PHOTO_PATH, 1000, 1250) }));
 
-  add({ id: "photography", group: "Photography", label: "Photography set (from David)", size: "2000 px on the long edge, any aspect", format: "JPG or WebP", where: "/public/images/photography/", status: directoryHasFiles("/images/photography") ? "filled" : "empty" });
+  slots.push({
+    id: "photography", group: "Photography", label: "Photography set (from David)", size: "2000 px on the long edge, any aspect", format: "JPG or WebP",
+    where: "/public/images/photography/", status: dirHasMedia(map, "/images/photography") ? "filled" : "empty",
+    upload: { path: `/images/photography/${Date.now()}.jpg`, kind: "image", width: 2000, height: 2000 },
+  });
 
   for (const s of services) {
-    const p = servicePhotoPath(s.title);
-    add({ id: `service-${slugify(s.title)}`, group: "Service stills", label: s.title, size: "1600×1067 (3:2)", format: "JPG", where: `/public${p}`, status: fileStatus(p) });
+    const p = servicePhotoPath(s.key);
+    slots.push(fileSlot({ id: `service-${s.key}`, group: "Service stills", label: s.data.title, size: "1600×1067 (3:2)", format: "JPG", path: p, upload: img(p, 1600, 1067) }));
   }
   for (let n = 1; n <= 4; n++) {
     const p = postStillPath(n);
-    add({ id: `post-${n}`, group: "Post-Production stills", label: `Post-Production still ${n}`, size: "1600×1067 (3:2)", format: "JPG", where: `/public${p}`, status: fileStatus(p) });
+    slots.push(fileSlot({ id: `post-${n}`, group: "Post-Production stills", label: `Post-Production still ${n}`, size: "1600×1067 (3:2)", format: "JPG", path: p, upload: img(p, 1600, 1067) }));
   }
   return slots;
 }
@@ -142,3 +109,5 @@ export function summarize(slots: Slot[]) {
   const fallback = slots.filter((s) => s.status === "fallback").length;
   return { total, empty, fallback, filled: total - empty - fallback };
 }
+
+

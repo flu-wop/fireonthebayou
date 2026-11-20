@@ -15,6 +15,7 @@ export const REQUIRED_VARS: { group: string; name: string; required: boolean; no
   { group: "Admin", name: "ADMIN_PASSWORD", required: true },
   { group: "Database", name: "TURSO_URL", required: true },
   { group: "Database", name: "TURSO_TOKEN", required: true },
+  { group: "Storage", name: "BLOB_READ_WRITE_TOKEN", required: true, note: "Created by adding a Blob store in Vercel" },
   { group: "Mailchimp", name: "MAILCHIMP_API_KEY", required: true },
   { group: "Mailchimp", name: "MAILCHIMP_SERVER_PREFIX", required: true, note: "The part after the dash in the API key, e.g. us21" },
   { group: "Mailchimp", name: "MAILCHIMP_AUDIENCE_ID", required: true },
@@ -41,6 +42,18 @@ export async function checkMailchimp(): Promise<Check[]> {
     return [{ label: "Mailchimp audience", status: "ok", detail: `${body.name ?? "Audience"} · ${body.stats?.member_count ?? 0} contacts` }];
   } catch (e) {
     return [{ label: "Mailchimp", status: "fail", detail: safe(e) }];
+  }
+}
+
+export async function checkBlob(): Promise<Check[]> {
+  const token = process.env.BLOB_READ_WRITE_TOKEN;
+  if (!token) return [{ label: "File storage (Blob)", status: "fail", detail: "BLOB_READ_WRITE_TOKEN is not set, so uploads are disabled" }];
+  try {
+    const { list } = await import("@vercel/blob");
+    await list({ limit: 1 });
+    return [{ label: "File storage (Blob)", status: "ok", detail: "Connected" }];
+  } catch (e) {
+    return [{ label: "File storage (Blob)", status: "fail", detail: safe(e) }];
   }
 }
 

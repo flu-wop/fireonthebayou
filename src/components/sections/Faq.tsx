@@ -2,9 +2,7 @@
  * FAQ — native <details> so it works without JavaScript; FAQPage JSON-LD
  * so the answers can appear in search results.
  */
-import { faq } from "@/lib/faq";
-
-export default function Faq() {
+export default function Faq({ items: faq }: { items: { q: string; a: string }[] }) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",

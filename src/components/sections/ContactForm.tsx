@@ -14,7 +14,7 @@ import { beacon } from "@/lib/beacon";
 
 const budgets = ["< $5k", "$5k–15k", "$15k–40k", "$40k+"];
 
-export default function ContactForm() {
+export default function ContactForm({ email: studioEmail = site.email, phone: studioPhone = site.phone, phoneHref = site.phoneHref }: { email?: string; phone?: string; phoneHref?: string }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -35,7 +35,7 @@ export default function ContactForm() {
     const body = encodeURIComponent(
       `Name: ${name}\nEmail: ${email}\nPhone: ${phone || "—"}\nBudget: ${budget}\n\n${message}`
     );
-    window.location.href = `mailto:${site.email}?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:${studioEmail}?subject=${subject}&body=${body}`;
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -75,7 +75,7 @@ export default function ContactForm() {
         </p>
         <p className="mt-5 max-w-md text-base leading-relaxed text-mist">
           Thanks, {name.split(" ")[0] || "friend"}. We’ll be in touch within two business days.
-          Need us sooner? Call <a href={`tel:${site.phoneHref}`} className="text-cream underline underline-offset-4">{site.phone}</a>.
+          Need us sooner? Call <a href={`tel:${phoneHref}`} className="text-cream underline underline-offset-4">{studioPhone}</a>.
         </p>
       </div>
     );

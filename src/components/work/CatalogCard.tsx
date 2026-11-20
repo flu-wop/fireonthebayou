@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import MediaView from "@/components/media/MediaView";
 import { FilmStrip } from "@/components/media/PlaceholderFrame";
-import { formatLabel, industryLabel, ytThumb } from "@/lib/catalog";
+import { ytThumb } from "@/lib/catalog";
 import { cn } from "@/lib/utils";
 import type { WorkItem } from "./types";
 
@@ -18,13 +18,12 @@ export default function CatalogCard({ item, onOpen, layoutId }: { item: WorkItem
   const videoRef = useRef<HTMLVideoElement>(null);
   const [hover, setHover] = useState(false);
   const hasVideo = item.youtubeIds.length > 0;
-  const poster = `/images/work-${item.slug}.jpg`;
   const fallback = hasVideo ? ytThumb(item.youtubeIds[0]) : undefined;
-  const showsImage = item.posterPresent || Boolean(fallback);
-  const tags = [...item.formats.map(formatLabel), ...item.industries.map(industryLabel)];
+  const showsImage = Boolean(item.posterUrl) || Boolean(fallback);
+  const tags = item.tags;
 
   function enter() {
-    if (!item.previewPresent || !window.matchMedia("(hover: hover)").matches || reduce) return;
+    if (!item.previewUrl || !window.matchMedia("(hover: hover)").matches || reduce) return;
     setHover(true);
     videoRef.current?.play().catch(() => {});
   }
@@ -44,9 +43,9 @@ export default function CatalogCard({ item, onOpen, layoutId }: { item: WorkItem
       onMouseLeave={leave}
     >
       <MediaView
-        src={poster}
+        src={item.posterUrl ?? undefined}
         fallbackSrc={fallback}
-        present={item.posterPresent}
+        present={Boolean(item.posterUrl)}
         alt={`${item.title} — ${item.client}`}
         imgClassName={cn(
           "transition-transform duration-[1400ms] ease-cinematic",
@@ -57,15 +56,15 @@ export default function CatalogCard({ item, onOpen, layoutId }: { item: WorkItem
           variant: "project",
           label: "POSTER 1280×720",
           size: "1280×720 JPG · video link also needed",
-          where: `/public${poster} · Project > YouTube ID`,
+          where: `/public/images/work-${item.slug}.jpg · Project > YouTube ID`,
           title: item.title,
           subtitle: item.client,
           tags,
         }}
       />
-      {item.previewPresent && (
+      {item.previewUrl && (
         <video ref={videoRef} muted loop playsInline preload="none" className={cn("absolute inset-0 h-full w-full object-cover transition-opacity duration-500", hover ? "opacity-100" : "opacity-0")}>
-          <source src={`/video/work-${item.slug}.mp4`} type="video/mp4" />
+          <source src={item.previewUrl ?? undefined} type="video/mp4" />
         </video>
       )}
 

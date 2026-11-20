@@ -6,11 +6,10 @@
  * Sticky-scroll process narrative. The big index number stays pinned while the
  * step descriptions scroll past — a hallmark "premium" scroll device.
  */
-import { processSteps } from "@/lib/process";
 import Reveal from "@/components/effects/Reveal";
 import Parallax from "@/components/effects/Parallax";
 
-export default function ProcessSteps() {
+export default function ProcessSteps({ steps }: { steps: { title: string; description: string }[] }) {
   return (
     <section className="frame py-24 md:py-32">
       <div className="grid gap-12 md:grid-cols-12 md:gap-16">
@@ -32,12 +31,12 @@ export default function ProcessSteps() {
 
         {/* Steps */}
         <div className="md:col-span-8">
-          {processSteps.map((step) => (
-            <Reveal key={step.index}>
+          {steps.map((step, i) => (
+            <Reveal key={step.title}>
               <div className="flex gap-6 border-b border-border py-12 first:pt-0 md:gap-10">
                 <Parallax speed={0.15} className="shrink-0">
                   <span className="font-display text-5xl font-light text-border md:text-7xl">
-                    {step.index}
+                    {String(i + 1).padStart(2, "0")}
                   </span>
                 </Parallax>
                 <div>

@@ -10,6 +10,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import ScrollToTop from "@/components/effects/ScrollToTop";
 import { Analytics } from "@vercel/analytics/next";
+import { getSettings } from "@/lib/content";
 import { SiteAnalytics } from "@/components/analytics/SiteAnalytics";
 
 /**
@@ -53,11 +54,12 @@ export const metadata: Metadata = {
   robots: site.indexable ? { index: true, follow: true } : { index: false, follow: false },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const settings = await getSettings();
   return (
     <html data-theme="studio" lang="en" className={`dark ${archivo.variable} ${cormorant.variable}`}>
       <body className="bg-ink text-cream antialiased">
@@ -65,7 +67,7 @@ export default function RootLayout({
           <GrainOverlay />
           <Navbar />
           <main className="min-h-screen">{children}</main>
-          <Footer />
+          <Footer settings={settings} />
           <ScrollToTop />
         </SmoothScroll>
         <Analytics />

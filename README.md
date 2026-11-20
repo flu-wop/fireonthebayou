@@ -27,16 +27,37 @@ Repo: `flu-wop/fireonthebayou` → Vercel auto-deploys `main` to fireonthebayou.
    take effect as soon as the domain points here.
 4. Set the Mailchimp env vars and send a test inquiry.
 
-## Content
+## Content and admin
 
-- Portfolio catalog (source of truth, 89 projects): `data/fotb-catalog.json`. Screening-room write-ups: `src/lib/projects.ts`
-- Filmography (the rest of the work, plays in place): `src/lib/archive.ts`
-- Clients + agency partners (Studio page): `src/lib/clients.ts`
-- FAQ (Process page): `src/lib/faq.ts`
-- Old WordPress URL redirects: `src/lib/redirects.ts` (already wired in `next.config.ts`)
-- Brand facts, socials, studio, founder photo: `src/lib/site.ts`
-- Hero reel: `HERO_REEL` in `src/components/sections/Hero.tsx` (YouTube id, or a self-hosted `mp4`)
-- Jason's portrait: add `/public/images/jason-villemarette.jpg`, set `site.founder.photo`
+All site content lives in the database and is edited at **/admin** (no code). Pages read from Turso and fall back to the
+seed files when the database is unset, unseeded or unreachable, so previews and builds always work.
+
+| What | Where it is edited | Seed source (fallback) |
+|---|---|---|
+| Projects (89), formats and industries on each | Admin > Projects | `data/fotb-catalog.json` + write-ups in `src/lib/projects.ts` |
+| Testimonials (9 slots) | Admin > Testimonials | `src/lib/testimonials.ts` |
+| Clients and logos (banner, Studio wall) | Admin > Clients and logos | distinct clients in the catalog |
+| Crew | Admin > Crew | `src/lib/crew.ts` |
+| Services, Process, Post-Production tab, FAQ | Admin > those lists | `src/lib/services.ts`, `process.ts`, `faq.ts` |
+| Tagline, hero reel, contact details, socials | Admin > Settings (Owner) | `src/lib/site.ts` |
+| Filter chips (formats, industries) | Admin > Formats & industries (Owner) | defaults in `src/lib/content/seed-data.ts` |
+| Title, description, link preview per page | Admin > SEO | code defaults |
+| Images, SVG logos, hero MP4 | Admin > Placeholders / Media library (Vercel Blob) | files in `/public` |
+
+**Setup (once):** set `TURSO_URL`, `TURSO_TOKEN`, `ADMIN_PASSWORD`, `BLOB_READ_WRITE_TOKEN` (add a Blob store in Vercel).
+Open `/admin`, sign in with your email and `ADMIN_PASSWORD` (first sign-in creates the Owner account), then press
+**Seed from files** on the Overview page (or run `npm run seed`). Add Editors under Users; each person has their own
+login. After the first sign-in, change the Owner password and stop sharing `ADMIN_PASSWORD`.
+
+**Workflow:** edits save as drafts. Preview links (Overview, or any editor) show the real site with the drafts, work for
+7 days and are never indexed. **Publish** applies a record; **Publish all** applies everything and refreshes the site.
+History lists every change with who and when; **Revert to before** restores the earlier version as a draft.
+Admin covers content only: layout changes, new page types and new features still need a developer.
+
+Roles: **Owner** does everything (settings, formats and industries, users, system health); **Editor** manages content,
+media, SEO and the inbox. Old WordPress redirects (`src/lib/redirects.ts`) are shown read-only under SEO.
+
+Scripts: `npm run seed [-- --overwrite]`, `npm run check:catalog` (verifies the 89-project counts in the catalog file).
 
 ### Contact + email
 

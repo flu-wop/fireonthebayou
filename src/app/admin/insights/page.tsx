@@ -2,8 +2,7 @@
 // Admin insights. Server-rendered; the tab and range live in the URL
 // (?tab=funnel&days=90) so refreshes and shared links keep them.
 import Link from "next/link"
-import { redirect } from "next/navigation"
-import { isAdmin } from "@/lib/admin-auth"
+import { guard } from "../guard"
 import { getDB } from "@/lib/db"
 import { getInsights } from "@/lib/insights/core"
 import { insightsConfig } from "@/lib/insights/config"
@@ -21,7 +20,7 @@ const TABS = [
 ]
 
 export default async function InsightsPage({ searchParams }: { searchParams: Promise<{ tab?: string; days?: string }> }) {
-  if (!(await isAdmin())) redirect("/admin/system")
+  await guard()
 
   const sp = await searchParams
   const tab = TABS.some((t) => t.id === sp.tab) ? sp.tab! : "overview"

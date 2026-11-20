@@ -1,12 +1,13 @@
-import { publicFileExists } from "@/lib/media-manifest";
+import { getMediaOverrides, resolveWith } from "@/lib/media";
 import MediaView, { type MediaViewProps } from "./MediaView";
 
 /**
- * MediaSlot — server component. Checks whether the file exists under /public;
- * if so it renders it, otherwise a labeled PlaceholderFrame. Add the file and
- * the placeholder swaps itself out on the next build/deploy — no code change.
+ * MediaSlot — server component. Resolves the slot's /public path to an uploaded
+ * file or a /public file; if neither exists it renders a labeled
+ * PlaceholderFrame. Add the file in admin (or /public) and the placeholder
+ * swaps itself out. No code change.
  */
-export default function MediaSlot({ src, ...rest }: Omit<MediaViewProps, "present"> & { src: string }) {
-  const present = src.startsWith("http") ? true : publicFileExists(src);
-  return <MediaView {...rest} src={src} present={present} />;
+export default async function MediaSlot({ src, ...rest }: Omit<MediaViewProps, "present"> & { src: string }) {
+  const url = src.startsWith("http") ? src : resolveWith(await getMediaOverrides(), src);
+  return <MediaView {...rest} src={url ?? src} present={url !== null} />;
 }

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useLenis } from "lenis/react";
-import { formatLabel, industryLabel, ytThumb } from "@/lib/catalog";
+import { ytThumb } from "@/lib/catalog";
 import type { WorkItem } from "./types";
 
 /**
@@ -63,7 +63,7 @@ export default function Lightbox({
   }, [onClose, onNav, hasPrev, hasNext]);
 
   const id = item.youtubeIds[part];
-  const tags = [...item.formats.map(formatLabel), ...item.industries.map(industryLabel)];
+  const tags = item.tags;
 
   return (
     <div

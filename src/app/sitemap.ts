@@ -1,11 +1,12 @@
 import type { MetadataRoute } from "next";
-import { screenedProjects } from "@/lib/projects";
+import { getProjects } from "@/lib/content";
 
 import { site } from "@/lib/site";
 
 const BASE_URL = site.url;
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const projects = await getProjects();
   const staticRoutes = [
     "",
     "/about",
@@ -14,7 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/services",
     "/testimonials",
     "/work",
-    ...screenedProjects.map((p) => `/work/${p.slug}`),
+    ...projects.filter((r) => r.data.writeup && r.data.youtubeIds.length).map((r) => `/work/${r.data.slug}`),
   ];
 
   return staticRoutes.map((route) => ({

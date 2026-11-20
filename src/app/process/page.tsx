@@ -1,38 +1,14 @@
 import type { Metadata } from "next";
-import PageHeader from "@/components/sections/PageHeader";
-import ProcessSteps from "@/components/sections/ProcessSteps";
-import Statement from "@/components/sections/Statement";
-import Faq from "@/components/sections/Faq";
-import ProcessTabs from "@/components/sections/ProcessTabs";
-import PostProduction from "@/components/sections/PostProduction";
-import NextStep from "@/components/sections/NextStep";
+import ProcessView from "@/components/pages/ProcessView";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  alternates: { canonical: "/process" },
-  title: "Process",
-  description:
-    "How Fire on the Bayou works — discovery, treatment, production, sound, finish and post-production — plus answers to common questions about working with us.",
-};
+export const generateMetadata = (): Promise<Metadata> =>
+  pageMetadata("/process", {
+    title: "Process",
+    description:
+      "How Fire on the Bayou works — discovery, treatment, production, sound, finish and post-production — plus answers to common questions about working with us.",
+  });
 
 export default function ProcessPage() {
-  return (
-    <>
-      <PageHeader
-        eyebrow="How It Works"
-        title={<>From spark<br />to <span className="text-flame">screen.</span></>}
-        lede="A deliberate, five-stage process built so the people who pitch the film are the people who make it."
-      />
-      <ProcessTabs
-        process={
-          <>
-            <ProcessSteps />
-            <Statement text="No middlemen. No handoffs that *lose* *the* *vision.* One team carries your project from the *first* *conversation* to the final frame." />
-          </>
-        }
-        post={<PostProduction />}
-      />
-      <Faq />
-      <NextStep line="Ready when you are." />
-    </>
-  );
+  return <ProcessView />;
 }
