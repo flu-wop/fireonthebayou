@@ -49,8 +49,17 @@ export const labelFor = (list: Taxon[], key: string) => list.find((t) => t.key =
 /** YouTube thumbnail. Default is the 1280×720 version (sharp); `hq` is the 480×360 one that always exists. */
 export const ytThumb = (id: string, size: "max" | "hq" = "max") => `https://i.ytimg.com/vi/${id}/${size === "max" ? "maxresdefault" : "hqdefault"}.jpg`;
 
-/** onError for <img>: a video without a 1280×720 thumbnail falls back to the 480×360 one. */
-export function onYtImgError(e: { currentTarget: HTMLImageElement }) {
-  const img = e.currentTarget;
+/** Swap a missing 1280×720 thumbnail for the 480×360 one that every video has. */
+function swapToSmallThumb(img: HTMLImageElement) {
   if (img.src.includes("/maxresdefault.jpg")) img.src = img.src.replace("maxresdefault", "hqdefault");
+}
+/** onError for <img>: the image failed to load. */
+export function onYtImgError(e: { currentTarget: HTMLImageElement }) {
+  swapToSmallThumb(e.currentTarget);
+}
+/** onLoad for <img>: for videos with no 1280×720 thumbnail YouTube answers with a tiny 120×90 gray
+ *  placeholder that loads "successfully", so check the real size too. */
+export function onYtImgLoad(e: { currentTarget: HTMLImageElement }) {
+  const img = e.currentTarget;
+  if (img.src.includes("/maxresdefault.jpg") && img.naturalWidth > 0 && img.naturalWidth < 480) swapToSmallThumb(img);
 }

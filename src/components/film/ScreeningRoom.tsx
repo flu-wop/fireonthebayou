@@ -18,7 +18,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { Film } from "@/lib/projects";
-import { onYtImgError } from "@/lib/catalog";
+import { onYtImgError, onYtImgLoad } from "@/lib/catalog";
 import { cn } from "@/lib/utils";
 
 import { loadYouTubeAPI, YT_ENDED as ENDED, YT_PLAYING as PLAYING, type YTPlayer } from "@/lib/youtube";
@@ -231,6 +231,7 @@ export default function ScreeningRoom({
         <img
           src={poster}
           onError={onYtImgError}
+          onLoad={onYtImgLoad}
           alt=""
           className={cn(
             "absolute inset-0 h-full w-full object-cover transition-opacity duration-1000",
