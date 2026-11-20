@@ -39,13 +39,12 @@ export default async function AdminLayout({ children }: { children: React.ReactN
                   <p className="mt-3 hidden px-3 text-[11px] uppercase tracking-wider text-ash md:block">Owner</p>
                   <Link href="/admin/settings" className={link}>Settings</Link>
                   <Link href="/admin/taxonomy" className={link}>Formats &amp; industries</Link>
-                  <Link href="/admin/users" className={link}>Users</Link>
                   <Link href="/admin/system" className={link}>System health</Link>
                 </>
               )}
             </nav>
             <form action={logoutAction} className="mt-4 border-t border-border pt-3 text-xs text-ash">
-              <Link href="/admin/account" className="mr-2 underline hover:text-cream">{user.email}</Link>· {user.role}
+              Signed in
               <button className="ml-2 underline hover:text-cream">Sign out</button>
             </form>
           </aside>

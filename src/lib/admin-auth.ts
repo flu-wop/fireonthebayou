@@ -5,18 +5,16 @@ import { getDB } from "@/lib/db";
 import { ensureTables } from "@/lib/content/schema";
 
 /**
- * Admin auth: per-person logins (email + password) with two roles.
- *   owner  — everything: settings, taxonomy, redirects view, health, users.
- *   editor — content, media, placeholders, inbox, SEO.
- * Passwords are scrypt-hashed in fotb_users. The session cookie is
+ * Admin auth: one shared password (ADMIN_PASSWORD), no usernames. Signing in creates a session
+ * for the built-in "admin" owner row in fotb_users. The session cookie is
  * `userId.expiry.signature` (HMAC); the user is re-read from the database on
  * every request, so disabling or demoting someone takes effect immediately.
  *
- * Bootstrap: while no users exist, ADMIN_PASSWORD (the old shared password)
- * signs in the first person as Owner and creates their account.
  * Signing secret: ADMIN_SESSION_SECRET, else derived from ADMIN_PASSWORD.
  */
 export const ADMIN_COOKIE = "fotb_admin";
+/** The single built-in account everyone signs in as (password-only login). */
+export const ADMIN_NAME = "admin";
 export type Role = "owner" | "editor";
 export type AdminUser = { id: number; email: string; name: string; role: Role };
 

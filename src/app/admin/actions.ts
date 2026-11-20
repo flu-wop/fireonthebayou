@@ -1,42 +1,40 @@
 "use server";
 
+import { createHmac, timingSafeEqual } from "node:crypto";
 import { cookies, headers } from "next/headers";
 import { redirect } from "next/navigation";
-import { ADMIN_COOKIE, countUsers, createUser, findUserByEmail, sessionValue, verifyPassword } from "@/lib/admin-auth";
+import { ADMIN_COOKIE, ADMIN_NAME, createUser, findUserByEmail, sessionValue } from "@/lib/admin-auth";
 import { logAudit } from "@/lib/content/admin-store";
 
 const attempts = new Map<string, { n: number; reset: number }>();
 
-type LoginState = { error?: string; email?: string } | undefined;
+type LoginState = { error?: string } | undefined;
 
+/** Password-only sign-in. The password is ADMIN_PASSWORD, so changing it in Vercel changes it here
+ *  and signs everyone out. Everyone who knows it is the one built-in "admin" account. */
 export async function loginAction(_prev: LoginState, form: FormData): Promise<LoginState> {
   const h = await headers();
   const ip = (h.get("x-forwarded-for")?.split(",")[0] || h.get("x-real-ip") || "unknown").trim();
   const now = Date.now();
   const a = attempts.get(ip);
-  if (a && a.reset > now && a.n >= 8) return { error: "Too many tries. Wait a few minutes.", email: String(form.get("email") ?? "") };
+  if (a && a.reset > now && a.n >= 8) return { error: "Too many tries. Wait a few minutes." };
   attempts.set(ip, a && a.reset > now ? { n: a.n + 1, reset: a.reset } : { n: 1, reset: now + 10 * 60_000 });
 
-  const email = String(form.get("email") ?? "").trim().toLowerCase();
-  const password = String(form.get("password") ?? "");
-  if (!email || !password) return { error: "Enter your email and password.", email };
-  if (!process.env.ADMIN_PASSWORD && !process.env.ADMIN_SESSION_SECRET) return { error: "ADMIN_PASSWORD isn't set on this deployment yet.", email };
+  const expected = process.env.ADMIN_PASSWORD;
+  if (!expected) return { error: "ADMIN_PASSWORD isn't set on this deployment yet." };
+  const given = String(form.get("password") ?? "");
+  const ha = createHmac("sha256", "cmp").update(given).digest();
+  const hb = createHmac("sha256", "cmp").update(expected).digest();
+  if (!timingSafeEqual(ha, hb)) return { error: "Wrong password." };
 
-  let userId: number | null = null;
+  let userId: number;
   try {
-    if ((await countUsers()) === 0) {
-      // First sign-in: the shared bootstrap password creates the Owner account.
-      if (!process.env.ADMIN_PASSWORD || password !== process.env.ADMIN_PASSWORD) return { error: "Wrong email or password.", email };
-      userId = await createUser({ email, name: email.split("@")[0], role: "owner", password });
-      await logAudit({ user: email, action: "user.bootstrap", kind: "user", key: email });
-    } else {
-      const u = await findUserByEmail(email);
-      if (!u || Number(u.disabled) === 1 || !(await verifyPassword(password, String(u.pw_hash)))) return { error: "Wrong email or password.", email };
-      userId = Number(u.id);
-    }
+    const u = await findUserByEmail(ADMIN_NAME);
+    userId = u ? Number(u.id) : await createUser({ email: ADMIN_NAME, name: "Admin", role: "owner", password: expected });
+    if (!u) await logAudit({ user: ADMIN_NAME, action: "user.bootstrap", kind: "user", key: ADMIN_NAME });
   } catch (e) {
     console.error("login failed", e);
-    return { error: "The database isn't reachable. Check TURSO_URL and TURSO_TOKEN.", email };
+    return { error: "The database isn't reachable. Check TURSO_URL and TURSO_TOKEN." };
   }
 
   (await cookies()).set(ADMIN_COOKIE, sessionValue(userId), {

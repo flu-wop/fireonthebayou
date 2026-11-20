@@ -10,8 +10,7 @@ export default function LoginForm() {
   return (
     <form action={action} className="mx-auto mt-32 w-full max-w-sm space-y-4 px-6">
       <h1 className="font-display text-2xl uppercase tracking-widest">Admin</h1>
-      <input type="email" name="email" required autoFocus defaultValue={state?.email} autoComplete="username" placeholder="Email" className={input} />
-      <input type="password" name="password" required autoComplete="current-password" placeholder="Password" className={input} />
+      <input type="password" name="password" required autoFocus autoComplete="current-password" placeholder="Password" className={input} />
       {state?.error && <p className="text-sm text-flame">{state.error}</p>}
       <button disabled={pending} className="w-full rounded bg-ember px-4 py-3 text-sm font-semibold uppercase tracking-widest text-white disabled:opacity-60">
         {pending ? "Checking…" : "Sign in"}
